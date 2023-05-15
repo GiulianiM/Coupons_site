@@ -1,0 +1,545 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #E3E7ED url(images/img01.gif) repeat-x left top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #787878;
+}
+
+#bodyadmin {
+	margin: 0;
+	padding: 0;
+	background: #dde1e9 url(images/img12.gif) repeat-x left top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #787878;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: normal;
+	color: #F93D00;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1.6em;
+}
+
+p, ul, ol {
+	margin-top: 0;
+	line-height: 180%;
+}
+
+ul, ol {
+}
+
+a {
+	text-decoration: none;
+	border-bottom: 1px dotted #999999;
+	color: #417FDA;
+}
+
+a:hover {
+}
+
+#wrapper {
+	width: 968px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* Header */
+
+#header {
+	width: 968px;
+	height: 150px;
+	margin: 0 auto;
+	background: url(images/img02.gif) no-repeat left top;
+}
+
+/* Logo */
+
+#logo {
+	float: left;
+	width: 968px;
+	height: 60px;
+	color: #616161;
+}
+
+#logo h1, #logo p {
+	margin: 0;
+	padding: 0;
+}
+
+#logo h1 {
+	float: left;
+	padding: 80px 0 0 80px;
+	letter-spacing: -1px;
+	text-transform: lowercase;
+	font-size: 2.6em;
+}
+
+#logo p {
+	float: left;
+	margin: 0;
+	padding: 90px 10px;
+	font: normal 14px Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+} 
+
+#logo a {
+	border: none;
+	background: none;
+	text-decoration: none;
+	color: #616161;
+}
+
+/* Search */
+
+#search {
+	float: right;
+	width: 230px;
+	padding: 0;
+}
+
+#search form {
+	height: 41px;
+	margin: 0;
+	padding: 70px 0 0 0px;
+}
+
+#search fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+#search-text {
+	width: 210px;
+	border: none;
+	text-transform: lowercase;
+	font: bold 1.2em Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+}
+
+#search-submit {
+	display: none;
+}
+
+/* Menu */
+
+#menu {
+	width: 968px;
+	height: 50px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li {
+	float: left;
+	height: 50px;
+	background: url(images/img03.gif) no-repeat right top;
+}
+
+#menu a {
+	display: block;
+	margin-top: 10px;
+	margin-right: 3px;
+	padding: 7px 20px 7px 20px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	border: none;
+}
+
+#menu a.highlight {
+	color: #e88c8c;
+}
+
+#menu a:hover, #menu .current_page_item a {
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+/* Page */
+
+#page {
+	width: 968px;
+	margin: 0 auto;
+	background: url(images/img05.jpg) repeat-y left top;
+}
+
+#page-bgtop {
+	background: url(images/img04.jpg) no-repeat left top;
+}
+
+#page-bgbtm {
+	background: url(images/img06.jpg) no-repeat left bottom;
+}
+
+/* Static */
+
+.static {
+	padding: 60px 20px 20px 20px;
+}
+
+/* Content */
+
+#content {
+	float: right;
+	width: 700px;
+	padding: 60px 20px 0 0;
+}
+
+.prod {
+	margin-bottom: 8px;
+	background: url(images/img09.jpg) repeat-y left top;
+}
+
+.prod-bgtop {
+	background: url(images/img08.jpg) no-repeat left top;
+}
+
+.prod-bgbtm {
+	background: url(images/img10.jpg) no-repeat left bottom;
+}
+
+.prod .oneitem {
+	padding: 10px 20px 15px 20px;
+	height:100px;
+	border-bottom: 2px dashed #B5DEF4;
+}
+
+.prod .title {
+	padding-top: 15px;
+	padding-left: 20px;
+	color: #000000;
+}
+
+.prod .title a {
+	color: #000000;
+	border: none;
+}
+
+.prod .meta {
+	padding-left: 20px;
+	padding-bottom: 5px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: italic;
+}
+
+.prod .entry {
+	padding: 10px 20px 15px 20px;
+	text-align: justify;
+}
+
+.prod .image {
+	float:left;
+	text-align: left;
+    width: 80px;
+	height: inherit;
+}
+
+.prod .image .imagefrm {
+    width: 80px;
+	height: 80px;
+	padding-top: 10px;
+}
+
+.prod .info{
+	float:left;
+    width: 440px;
+	height: inherit;
+}
+
+.prod .pricebox{
+	float:left;
+    width: 140px;
+	height: inherit;
+}
+
+.prod .pricebox p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.prod .pricebox .price{
+    color: #424954;
+    font-family: Verdana;
+	padding-right: 10px;
+    font-size: 21px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.prod .pricebox .discprice{
+    color: #CC0000;
+    font-family: Verdana;
+	padding-right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: right;
+}
+
+#pagination {
+	text-align :center;
+}
+
+#pagination a {
+	border-bottom:none
+}
+
+/* Forms */
+
+.formerror {
+    background: none repeat scroll 0 0 #FFECEC;
+    border: 3px solid #f93d00;
+    height: auto;
+    margin: 0 0 1px;
+    text-align: center;
+
+}
+
+.errors {
+	color: #f93d00;
+        font-size: 12px;
+}
+
+.errors ul {
+	line-height: 100%;
+}
+
+/* Sidebar */
+
+#sidebar {
+	float: left;
+	width: 220px;
+	padding: 60px 0 0 20px;
+	color: #787878;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li {
+	margin: 0;
+	padding: 0;
+}
+
+#sidebar li ul {
+	padding-bottom: 30px;
+}
+
+#sidebar li li {
+	line-height: 35px;
+	border-bottom: 1px dashed #D2D4C9;
+}
+
+#sidebar li li span {
+	display: block;
+	margin-top: -20px;
+	padding: 0;
+	font-size: 11px;
+	font-style: italic;
+}
+
+#sidebar h2 {
+	height: 32px;
+	padding: 8px 0 0 30px;
+	background: url(images/img11.gif) no-repeat left top;
+	letter-spacing: -.5px;
+	color: #FFFFFF;
+}
+
+#sidebar p {
+	padding-bottom: 20px;
+	text-align: justify;
+}
+
+#sidebar a {
+	color: #417FDA;
+	border: none;
+}
+
+#sidebar a:hover {
+	text-decoration: underline;
+	color: #787878;
+}
+
+/* Calendar */
+
+#calendar {
+}
+
+#calendar_wrap {
+	padding: 20px;
+}
+
+#calendar table {
+	width: 100%;
+}
+
+#calendar tbody td {
+	text-align: center;
+}
+
+#calendar #next {
+	text-align: right;
+}
+
+/* Footer */
+
+#footer {
+	height: 50px;
+	margin: 0 auto;
+	padding: 0px 0 15px 0;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #B2B2B2;
+}
+
+#footer p {
+	margin: 0;
+	line-height: normal;
+	font-size: 9px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#footer a {
+	color: #3D444F;
+}
+
+/* input form */
+
+.wrap-input {
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  margin-bottom: 12px;
+}
+
+.rs1-wrap-input {
+  width: calc((100% - 30px) / 2);
+}
+
+.label-input {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #555555;
+  line-height: 1,5;
+}
+
+.input {
+  display: block;
+  width: 90%; 
+  background: #f2f2f2;
+  border-radius: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #686868;
+  line-height: 1.2;
+  padding: 5px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  margin-top: 5px;
+}
+
+.container-contact {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.wrap-contact {
+  max-width: 960px;
+  background: #dbecf6;
+  border-radius: 2px;
+  padding: 30px 120px;
+  position: relative;
+}
+
+.wrap-contact1 {
+  max-width: 300px;
+  background: #dbecf6;
+  border-radius: 2px;
+  padding: 30px 30px;
+  position: relative;
+}
+
+.contact-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.form-btn1 {
+  justify-content: center;
+  padding: 0 20px;
+  height: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #555555;
+}
