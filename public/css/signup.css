@@ -1,0 +1,78 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styles */
+
+.navbar {
+    background-color: #f2f2f2;
+    padding: 1.5%;
+}
+
+.navbar-brand img {
+    height: 2em;
+}
+
+.wrapper {
+    margin-top: 7em;
+    padding: 2% 25%;
+}
+
+.wrapper h1 {
+    text-align: center;
+    padding-bottom: 5%;
+
+}
+
+.wrapper .text-muted {
+    text-align: end;
+}
+
+.wrapper input {
+    background-color: var(--light-white);
+    border-color: var(--light-white);
+    color: var(--gray);
+}
+
+.wrapper input:focus {
+    box-shadow: none;
+}
+
+.wrapper .submit_btn {
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+.wrapper .submit_btn:focus{
+    box-shadow: none;
+}
+
+
+.wrapper select {
+    border-color: var(--light-white);
+}
+
+.wrapper select:focus {
+    box-shadow: none;
+}
+
+.wrapper .btn {
+    background-color: #F5C703;
+}
+
+.wrapper .btn:hover {
+    border-color: #F5C703;
+}
+
+footer {
+    background-color: #f2f2f2;
+}
+
+footer img {
+    max-width: 50%;
+    margin: 0 auto;
+}
