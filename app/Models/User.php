@@ -2,50 +2,51 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Resources\Coupon;
+use App\Models\Resources\Promozione;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'utente';
+
     protected $fillable = [
         'name',
-        'surname',
         'email',
-        'username',
         'password',
+        'role',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
-        'username',
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    public function hasRole($role) {
-        $role = (array)$role;
-        return in_array($this->role, $role);
+
+    public function aziende()
+    {
+        return $this->hasMany(Azienda::class, 'idUtente');
     }
 
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class, 'idUtente');
+    }
+
+    public function promozioni()
+    {
+        return $this->hasManyThrough(Promozione::class, Azienda::class, 'idUtente', 'idAzienda');
+    }
+
+    public function promozioniGestite()
+    {
+        return $this->belongsToMany(Promozione::class, 'gestione_promozione', 'idUtente', 'idPromozione');
+    }
 }

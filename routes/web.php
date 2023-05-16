@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AziendeController;
 // USE DEL PROFESSORE
-// use App\Http\Controllers\PublicController;
+// use App\Http\Controllers\OldPublicController;
 // use App\Http\Controllers\AdminController;
 // use App\Http\Controllers\UserController;
 
@@ -19,29 +19,29 @@ use App\Http\Controllers\AziendeController;
 |
 */
 
-Route::get('/', [HomepageController::class, 'index'])
+Route::get('/', [PublicController::class, 'index'])
         ->name('homepage');
 
-Route::get('/aziende', [AziendeController::class, 'index'])
+Route::get('/aziende', [PublicController::class, 'aziende'])
         ->name('aziende');
 
-Route::get('/azienda', [AziendaController::class, 'index'])
-        ->name('azienda');
-
-Route::get('/faq', [FaqController::class, 'index'])
+Route::get('/faq', [PublicController::class, 'faq'])
         ->name('faq');
 
-Route::get('/coupon', [CouponController::class, 'index'])
-        ->name('coupon');
+Route::get('/login', [PublicController::class, 'login'])
+        ->name('login');
+
+Route::get('/signup', [PublicController::class, 'signup'])
+        ->name('signup');
 
 // ROTTE DEL PROFESSORE
-// Route::get('/', [PublicController::class, 'showCatalog1'])
+// Route::get('/', [OldPublicController::class, 'showCatalog1'])
 //         ->name('catalog1');
 
-// Route::get('/selTopCat/{topCatId}', [PublicController::class, 'showCatalog2'])
+// Route::get('/selTopCat/{topCatId}', [OldPublicController::class, 'showCatalog2'])
 //         ->name('catalog2');
 
-// Route::get('/selTopCat/{topCatId}/selCat/{catId}', [PublicController::class, 'showCatalog3'])
+// Route::get('/selTopCat/{topCatId}/selCat/{catId}', [OldPublicController::class, 'showCatalog3'])
 //         ->name('catalog3');
 
 // Route::get('/admin', [AdminController::class, 'index'])

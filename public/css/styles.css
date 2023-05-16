@@ -48,6 +48,10 @@ body {
     flex-wrap: nowrap;
 }
 
+.card img {
+    display: initial !important;
+}
+
 /* Carousel styles */
 .carousel-container {
     margin: 0 auto;
@@ -84,6 +88,87 @@ body {
 
 .carousel-arrow i {
     color: #000000;
+}
+
+.company-container {
+    margin: 0 auto;
+    padding: 20px 50px;
+}
+
+.company-container h1 {
+    margin-top: 3em;
+}
+
+.colonna {
+    text-align: right;
+}
+
+.coupon-container .btn {
+    background-color: #F5C703;
+}
+
+.coupon-container .btn:hover {
+    border-color: #F5C703;
+}
+
+.wrapper {
+    margin-top: 7em;
+    padding: 2% 2%;
+}
+
+.wrapper h1 {
+    text-align: center;
+    padding-bottom: 15%;
+
+}
+
+.wrapper .text-muted {
+    text-align: end;
+}
+
+.wrapper input {
+    background-color: var(--light-white);
+    border-color: var(--light-white);
+    color: var(--gray);
+}
+
+.wrapper input:focus {
+    box-shadow: none;
+}
+
+.wrapper .submit_btn {
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+.wrapper .submit_btn:focus{
+    box-shadow: none;
+}
+
+
+.wrapper select {
+    border-color: var(--light-white);
+}
+
+.wrapper select:focus {
+    box-shadow: none;
+}
+
+.wrapper .btn {
+    background-color: #F5C703;
+}
+
+.wrapper .btn:hover {
+    border-color: #F5C703;
+}
+
+.faq-container {
+    margin: 0 auto;
+    padding: 20px 50px;
+}
+
+.faq-container h6 {
+    color: #F5C703;
 }
 
 /* Grid view styles */
@@ -144,7 +229,7 @@ body {
 
 footer {
     background-color: #f2f2f2;
-    
+
 }
 
 footer img {

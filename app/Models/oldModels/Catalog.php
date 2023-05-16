@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\oldModels;
 
-use App\Models\Resources\Category;
-use App\Models\Resources\Product;
+use App\Models\oldModels\Resources\Category;
+use App\Models\oldModels\Resources\Product;
 
 class Catalog {
 

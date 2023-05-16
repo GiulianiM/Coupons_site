@@ -1,21 +1,50 @@
-<ul>
-    <li><a href="{{ route('catalog1') }}" title="Home">Catalogo</a></li>
-    <li><a href="{{ route('who') }}" title="Il nostro profilo aziendale">Chi siamo</a></li>
-    <li><a href="{{ route('where') }}" title="Dove trovarci">Dove Siamo</a></li>
-    <li><a href="mailto:info@acme.it" title="Mandaci un messaggio">Contattaci</a></li>
-    @can('isAdmin')
-        <li><a href="{{ route('admin') }}" class="highlight" title="Home Admin">Home Admin</a></li>
-    @endcan
-    @can('isUser')
-        <li><a href="{{ route('user') }}" class="highlight" title="Home User">Home User</a></li>
-    @endcan
-    @auth
-        <li><a href="" title="Esci dal sito" class="highlight" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
-        </form>
-    @endauth    
-    @guest
-        <li><a href="{{ route('login') }}" class="highlight" title="Accedi all'area riservata del sito">Accedi</a></li>  
-    @endguest
-</ul>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+                aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <img src="{{asset('images/logo.png')}}" class="d-inline-block align-top" alt="Logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('aziende') }}">Aziende</a>
+                </li>
+                @can('isStaff')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('staff') }}">Dashboard</a>
+                    </li>
+                @endcan
+                @can('isAdmin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin') }}">Dashboard</a>
+                    </li>
+                @endcan
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
+                </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profilo') }}">Profilo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                    </li>
+                @endauth
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('signup') }}">Signup</a>
+                    </li>
+                @endguest
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers; 
+namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Resources\Product;
 use App\Http\Requests\NewProductRequest;
+use App\Models\oldModels\Admin;
+use App\Models\oldModels\Resources\Product;
 
 class AdminController extends Controller {
 
@@ -45,7 +45,6 @@ class AdminController extends Controller {
         };
 
         return redirect()->action([AdminController::class, 'index']);
-        ;
     }
 
 }

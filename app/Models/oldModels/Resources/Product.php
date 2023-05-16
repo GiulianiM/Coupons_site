@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Resources;
+namespace App\Models\oldModels\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +8,7 @@ class Product extends Model {
 
     protected $table = 'product';
     protected $primaryKey = 'prodId';
-    
+
     // prodId non modificabile da un HTTP Request (Mass Assignment)
     protected $guarded = ['prodId'];
 

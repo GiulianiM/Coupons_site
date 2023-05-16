@@ -2,13 +2,21 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" >
         <title>LaProj5 | @yield('title', 'Catalogo')</title>
     </head>
-    <body id="bodyadmin">
+    <body>
         <div id="wrapper">
+            <div id="header">
+                <div id="logo">
+                    <h1><a href="">ACME S.p.A  </a></h1>
+                    <p>i migliori prodotti alla portata di un click</p>
+                </div>
+            </div>
+
+            <!-- end #header -->
             <div id="menu">
-                @include('layouts/_navadmin')
+                @include('layouts/_navuser')
             </div>
 
             <!-- end #menu -->

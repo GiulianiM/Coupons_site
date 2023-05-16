@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" >
         <title>LaProj5 | @yield('title', 'Catalogo')</title>
     </head>
     <body>
@@ -16,7 +17,7 @@
 
             <!-- end #header -->
             <div id="menu">
-                @include('layouts/_navuser')
+                @include('layouts/_navpublic')
             </div>
 
             <!-- end #menu -->
