@@ -11,6 +11,8 @@ class Promozione extends Model
 
     protected $table = 'promozione';
 
+    protected $primaryKey = 'idPromozione';
+
     protected $fillable = [
         'descrizione',
         'immagine',

@@ -9,8 +9,8 @@
 
 @section('content')
     <div class="search-container container-fluid">
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+        <form class="d-flex" role="search" method="GET" action="{{ route('search') }}">
+            <input class="form-control me-2" type="search" placeholder="Cerca..." aria-label="Search" name="query">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
@@ -33,7 +33,7 @@
                                         @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
                                     </div>
                                     <div class="card-body">
-                                        <a href="/coupon" class="card-link">
+                                        <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
                                             <h5 class="card-title">{{ $promozione->titolo }}</h5>
                                         </a>
                                         <p class="card-text">{{ $promozione->sconto }}</p>
@@ -61,7 +61,7 @@
                             @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
                         </div>
                         <div class="card-body">
-                            <a href="/coupon" class="card-link">
+                            <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
                                 <h5 class="card-title">{{ $promozione->titolo }}</h5>
                             </a>
                             <p class="card-text">{{ $promozione->sconto }}</p>

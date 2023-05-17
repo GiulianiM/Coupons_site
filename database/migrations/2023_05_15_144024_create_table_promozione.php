@@ -15,6 +15,8 @@ class CreateTablePromozione extends Migration
     {
         Schema::create('promozione', function (Blueprint $table) {
             $table->bigIncrements('idPromozione');
+            $table->bigInteger('idAzienda')->unsigned()->index();
+            $table->foreign('idAzienda')->references('idAzienda')->on('azienda');
             $table->string('titolo');
             $table->string('descrizione', 1200);
             $table->string('immagine');

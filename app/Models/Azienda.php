@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Azienda extends Model
 {
-
     protected $table = 'azienda';
+
+    protected $primaryKey = 'idAzienda';
 
     protected $fillable = [
         'nome',
