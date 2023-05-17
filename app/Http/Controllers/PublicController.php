@@ -31,7 +31,8 @@ class PublicController extends Controller
     }
 
     public function faq() {
-        return view('faq');
+        $faqs = FAQ::all();
+        return view('faq', compact('faqs'));
     }
 
     public function login() {
