@@ -20,8 +20,8 @@
                         </div>
                     </div>
 
-                    @isset($aziende)
                         <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                    @isset($aziende)
                             <table class="table">
                                 <thead class="table-light">
                                   <tr>
@@ -48,8 +48,8 @@
                                   @endforeach
                                 </tbody>
                            </table>
-                        </div>
                     @endisset
+                        </div>
                 </div>
             </div>
 

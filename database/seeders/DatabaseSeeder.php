@@ -33,6 +33,18 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        DB::table('utente')->insert([
+            'nome' => 'staff',
+            'cognome' => 'staff',
+            'genere' => 1,
+            'eta' => 22,
+            'email' => Str::random(6) . '@gmail.com',
+            'telefono' => '1234567890',
+            'username' => 'staff',
+            'password' => Hash::make('staff') ,
+            'livello' => 'staff',
+        ]);
+
         for ($i = 1; $i <= 12; $i++) {
             DB::table('azienda')->insert([
                 'idUtente' => 1,

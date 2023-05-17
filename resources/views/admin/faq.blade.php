@@ -19,8 +19,8 @@
                             </button>
                         </div>
                     </div>
-                    @isset($faqs)
                         <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                    @isset($faqs)
                             <table class="table">
                                 <thead class="table-light">
                                 <tr>
@@ -45,8 +45,8 @@
 
                                 </tbody>
                             </table>
-                        </div>
                     @endisset
+                        </div>
                 </div>
             </div>
 

@@ -4,7 +4,12 @@
                 aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand fw-bold" href="{{route('admin')}}">Dashboard Admin</a>
+        @can('isAdmin')
+            <a class="navbar-brand fw-bold" href="{{route('admin')}}">Dashboard Admin</a>
+        @endcan
+        @can('isStaff')
+            <a class="navbar-brand fw-bold" href="{{route('staffPromos')}}">Dashboard Staff</a>
+        @endcan
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
@@ -36,7 +41,8 @@
                     </li>
                 @endcan
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

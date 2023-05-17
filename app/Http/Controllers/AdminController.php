@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         $aziende = Azienda::all();
-        return view('admin.aziende');
+        return view('admin.aziende', compact('aziende'));
     }
 
     public function faq()
