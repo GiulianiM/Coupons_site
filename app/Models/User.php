@@ -13,9 +13,16 @@ class User extends Authenticatable
 
     protected $table = 'utente';
 
+    protected $primaryKey = 'idUtente';
+
     protected $fillable = [
-        'name',
+        'nome',
+        'cognome',
         'email',
+        'username',
+        'telefono',
+        'eta',
+        'genere',
         'password',
         'role',
     ];
@@ -48,4 +55,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Promozione::class, 'gestione_promozione', 'idUtente', 'idPromozione');
     }
+
+    public function hasRole($role)
+    {
+        return $this->livello === $role;
+    }
+
 }

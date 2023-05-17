@@ -28,11 +28,22 @@ Route::get('/aziende', [PublicController::class, 'aziende'])
 Route::get('/faq', [PublicController::class, 'faq'])
         ->name('faq');
 
-Route::get('/login', [PublicController::class, 'login'])
-        ->name('login');
+Route::get('/admin/companies', [PublicController::class, 'adminCompanies'])
+    ->name('adminCompanies');
 
-Route::get('/signup', [PublicController::class, 'signup'])
-        ->name('signup');
+Route::get('/admin/faq', [PublicController::class, 'adminFaq'])
+    ->name('adminFaq');
+
+Route::get('/admin/utenti', [PublicController::class, 'adminUsers'])
+    ->name('adminUsers');
+
+Route::get('/admin/staff', [PublicController::class, 'adminStaff'])
+    ->name('adminStaff');
+
+Route::get('/staff/promozioni', [PublicController::class, 'staffPromo'])
+    ->name('staffPromo');
+
+
 
 // ROTTE DEL PROFESSORE
 // Route::get('/', [OldPublicController::class, 'showCatalog1'])
