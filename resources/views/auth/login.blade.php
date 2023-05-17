@@ -3,25 +3,41 @@
 @section('title', 'Login')
 
 @section('content')
-  <div class="wrapper">
-    <div class="container">
-        <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
-            <form class="rounded bg-white shadow p-5">
-                <h1 class="fw-bolder fs-1 mb-2">Bentornato</h1>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username">
-                    <label for="floatingUsername">Username</label>
-                  </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+    <div class="wrapper">
+        <div class="">
+            <div class="row">
+                <div class="col text-center">
+                    {{Form::open(array('route' => 'login', 'class' => 'rounded bg-white shadow p-5'))}}
+                    @csrf
+                    <h1 class="fw-bolder fs-1 mb-3">Bentornato</h1>
+                    <div class="form-floating mb-3">
+                        {{ Form::text('username', "",array('class'=>$errors->has('username') ? 'form-control is-invalid' : 'form-control', 'id' => 'username', 'placeholder' => 'Username')) }}
+                        {{ Form::label('username', 'Username', array('for' => 'username')) }}
+                        @if ($errors->first('username'))
+                            @foreach ($errors->get('username') as $message)
+                                <div class="invalid-feedback m-0">
+                                    {{$message}}
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="form-floating mb-3">
+                        {{ Form::password('password',array('class'=>$errors->has('password') ? 'form-control is-invalid' : 'form-control', 'id' => 'password', 'placeholder' => 'Password')) }}
+                        {{ Form::label('password', 'Password', array('for' => 'password')) }}
+                        @if ($errors->first('password'))
+                            @foreach ($errors->get('password') as $message)
+                                <div class="invalid-feedback ms-2">
+                                    {{$message}}
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    {{ Form::submit('Login', ['class' => 'btn submit_btn w-100 my-3']) }}
+                    <div class="fw-normal text-muted mb-2">
+                        <a href="/signup" class="text-muted fw-bold text-decoration-none">Non hai un account?</a>
+                    </div>
                 </div>
-                <a class="btn submit_btn w-100 my-2" href="/">Login</a>
-                <div class="fw-normal text-muted mb-2">
-                    <a href="/signup" class="text-muted fw-bold text-decoration-none">Non hai un account?</a>
-                  </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
 @endsection

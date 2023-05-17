@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
             'email.email' => 'Inserisci un indirizzo email valido.',
             'email.unique' => 'Utente già registrato con questa email.',
             'password.required' => 'Il campo password è obbligatorio.',
-            'password.min' => 'La password deve essere di almeno 4 caratteri.',
+            'password.min' => 'La password deve essere di almeno 8 caratteri.',
             'genere.required' => 'Il campo genere è obbligatorio.',
             'genere.in' => 'Seleziona un genere valido.',
             'username.required' => 'Il campo username è obbligatorio.',
@@ -63,7 +63,7 @@ class RegisteredUserController extends Controller
         ];
 
 
-        $request->validate($rules);
+        $request->validate($rules, $messages);
 
         $user = User::create([
             'nome' => $request->nome,

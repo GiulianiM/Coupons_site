@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AziendeController;
@@ -33,6 +34,9 @@ Route::get('/promozione/{promozione}', [PublicController::class, 'promozione'])
 
 Route::get('/faq', [PublicController::class, 'faq'])
         ->name('faq');
+
+Route::get('/profilo', [UserController::class, 'profilo'])
+        ->name('profilo');
 
 Route::get('/admin/companies', [PublicController::class, 'adminCompanies'])
     ->name('adminCompanies');

@@ -10,38 +10,51 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'homepage' ? 'active' : '' }}" href="{{ route('homepage') }}">Home</a>
+                    <a class="nav-link {{ Request::route()->getName() == 'homepage' ? 'active' : '' }}"
+                       href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'aziende' || Request::route()->getName() == 'azienda' ? 'active' : '' }}" href="{{ route('aziende') }}">Aziende</a>
+                    <a class="nav-link {{ Request::route()->getName() == 'aziende' || Request::route()->getName() == 'azienda' ? 'active' : '' }}"
+                       href="{{ route('aziende') }}">Aziende</a>
                 </li>
-            @can('isStaff')
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::route()->getName() == 'faq' ? 'active' : '' }}"
+                       href="{{ route('faq') }}">FAQ</a>
+                </li>
+                @can('isStaff')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'staff' ? 'active' : '' }}" href="{{ route('staff') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('staffPromo') }}">Dashboard</a>
                     </li>
                 @endcan
                 @can('isAdmin')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'admin' ? 'active' : '' }}" href="{{ route('admin') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('adminCompanies') }}">Dashboard</a>
                     </li>
                 @endcan
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'faq' ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a>
-                </li>
                 @can('isUser')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'profilo' ? 'active' : '' }}" href="{{ route('homepage') }}">Profilo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        <a class="nav-link {{ Request::route()->getName() == 'profilo' ? 'active' : '' }}"
+                           href="{{ route('profilo') }}">Profilo</a>
                     </li>
                 @endcan
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @endauth
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'Login' ? 'active' : '' }}" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link {{ Request::route()->getName() == 'Login' ? 'active' : '' }}"
+                           href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'signup' ? 'active' : '' }}" href="{{ route('signup') }}">Signup</a>
+                        <a class="nav-link {{ Request::route()->getName() == 'signup' ? 'active' : '' }}"
+                           href="{{ route('signup') }}">Signup</a>
                     </li>
                 @endguest
             </ul>

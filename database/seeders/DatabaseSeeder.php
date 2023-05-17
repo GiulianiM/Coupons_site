@@ -21,15 +21,15 @@ class DatabaseSeeder extends Seeder
     {
         for ($i = 1; $i <= 2; $i++) {
             DB::table('utente')->insert([
-                'nome' => Str::random(10),
-                'cognome' => Str::random(10),
+                'nome' => ($i == 1) ? 'admin' : 'user',
+                'cognome' => ($i == 1) ? 'admin' : 'user',
                 'genere' => 1,
-                'eta' => 20,
-                'email' => Str::random(10) . '@gmail.com',
+                'eta' => 22,
+                'email' => Str::random(6) . '@gmail.com',
                 'telefono' => '1234567890',
-                'username' => Str::random(10),
-                'password' => Hash::make('password'),
-                'livello' => ($i == 1) ? 'staff' : 'user',
+                'username' => ($i == 1) ? 'admin' : 'user',
+                'password' => ($i == 1) ? Hash::make('admin') : Hash::make('user'),
+                'livello' => ($i == 1) ? 'admin' : 'user',
             ]);
         }
 
@@ -61,6 +61,15 @@ class DatabaseSeeder extends Seeder
                     'sconto' => '10',
                 ]);
             }
+
+            $idPromozione = DB::getPdo()->lastInsertId();
+            DB::table('coupon')->insert([
+                'idCoupon' => $i,
+                'idutente' => 2,
+                'idPromozione' => $idPromozione,
+                'codice' => Str::random(6),
+            ]);
+
         }
 
         for ($i = 1; $i <= 6; $i++) {

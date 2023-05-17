@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function promozioni()
     {
-        return $this->hasManyThrough(Promozione::class, Azienda::class, 'idUtente', 'idAzienda');
+        return $this->hasManyThrough(Promozione::class, Coupon::class, 'idUtente', 'idPromozione');
     }
 
     public function promozioniGestite()
