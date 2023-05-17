@@ -25,6 +25,12 @@ Route::get('/', [PublicController::class, 'index'])
 Route::get('/aziende', [PublicController::class, 'aziende'])
         ->name('aziende');
 
+Route::get('/aziende/{azienda}', [PublicController::class, 'azienda'])
+    ->name('azienda');
+
+Route::get('/promozione/{promozione}', [PublicController::class, 'promozione'])
+        ->name('promozione');
+
 Route::get('/faq', [PublicController::class, 'faq'])
         ->name('faq');
 

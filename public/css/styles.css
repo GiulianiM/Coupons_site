@@ -91,6 +91,15 @@ body {
     padding: 20px 50px;
 }
 
+.promozione-container {
+    margin: 0 auto;
+    padding: 20px 50px;
+}
+
+.promozione-container .btn {
+    background-color: #F5C703;
+}
+
 .colonna {
     text-align: right;
 }
@@ -104,8 +113,7 @@ body {
 }
 
 .wrapper {
-    margin-top: 7em;
-    padding: 2% 2%;
+    padding: 2% 20%;
 }
 
 .wrapper .text-muted {
@@ -150,7 +158,7 @@ body {
 
 .faq-container {
     margin: 0 auto;
-    padding: 0 50px;
+    padding: 20px 80px;
 }
 
 .faq-container h6 {

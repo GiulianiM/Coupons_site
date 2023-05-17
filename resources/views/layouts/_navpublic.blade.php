@@ -13,9 +13,9 @@
                     <a class="nav-link {{ Request::route()->getName() == 'homepage' ? 'active' : '' }}" href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'aziende' ? 'active' : '' }}" href="{{ route('aziende') }}">Aziende</a>
+                    <a class="nav-link {{ Request::route()->getName() == 'aziende' || Request::route()->getName() == 'azienda' ? 'active' : '' }}" href="{{ route('aziende') }}">Aziende</a>
                 </li>
-                @can('isStaff')
+            @can('isStaff')
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'staff' ? 'active' : '' }}" href="{{ route('staff') }}">Dashboard</a>
                     </li>

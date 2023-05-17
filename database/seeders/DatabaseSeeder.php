@@ -15,23 +15,10 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    const DESCPROD = 'Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Phasellus pellentesque. Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. </p><p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Phasellus pellentesque. Mauris quam enim, molestie in, rhoncus ut, lobortis a, est.';
+    const DESCPROD = 'Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Phasellus pellentesque. Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Phasellus pellentesque. Mauris quam enim, molestie in, rhoncus ut, lobortis a, est.';
 
     public function run()
     {
-        for ($i = 1; $i <= 12; $i++) {
-            DB::table('promozione')->insert([
-                'titolo' => Str::random(10),
-                'descrizione' => self::DESCPROD,
-                'immagine' => 'promozione.png',
-                'modalita' => 'modalita',
-                'luogo' => 'luogo',
-                'inizio' => '2023-05-15',
-                'fine' => '2023-06-15',
-                'sconto' => '10',
-            ]);
-        }
-
         for ($i = 1; $i <= 2; $i++) {
             DB::table('utente')->insert([
                 'nome' => Str::random(10),
@@ -58,6 +45,22 @@ class DatabaseSeeder extends Seeder
                 'descrizione' => self::DESCPROD,
                 'tipologia' => Str::random(10),
             ]);
+
+            $idAzienda = DB::getPdo()->lastInsertId();
+
+            for ($j = 1; $j <= 8; $j++) {
+                DB::table('promozione')->insert([
+                    'idAzienda' => $idAzienda,
+                    'titolo' => Str::random(10),
+                    'descrizione' => self::DESCPROD,
+                    'immagine' => 'promozione.png',
+                    'modalita' => 'modalita',
+                    'luogo' => 'luogo',
+                    'inizio' => '2023-05-15',
+                    'fine' => '2023-06-15',
+                    'sconto' => '10',
+                ]);
+            }
         }
 
         for ($i = 1; $i <= 6; $i++) {
