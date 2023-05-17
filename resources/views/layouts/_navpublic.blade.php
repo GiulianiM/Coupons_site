@@ -28,14 +28,14 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::route()->getName() == 'faq' ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a>
                 </li>
-                @auth
+                @can('isUser')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'profilo' ? 'active' : '' }}" href="{{ route('profilo') }}">Profilo</a>
+                        <a class="nav-link {{ Request::route()->getName() == 'profilo' ? 'active' : '' }}" href="{{ route('homepage') }}">Profilo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                     </li>
-                @endauth
+                @endcan
                 @guest
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'Login' ? 'active' : '' }}" href="{{ route('login') }}">Login</a>

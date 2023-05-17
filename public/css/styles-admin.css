@@ -1,0 +1,65 @@
+
+
+.container {
+    width: 80%;
+    padding: 0
+}
+
+.navigation,
+.navigation:hover {
+    margin-right: 2px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #000
+}
+
+.fas.fa-trash.table-icon-trash {
+    color: red
+}
+
+.fas.fa-pencil-alt.table-icon-edit {
+    color: orange
+}
+
+.row {
+    margin-top: 40px
+}
+
+.left {
+    float: left
+}
+
+.right {
+    float: right
+}
+
+.box-content {
+    padding: 20px
+}
+
+.btn-add,
+.btn-add:hover {
+    color: #000
+}
+
+.btn-add-box {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+
+footer {
+    margin-top: 50px;
+    line-height: 50px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%
+}
+
+.custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+    display: block
+}
