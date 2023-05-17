@@ -17,20 +17,20 @@
 
     <!-- Nuovi Coupon carousel -->
     <div class="coupons-container">
-        <h1 class="d-flex justify-content-center fw-bold">Nuovi Coupon</h1>
+        <h1 class="d-flex justify-content-center fw-bold pb-3">Nuovi Coupon</h1>
         <div class="carousel-container">
             <!-- Add left arrow -->
             <div class="carousel-arrow carousel-arrow-left">
                 <i class="fa-solid fa-arrow-left"></i>
             </div>
             <div class="carousel-wrapper">
-                <div class="carousel">
-                    @isset($promozioni)
+                @isset($promozioni)
+                    <div class="carousel">
                         @foreach($promozioni as $promozione)
                             <div class="slide">
                                 <div class="card">
                                     <div class="image">
-                                        @include('helpers.productImg', ['attrs' => 'imagefrm', 'imgFile' => $promozione->immagine])
+                                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
                                     </div>
                                     <div class="card-body">
                                         <a href="/coupon" class="card-link">
@@ -41,8 +41,8 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endisset
-                </div>
+                    </div>
+                @endisset
                 <div class="carousel-arrow carousel-arrow-right">
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
@@ -52,13 +52,13 @@
 
     <!-- Tutti i coupon grid view -->
     <div class="coupons-container">
-        <h1 class="d-flex justify-content-center fw-bold">Tutti i Coupon</h1>
+        <h1 class="d-flex justify-content-center fw-bold pb-3">Tutti i Coupon</h1>
         <div class="grid-view">
             @isset($promozioni)
                 @foreach($promozioni as $promozione)
                     <div class="card">
                         <div class="image">
-                            @include('helpers.productImg', ['attrs' => 'imagefrm', 'imgFile' => $promozione->immagine])
+                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
                         </div>
                         <div class="card-body">
                             <a href="/coupon" class="card-link">

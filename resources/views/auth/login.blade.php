@@ -1,50 +1,27 @@
 @extends('layouts.public')
 
-@section('title', 'Registrazione')
+@section('title', 'Login')
 
 @section('content')
-<div class="static">
-    <h3>Login</h3>
-    <p>Utilizza questa form per autenticarti al sito</p>
-
-    <div class="container-contact">
-        <div class="wrap-contact1">
-            {{ Form::open(array('route' => 'login', 'class' => 'contact-form')) }}
-            
-             <div  class="wrap-input">
-                 <p> Se non hai già un account <a  href="{{ route('register') }}">registrati</a></p>
-             </div>            
-             <div  class="wrap-input">
-                {{ Form::label('username', 'Nome Utente', ['class' => 'label-input']) }}
-                {{ Form::text('username', '', ['class' => 'input','id' => 'username']) }}
-                @if ($errors->first('username'))
-                <ul class="errors">
-                    @foreach ($errors->get('username') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
-            
-             <div  class="wrap-input">
-                {{ Form::label('password', 'Password', ['class' => 'label-input']) }}
-                {{ Form::password('password', ['class' => 'input', 'id' => 'password']) }}
-                @if ($errors->first('password'))
-                <ul class="errors">
-                    @foreach ($errors->get('password') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
-            
-            <div class="container-form-btn">                
-                {{ Form::submit('Login', ['class' => 'form-btn1']) }}
-            </div>
-            
-            {{ Form::close() }}
+  <div class="wrapper">
+    <div class="container">
+        <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
+            <form class="rounded bg-white shadow p-5">
+                <h1 class="fw-bolder fs-1 mb-2">Bentornato</h1>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username">
+                    <label for="floatingUsername">Username</label>
+                  </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <a class="btn submit_btn w-100 my-2" href="/">Login</a>
+                <div class="fw-normal text-muted mb-2">
+                    <a href="/signup" class="text-muted fw-bold text-decoration-none">Non hai un account?</a>
+                  </div>
+            </form>
         </div>
     </div>
-
 </div>
 @endsection

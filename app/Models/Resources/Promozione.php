@@ -4,12 +4,10 @@ namespace App\Models\Resources;
 
 use App\Models\Azienda;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Promozione extends Model
 {
-    use HasFactory;
 
     protected $table = 'promozione';
 

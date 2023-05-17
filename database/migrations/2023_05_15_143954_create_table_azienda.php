@@ -22,9 +22,9 @@ class CreateTableAzienda extends Migration
             $table->string('citta');
             $table->integer('cap');
             $table->string('logo');
-            $table->string('ragioneSociale');             
-            $table->string('descrizione');             
-            $table->string('tipologia');             
+            $table->string('ragioneSociale');
+            $table->string('descrizione', 1200);
+            $table->string('tipologia');
         });
     }
 

@@ -16,7 +16,7 @@ class CreateTablePromozione extends Migration
         Schema::create('promozione', function (Blueprint $table) {
             $table->bigIncrements('idPromozione');
             $table->string('titolo');
-            $table->string('descrizione');
+            $table->string('descrizione', 1200);
             $table->string('immagine');
             $table->string('modalita');
             $table->string('luogo');

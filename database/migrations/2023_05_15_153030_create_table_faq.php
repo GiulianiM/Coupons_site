@@ -18,7 +18,7 @@ class CreateTableFaq extends Migration
             $table->bigInteger('idUtente')->unsigned()->index();
             $table->foreign('idUtente')->references('idUtente')->on('utente');
             $table->string('titolo',50);
-            $table->string('descrizione');
+            $table->string('descrizione', 1200);
         });
     }
 

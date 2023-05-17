@@ -48,10 +48,6 @@ body {
     flex-wrap: nowrap;
 }
 
-.card img {
-    display: initial !important;
-}
-
 /* Carousel styles */
 .carousel-container {
     margin: 0 auto;
@@ -95,10 +91,6 @@ body {
     padding: 20px 50px;
 }
 
-.company-container h1 {
-    margin-top: 3em;
-}
-
 .colonna {
     text-align: right;
 }
@@ -114,12 +106,6 @@ body {
 .wrapper {
     margin-top: 7em;
     padding: 2% 2%;
-}
-
-.wrapper h1 {
-    text-align: center;
-    padding-bottom: 15%;
-
 }
 
 .wrapper .text-muted {
@@ -164,7 +150,7 @@ body {
 
 .faq-container {
     margin: 0 auto;
-    padding: 20px 50px;
+    padding: 0 50px;
 }
 
 .faq-container h6 {
@@ -213,6 +199,12 @@ body {
     text-align: center;
 }
 
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
 
 .card .card-title {
     margin-top: 10px;

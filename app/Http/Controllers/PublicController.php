@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Azienda;
+use App\Models\Resources\Faq;
 use App\Models\Resources\Promozione;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,8 @@ class PublicController extends Controller
     }
 
     public function aziende() {
-        return view('aziende');
+        $aziende = Azienda::all();
+        return view('aziende', compact('aziende'));
     }
 
     public function faq() {
@@ -25,6 +28,6 @@ class PublicController extends Controller
     }
 
     public function signup() {
-        return view('signup');
+        return view('auth/signup');
     }
 }

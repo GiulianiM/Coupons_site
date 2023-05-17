@@ -34,7 +34,7 @@
                 </ul>
                 @endif
             </div>
-            
+
              <div  class="wrap-input">
                 {{ Form::label('email', 'Email', ['class' => 'label-input']) }}
                 {{ Form::text('email', '', ['class' => 'input','id' => 'email']) }}
@@ -46,7 +46,7 @@
                 </ul>
                 @endif
             </div>
-            
+
              <div  class="wrap-input">
                 {{ Form::label('username', 'Nome Utente', ['class' => 'label-input']) }}
                 {{ Form::text('username', '', ['class' => 'input','id' => 'username']) }}
@@ -58,7 +58,7 @@
                 </ul>
                 @endif
             </div>
-            
+
              <div  class="wrap-input">
                 {{ Form::label('password', 'Password', ['class' => 'label-input']) }}
                 {{ Form::password('password', ['class' => 'input', 'id' => 'password']) }}
@@ -75,11 +75,11 @@
                 {{ Form::label('password-confirm', 'Conferma password', ['class' => 'label-input']) }}
                 {{ Form::password('password_confirmation', ['class' => 'input', 'id' => 'password-confirm']) }}
             </div>
-            
-            <div class="container-form-btn">                
+
+            <div class="container-form-btn">
                 {{ Form::submit('Registra', ['class' => 'form-btn1']) }}
             </div>
-            
+
             {{ Form::close() }}
         </div>
     </div>
