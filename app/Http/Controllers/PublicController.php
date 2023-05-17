@@ -34,20 +34,5 @@ class PublicController extends Controller
         $faqs = FAQ::all();
         return view('faq', compact('faqs'));
     }
-    public function adminCompanies() {
-        return view('admin/aziende');
-    }
-    public function adminFaq() {
-        return view('admin/faq');
-    }
-    public function adminUsers() {
-        return view('admin/utenti');
-    }
-    public function adminStaff() {
-        return view('admin/staff');
-    }
-    public function staffPromo() {
-        return view('staff/promozioni');
-    }
 
 }

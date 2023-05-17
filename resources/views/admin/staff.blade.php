@@ -20,197 +20,34 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                        <table class="table">
-                            <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Cognome</th>
-                                <th>Id</th>
-                                <th colspan="2"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>0001</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    @isset($staff)
+                        <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                            <table class="table">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Id</th>
+                                    <th>Nome</th>
+                                    <th>Cognome</th>
+                                    <th colspan="2"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($staff as  $single)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $single->idUtente }}</td>
+                                        <td>{{ $single->nome }}</td>
+                                        <td>{{ $single->cognome }}</td>
+                                        {{--TODO da fare le pagine di edit e l'aggiunta del delete--}}
+                                        <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+                                        <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endisset
                 </div>
             </div>
 

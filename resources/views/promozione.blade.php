@@ -26,11 +26,11 @@
                     </div>
                     <div class="mt-auto ms-5">
                         <h5 class="card-title">{{ $promozione->sconto }}</h5>
-                        @if (Auth::check())
+                        @auth
                             <a href="#" class="btn">Redeem</a>
                         @else
                             <a href="{{ route('signup') }}" class="btn">Sign Up to Redeem</a>
-                        @endif
+                        @endauth
                     </div>
                 </div>
             </div>

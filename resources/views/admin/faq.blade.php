@@ -19,175 +19,34 @@
                             </button>
                         </div>
                     </div>
+                    @isset($faqs)
+                        <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                            <table class="table">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Titolo</th>
+                                    <th>Descrizione</th>
+                                    <th colspan="2"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                        <table class="table">
-                            <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Titolo</th>
-                                <th>Descrizione</th>
-                                <th colspan="2"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Titolo FAQ</td>
-                                <td>Descrizione della faq molto lunga. max 140 caratteri sono consentiti</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                @foreach ($faqs as $faq)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $faq->titolo }}</td>
+                                        <td>{{ $faq->descrizione }}</td>
+                                        {{--TODO da fare le pagine di edit e l'aggiunta del delete--}}
+                                        <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+                                        <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    @endisset
                 </div>
             </div>
 

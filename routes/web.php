@@ -3,7 +3,8 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
-use App\Http\Controllers\AziendeController;
+use \App\Http\Controllers\AdminController;
+use \App\Http\Controllers\StaffController;
 // USE DEL PROFESSORE
 // use App\Http\Controllers\OldPublicController;
 // use App\Http\Controllers\AdminController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\AziendeController;
 |
 */
 
+/*Rotte public*/
 Route::get('/', [PublicController::class, 'index'])
         ->name('homepage');
 
@@ -38,20 +40,25 @@ Route::get('/faq', [PublicController::class, 'faq'])
 Route::get('/profilo', [UserController::class, 'profilo'])
         ->name('profilo');
 
-Route::get('/admin/companies', [PublicController::class, 'adminCompanies'])
-    ->name('adminCompanies');
+/* Rotte admin*/
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin');
 
-Route::get('/admin/faq', [PublicController::class, 'adminFaq'])
+Route::get('/admin/faq', [AdminController::class, 'faq'])
     ->name('adminFaq');
 
-Route::get('/admin/utenti', [PublicController::class, 'adminUsers'])
+Route::get('/admin/utenti', [AdminController::class, 'users'])
     ->name('adminUsers');
 
-Route::get('/admin/staff', [PublicController::class, 'adminStaff'])
+Route::get('/admin/staff', [AdminController::class, 'staff'])
     ->name('adminStaff');
 
-Route::get('/staff/promozioni', [PublicController::class, 'staffPromo'])
-    ->name('staffPromo');
+Route::get('/admin/stats', [AdminController::class, 'stats'])
+    ->name('adminStats');
+
+Route::get('/staff', [StaffController::class, 'promos'])
+    ->name('staffPromos');
+
 
 
 

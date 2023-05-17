@@ -4,7 +4,7 @@
                 aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand fw-bold" href="{{route('adminCompanies')}}">Dashboard Admin</a>
+        <a class="navbar-brand fw-bold" href="{{route('admin')}}">Dashboard Admin</a>
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
@@ -13,8 +13,8 @@
                 </li>
                 @can('isAdmin')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'adminCompanies' ? 'active' : '' }}"
-                           href="{{ route('adminCompanies') }}">Aziende</a>
+                        <a class="nav-link {{ Request::route()->getName() == 'admin' ? 'active' : '' }}"
+                           href="{{ route('admin') }}">Aziende</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'adminFaq' ? 'active' : '' }}"
@@ -31,8 +31,8 @@
                 @endcan
                 @can('isStaff')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'staffPromo' ? 'active' : '' }}"
-                           href="{{ route('staffPromo') }}">Promozioni</a>
+                        <a class="nav-link {{ Request::route()->getName() == 'staffPromos' ? 'active' : '' }}"
+                           href="{{ route('staffPromos') }}">Promozioni</a>
                     </li>
                 @endcan
                 <li class="nav-item">

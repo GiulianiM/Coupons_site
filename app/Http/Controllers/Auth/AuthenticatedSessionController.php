@@ -35,14 +35,11 @@ class AuthenticatedSessionController extends Controller {
          */
 //        return redirect()->intended(RouteServiceProvider::HOME);
 
-        $role = auth()->user()->livello;
+        $role = auth()->user()->role;
         switch ($role) {
-            case 'admin': return redirect()->route('adminCompanies');
-
-            case 'staff': return redirect()->route('staffPromo');
-                break;
-            case 'user': return redirect()->route('profilo');
-                break;
+            case 'admin': return redirect()->route('admin');
+            case 'staff': return redirect()->route('staff');
+            case 'user': return redirect()->route('user');
             default: return redirect('/');
         }
     }

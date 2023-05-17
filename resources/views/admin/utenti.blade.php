@@ -20,175 +20,32 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                        <table class="table">
-                            <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Cognome</th>
-                                <th>Email</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome</td>
-                                <td>Cognome</td>
-                                <td>ciao@gmail.com</td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    @isset($users)
+                        <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                            <table class="table">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Cognome</th>
+                                    <th>Email</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$user->nome}}</td>
+                                        <td>{{$user->cognome}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endisset
                 </div>
             </div>
 

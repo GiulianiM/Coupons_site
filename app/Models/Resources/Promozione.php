@@ -14,15 +14,15 @@ class Promozione extends Model
     protected $primaryKey = 'idPromozione';
 
     protected $fillable = [
+        'idAzienda',
+        'titolo',
         'descrizione',
         'immagine',
-        'titolo',
         'modalita',
         'luogo',
         'inizio',
         'fine',
         'sconto',
-        'idAzienda',
     ];
 
     public function azienda()

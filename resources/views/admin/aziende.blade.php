@@ -20,141 +20,36 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                        <table class="table">
-                            <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Nome azienda</th>
-                                <th>Ragione sociale</th>
-                                <th>Localizzazione</th>
-                                <th colspan="2"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome azienda</td>
-                                <td>SRL</td>
-                                <td>Abruzzo</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    @isset($aziende)
+                        <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                            <table class="table">
+                                <thead class="table-light">
+                                  <tr>
+                                    <th>#</th>
+                                    <th>ID Azienda</th>
+                                    <th>Nome azienda</th>
+                                    <th>Ragione sociale</th>
+                                    <th>Localizzazione</th>
+                                    <th colspan="2"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach($aziende as $azienda)
+                                    <tr>
+                                      <td>{{ $loop->iteration }}</td>
+                                      <td>{{ $azienda->idAzienda }}</td>
+                                      <td>{{ $azienda->nome }}</td>
+                                      <td>{{ $azienda->ragioneSociale }}</td>
+                                      <td>{{ $azienda->citta }}</td>
+                                      <!-- da aggiungere pagina di modifica e funzione di delete -->
+                                      <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+                                      <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                    </tr>
+                                  @endforeach
+                                </tbody>
+                           </table>
+                        </div>
+                    @endisset
                 </div>
             </div>
 

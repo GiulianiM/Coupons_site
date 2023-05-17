@@ -19,7 +19,7 @@
                             </button>
                         </div>
                     </div>
-
+@isset($promozioni)
                     <div class="table-responsive table table-bordered custom-scrollbar mt-5">
                         <table class="table">
                             <thead class="table-light">
@@ -28,189 +28,29 @@
                                 <th>Nome promozione</th>
                                 <th>Azienda</th>
                                 <th>Data creazione</th>
+                                <th>Data inizio</th>
+                                <th>Data fine</th>
                                 <th colspan="2"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Nome promozione</td>
-                                <td>Nome azienda</td>
-                                <td>26/11/2022</td>
-                                <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
-                            </tr>
+                            @foreach($promozioni as $promozione)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$promozione->nome}}</td>
+                                    <td>{{$promozione->azienda->nome}}</td>
+                                    <td>{{$promozione->created_at}}</td>
+                                    <td>{{$promozione->inizio}}</td>
+                                    <td>{{$promozione->fine}}</td>
+                                    <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+                                    <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
+@endisset
                 </div>
             </div>
 
