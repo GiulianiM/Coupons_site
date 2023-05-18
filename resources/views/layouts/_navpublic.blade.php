@@ -37,6 +37,12 @@
                            href="{{ route('profilo') }}">Profilo</a>
                     </li>
                 @endcan
+                @can('isStaff')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::route()->getName() == 'profilo' ? 'active' : '' }}"
+                           href="{{ route('profilo') }}">Profilo</a>
+                    </li>
+                @endcan
                 @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

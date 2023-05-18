@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('isStaff', function ($user) {
-            return $user->hasRole('staff.blade.php');
+            return $user->hasRole('staff');
         });
 
         Gate::define('isUser', function ($user) {

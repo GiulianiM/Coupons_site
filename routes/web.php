@@ -52,13 +52,13 @@ Route::get('/admin/faq', [AdminController::class, 'faq'])
 Route::get('/admin/utenti', [AdminController::class, 'users'])
     ->name('admin.users');
 
-Route::get('/admin/staff.blade.php', [AdminController::class, 'staff'])
+Route::get('/admin/staff', [AdminController::class, 'staff'])
     ->name('admin.staff');
 
 Route::get('/admin/stats', [AdminController::class, 'stats'])
     ->name('admin.stats');
 
-Route::get('/staff.blade.php', [StaffController::class, 'promos'])
+Route::get('/staff', [StaffController::class, 'promos'])
     ->name('staff.promos');
 
 Route::get('/admin/azienda/create', [AziendaController::class, 'create'])

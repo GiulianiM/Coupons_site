@@ -14,6 +14,6 @@ class StaffController extends Controller
     }
     public function promos() {
         $promos = Promozione::all();
-        return view('staff.blade.php.promozioni', compact('promos'));
+        return view('staff.promozioni', compact('promos'));
     }
 }
