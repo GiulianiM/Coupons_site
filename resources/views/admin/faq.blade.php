@@ -19,8 +19,8 @@
                             </button>
                         </div>
                     </div>
-                        <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                    @isset($faqs)
+                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                        @isset($faqs)
                             <table class="table">
                                 <thead class="table-light">
                                 <tr>
@@ -37,16 +37,17 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $faq->titolo }}</td>
                                         <td>{{ $faq->descrizione }}</td>
-                                        {{--TODO da fare le pagine di edit e l'aggiunta del delete--}}
-                                        <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+
+                                        <td><a href="{{ route('faq.edit', ['faq' => $faq->idFaq]) }}"><i
+                                                    class="fas fa-pencil-alt table-icon-edit"></i></a></td>
                                         <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                 @endforeach
 
                                 </tbody>
                             </table>
-                    @endisset
-                        </div>
+                        @endisset
+                    </div>
                 </div>
             </div>
 
@@ -54,16 +55,14 @@
                 <div class="border rounded shadow box-content">
                     <strong>Pannello</strong>
                     <div class="d-md-flex justify-content-md-center btn-add-box">
-                        <button class="btn btn-warning btn-add" type="button">Inserisci FAQ</button>
+                        <button class="btn btn-warning btn-add" type="button" onclick="window.location='{{ route('faq.create') }}'">Inserisci FAQ</button>
                     </div>
                     <hr>
                     <div><span>Ordina per</span>
                         <div>
                             <select>
-                                <optgroup>
-                                    <option value="" selected>Titolo</option>
-                                    <option value="">Descrizione</option>
-                                </optgroup>
+                                <option value="" selected>Titolo</option>
+                                <option value="">Descrizione</option>
                             </select>
                         </div>
                     </div>

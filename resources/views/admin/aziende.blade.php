@@ -41,7 +41,7 @@
                                       <td>{{ $azienda->nome }}</td>
                                       <td>{{ $azienda->ragione_sociale }}</td>
                                       <td>{{ $azienda->citta }}</td>
-                                      <!-- da aggiungere pagina di modifica e funzione di delete -->
+
                                       <td><a href="{{ route('azienda.edit', ['azienda' => $azienda->idAzienda]) }}"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
                                       <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>

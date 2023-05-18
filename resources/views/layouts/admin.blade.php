@@ -1,5 +1,5 @@
 @include('layouts._navadmin')
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -21,8 +21,14 @@
     </div>
 
 
-    <footer class="shadow">
-        <div class="container"><span>Tecnologie Web 2023</span></div>
+    <footer>
+        <div class="border-top mx-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12"><span>Tecnologie Web 2023</span></div>
+                </div>
+            </div>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>

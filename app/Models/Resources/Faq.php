@@ -10,7 +10,6 @@ class Faq extends Model
 
     protected $table = 'faq';
     protected $primaryKey = 'idFaq';
-    public $timestamps = false;
 
     protected $fillable = [
         'titolo',

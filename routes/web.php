@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AziendaController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
@@ -74,6 +75,7 @@ Route::get('/admin/stats', [AdminController::class, 'stats'])
 Route::get('/staff', [StaffController::class, 'promos'])
     ->name('staff.promos');
 
+// Rotte per la CRUD aziende
 Route::get('/admin/azienda/create', [AziendaController::class, 'create'])
     ->name('azienda.create');
 
@@ -85,6 +87,19 @@ Route::get('/admin/azienda/{azienda}/edit', [AziendaController::class, 'edit'])
 
 Route::put('/admin/azienda/{azienda}', [AziendaController::class, 'update'])
     ->name('azienda.update');
+
+// Rotte per la CRUD faq
+Route::get('/admin/faq/create', [FaqController::class, 'create'])
+    ->name('faq.create');
+
+Route::post('/admin/faq', [FaqController::class, 'store'])
+    ->name('faq.store');
+
+Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])
+    ->name('faq.edit');
+
+Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])
+    ->name('faq.update');
 
 
 // ROTTE DEL PROFESSORE
