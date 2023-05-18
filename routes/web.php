@@ -101,6 +101,19 @@ Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])
 Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])
     ->name('faq.update');
 
+// Rotte per la CRUD staff
+Route::get('/admin/staff/create', [StaffController::class, 'create'])
+    ->name('staff.create');
+
+Route::post('/admin/staff', [StaffController::class, 'store'])
+    ->name('staff.store');
+
+Route::get('/admin/staff/{staff}/edit', [StaffController::class, 'edit'])
+    ->name('staff.edit');
+
+Route::put('/admin/staff/{staff}', [StaffController::class, 'update'])
+    ->name('staff.update');
+
 
 // ROTTE DEL PROFESSORE
 // Route::get('/', [OldPublicController::class, 'showCatalog1'])

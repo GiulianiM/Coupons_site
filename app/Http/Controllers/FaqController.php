@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Resources\Faq;
 use Illuminate\Http\Request;
 
@@ -52,7 +51,7 @@ class FaqController extends Controller
     {
         $validatedData = $request->validate([
             'titolo' => ['required', 'string', 'max:50'],
-            'descrione' => ['required', 'string', 'max:1200'],
+            'descrzione' => ['required', 'string', 'max:1200'],
         ]);
         return $validatedData;
     }

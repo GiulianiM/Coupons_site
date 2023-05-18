@@ -36,8 +36,8 @@ class AdminController extends Controller
 
     public function staff()
     {
-        $staff = User::where('livello', 'staff')->get();
-        return view('admin.staff', compact('staff'));
+        $staffs = User::where('livello', 'staff')->get();
+        return view('admin.staff', compact('staffs'));
     }
 
     public function stats()

@@ -40,7 +40,7 @@
                 @endcan
                 @can('isStaff')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'staffPromos' ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::route()->getName() == 'staff.promos' ? 'active' : '' }}"
                            href="{{ route('staff.promos') }}">Promozioni</a>
                     </li>
                 @endcan

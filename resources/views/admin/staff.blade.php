@@ -21,7 +21,7 @@
                     </div>
 
                         <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                    @isset($staff)
+                    @isset($staffs)
                             <table class="table">
                                 <thead class="table-light">
                                 <tr>
@@ -33,14 +33,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($staff as  $single)
+                                @foreach ($staffs as  $staff)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $single->idUtente }}</td>
-                                        <td>{{ $single->nome }}</td>
-                                        <td>{{ $single->cognome }}</td>
-                                        {{--TODO da fare le pagine di edit e l'aggiunta del delete--}}
-                                        <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+                                        <td>{{ $staff->idUtente }}</td>
+                                        <td>{{ $staff->nome }}</td>
+                                        <td>{{ $staff->cognome }}</td>
+                                        <td><a href="{{ route('staff.edit', ['staff' => $staff->idUtente]) }}"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
                                         <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                 @endforeach
@@ -55,17 +54,15 @@
                 <div class="border rounded shadow box-content">
                     <strong>Pannello</strong>
                     <div class="d-md-flex justify-content-md-center btn-add-box">
-                        <button class="btn btn-warning btn-add" type="button">Inserisci personale</button>
+                        <button class="btn btn-warning btn-add" type="button" onclick="window.location='{{ route('staff.create') }}'">Inserisci personale</button>
                     </div>
                     <hr>
                     <div><span>Ordina per</span>
                         <div>
                             <select>
-                                <optgroup>
                                     <option value="" selected>Nome</option>
                                     <option value="">Cognome</option>
                                     <option value="">Localizzazione</option>
-                                </optgroup>
                             </select>
                         </div>
                     </div>

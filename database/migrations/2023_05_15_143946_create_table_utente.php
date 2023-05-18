@@ -17,16 +17,16 @@ class CreateTableUtente extends Migration
             $table->bigIncrements('idUtente');
             $table->string('nome');
             $table->string('cognome');
-            $table->tinyInteger('genere');
-            $table->integer('eta');
-            $table->string('email')->unique();
+            $table->tinyInteger('genere')->nullable();
+            $table->integer('eta')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('telefono',10);
+            $table->string('telefono',10)->nullable();
             $table->string('username',20)->unique();
             $table->string('password');
             $table->string('livello')->default('user');
             $table->rememberToken();
-            $table->timestamps();                        
+            $table->timestamps();
         });
     }
 

@@ -148,7 +148,7 @@
                     @endforeach
                 @endif
             </div>
-            <div class="form-floating mb-3">
+            <div class="mb-3">
                 <input type="file" id="logo" name="logo"
                        class="{{ $errors->has('logo') ? 'form-control is-invalid' : 'form-control' }}">
                 @if ($errors->first('logo'))

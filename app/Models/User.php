@@ -24,7 +24,7 @@ class User extends Authenticatable
         'username',
         'password',
         'email',
-        'role',
+        'livello',
     ];
 
     protected $hidden = [
@@ -56,9 +56,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Promozione::class, 'gestione_promozione', 'idUtente', 'idPromozione');
     }
 
-    public function hasRole($role)
+    public function hasLivello($livello)
     {
-        return $this->livello === $role;
+        return $this->livello === $livello;
     }
 
 }
