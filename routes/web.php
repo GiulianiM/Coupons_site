@@ -40,7 +40,8 @@ Route::get('/faq', [PublicController::class, 'faq'])
     ->name('faq');
 
 Route::get('/profilo', [UserController::class, 'profilo'])
-    ->name('profilo');
+    ->name('profilo')
+    ->middleware('auth', 'can:isUserOrStaff');
 
 /* Rotte admin*/
 Route::get('/admin/aziende', [AdminController::class, 'index'])

@@ -8,23 +8,25 @@
 @endsection
 
 @section('content')
-    <div class="search-container container-fluid">
+    <div class="search-container ">
         <form class="d-flex" role="search" method="GET" {{--action="{{ route('search') }}"--}}>
-            <input class="form-control me-2" type="search" placeholder="Cerca..." aria-label="Search" name="query">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control" type="search" placeholder="Cerca..." aria-label="Search" name="query">
+            <button class="btn" type="submit">Search</button>
         </form>
     </div>
 
-    <!-- Nuovi Coupon carousel -->
-    <div class="coupons-container">
-        <h1 class="d-flex justify-content-center fw-bold pb-3">Nuovi Coupon</h1>
-        <div class="carousel-container">
-            <!-- Add left arrow -->
-            <div class="carousel-arrow carousel-arrow-left">
-                <i class="fa-solid fa-arrow-left"></i>
-            </div>
-            <div class="carousel-wrapper">
-                @isset($promozioni)
+        <!-- Nuovi Coupon carousel -->
+    @isset($promozioni)
+        <div class="coupons-container">
+
+            <h1 class="d-flex justify-content-center fw-bold pb-3">Nuove Promozioni</h1>
+            <div class="carousel-container">
+                <!-- Add left arrow -->
+                <div class="carousel-arrow carousel-arrow-left">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <div class="carousel-wrapper">
+
                     <div class="carousel">
                         @foreach($promozioni as $promozione)
                             <div class="slide">
@@ -42,35 +44,41 @@
                             </div>
                         @endforeach
                     </div>
-                @endisset
-                <div class="carousel-arrow carousel-arrow-right">
-                    <i class="fa-solid fa-arrow-right"></i>
+                    <div class="carousel-arrow carousel-arrow-right">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endisset
 
-    <!-- Tutti i coupon grid view -->
-    <div class="coupons-container">
-        <h1 class="d-flex justify-content-center fw-bold pb-3">Tutti i Coupon</h1>
-        <div class="grid-view">
-            @isset($promozioni)
-                @foreach($promozioni as $promozione)
-                    <div class="card">
-                        <div class="image">
-                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+    @isset($promozioniPaginated)
+        <!-- Tutti i coupon grid view -->
+        <div id="promozioni">
+            <div class="coupons-container">
+                <h1 class="d-flex justify-content-center fw-bold pb-3">Tutte le Promozioni</h1>
+                <div class="grid-view">
+                    @foreach($promozioniPaginated as $promozione)
+                        <div class="card">
+                            <div class="image">
+                                @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+                            </div>
+                            <div class="card-body">
+                                <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
+                                    <h5 class="card-title">{{ $promozione->titolo }}</h5>
+                                </a>
+                                <p class="card-text">{{ $promozione->sconto }}</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
-                                <h5 class="card-title">{{ $promozione->titolo }}</h5>
-                            </a>
-                            <p class="card-text">{{ $promozione->sconto }}</p>
-                        </div>
-                    </div>
-                @endforeach
-            @endisset
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                @include('pagination.paginator', ['paginator' => $promozioniPaginated->fragment('promozioni')])
+            </div>
         </div>
-    </div>
+    @endisset
 
 @endsection
 

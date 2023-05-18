@@ -24,4 +24,8 @@
         </div>
         @endisset
     </div>
+
+    <div class="d-flex justify-content-center">
+        @include('pagination.paginator', ['paginator' => $aziende])
+    </div>
 @endsection

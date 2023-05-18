@@ -43,5 +43,8 @@
           @endforeach
       </div>
     </div>
+    <div class="d-flex justify-content-center">
+        @include('pagination.paginator', ['paginator' => $promozioni])
+    </div>
     @endisset
 @endsection

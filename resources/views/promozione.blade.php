@@ -27,9 +27,11 @@
                     <div class="mt-auto ms-5">
                         <h5 class="card-title">{{ $promozione->sconto }}</h5>
                         @auth
-                            <a href="#" class="btn">Redeem</a>
+                            @can('isUser')
+                                <a href="#" class="btn">Riscatta</a>
+                            @endcan
                         @else
-                            <a href="{{ route('signup') }}" class="btn">Sign Up to Redeem</a>
+                            <a href="{{ route('signup') }}" class="btn">Effettua il signup per riscattare</a>
                         @endauth
                     </div>
                 </div>

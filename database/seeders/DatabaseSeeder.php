@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'livello' => 'staff',
         ]);
 
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             DB::table('azienda')->insert([
                 'idUtente' => 1,
                 'nome' => Str::random(10),

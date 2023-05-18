@@ -11,17 +11,18 @@ class PublicController extends Controller
 {
     public function index() {
         $promozioni = Promozione::all();
-        return view('homepage', compact('promozioni'));
+        $promozioniPaginated = Promozione::paginate(12);
+        return view('homepage', compact('promozioni', 'promozioniPaginated'));
     }
 
     public function aziende() {
-        $aziende = Azienda::all();
+        $aziende = Azienda::paginate(16);
         return view('aziende', compact('aziende'));
     }
 
     public function azienda($id) {
         $azienda = Azienda::findOrFail($id);
-        $promozioni = Promozione::where('idAzienda', $id)->get();
+        $promozioni = Promozione::where('idAzienda', $id)->paginate(8);
         return view('azienda', compact('azienda', 'promozioni'));
     }
 

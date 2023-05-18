@@ -36,25 +36,31 @@
         </div>
     </section>
 
-
-    <div class="coupons-container">
-        <h1 class="d-flex justify-content-center fw-bold pb-3">Promozioni riscattate</h1>
-        <div class="grid-view">
-            @isset($promozioni)
-                @foreach($promozioni as $promozione)
-                    <div class="card">
-                        <div class="image">
-                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
-                        </div>
-                        <div class="card-body">
-                            <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
-                                <h5 class="card-title">{{ $promozione->titolo }}</h5>
-                            </a>
-                            <p class="card-text">{{ $promozione->sconto }}</p>
-                        </div>
+    @can('isUser')
+        @isset($promozioni)
+            <div id="promozioni">
+                <div class="coupons-container">
+                    <h1 class="d-flex justify-content-center fw-bold pb-3">Promozioni riscattate</h1>
+                    <div class="grid-view">
+                        @foreach($promozioni as $promozione)
+                            <div class="card">
+                                <div class="image">
+                                    @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+                                </div>
+                                <div class="card-body">
+                                    <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
+                                        <h5 class="card-title">{{ $promozione->titolo }}</h5>
+                                    </a>
+                                    <p class="card-text">{{ $promozione->sconto }}</p>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
-            @endisset
-        </div>
-    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    @include('pagination.paginator', ['paginator' => $promozioni->fragment('promozioni')])
+                </div>
+            </div>
+        @endisset
+    @endcan
 @endsection
