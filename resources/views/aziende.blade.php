@@ -15,7 +15,7 @@
                     @include('helpers.aziendaImg', ['attrs' => 'card-img-top', 'imgFile' => $azienda->logo])
                 </div>
                 <div class="card-body">
-                    <a href="/aziende/{{$azienda->idAzienda}}" class="card-link">
+                    <a href="{{ route('azienda', ['azienda' => $azienda->idAzienda]) }}" class="card-link">
                         <h5 class="card-title">{{$azienda->nome}}</h5>
                     </a>
                 </div>

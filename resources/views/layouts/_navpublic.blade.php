@@ -4,7 +4,7 @@
                 aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="{{ route('homepage') }}">
             <img src="{{asset('images/logo.png')}}" class="d-inline-block align-top" alt="Logo">
         </a>
         <div class="collapse navbar-collapse" id="navbarToggler">

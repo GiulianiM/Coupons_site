@@ -8,15 +8,15 @@
 @endsection
 
 @section('content')
-    <div class="search-container ">
-        <form class="d-flex" role="search" method="GET" {{--action="{{ route('search') }}"--}}>
-            <input class="form-control" type="search" placeholder="Cerca..." aria-label="Search" name="query">
+    <div class="search-container">
+        <form class="d-flex" action="{{ route('homepage') }}" method="GET">
+            <input class="form-control" type="search" placeholder="Cerca..." aria-label="Search" name="search" required>
             <button class="btn" type="submit">Search</button>
         </form>
     </div>
 
         <!-- Nuovi Coupon carousel -->
-    @isset($promozioni)
+    @if(empty($search) && isset($promozioni))
         <div class="coupons-container">
 
             <h1 class="d-flex justify-content-center fw-bold pb-3">Nuove Promozioni</h1>
@@ -35,7 +35,7 @@
                                         @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
                                     </div>
                                     <div class="card-body">
-                                        <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
+                                        <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}" class="card-link">
                                             <h5 class="card-title">{{ $promozione->titolo }}</h5>
                                         </a>
                                         <p class="card-text">{{ $promozione->sconto }}</p>
@@ -50,10 +50,11 @@
                 </div>
             </div>
         </div>
-    @endisset
+    @endif
 
     @isset($promozioniPaginated)
         <!-- Tutti i coupon grid view -->
+        @if ($promozioniPaginated->total() > 0)
         <div id="promozioni">
             <div class="coupons-container">
                 <h1 class="d-flex justify-content-center fw-bold pb-3">Tutte le Promozioni</h1>
@@ -64,7 +65,7 @@
                                 @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
                             </div>
                             <div class="card-body">
-                                <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
+                                <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}" class="card-link">
                                     <h5 class="card-title">{{ $promozione->titolo }}</h5>
                                 </a>
                                 <p class="card-text">{{ $promozione->sconto }}</p>
@@ -73,11 +74,15 @@
                     @endforeach
                 </div>
             </div>
-
             <div class="d-flex justify-content-center">
                 @include('pagination.paginator', ['paginator' => $promozioniPaginated->fragment('promozioni')])
             </div>
         </div>
+        @else
+            <div class="coupons-container" style="flex-grow: 1;">
+                <h1 class="d-flex justify-content-center fw-bold pb-3">Nessuna Promozione trovata 😔</h1>
+            </div>
+        @endif
     @endisset
 
 @endsection

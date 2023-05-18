@@ -22,7 +22,7 @@
     <!-- end #content -->
     <footer class="row row-cols-5 row-cols-sm-5 row-cols-md-5 pt-5 mt-5 mx-0 border-top">
         <div class="col mb-3">
-            <a href="/" class="d-flex align-items-center link-dark text-decoration-none">
+            <a href="{{ route('homepage') }}" class="d-flex align-items-center link-dark text-decoration-none">
                 <img src="{{asset('images/logo.png')}}" alt="coupon1">
             </a>
         </div>

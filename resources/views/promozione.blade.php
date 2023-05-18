@@ -25,10 +25,10 @@
                         <p class="card-text">Dove utilizzarlo: {{ $promozione->luogo }}</p>
                     </div>
                     <div class="mt-auto ms-5">
-                        <h5 class="card-title">{{ $promozione->sconto }}</h5>
+                        <h5 class="card-title">Tipo di sconto: {{ $promozione->sconto }}</h5>
                         @auth
                             @can('isUser')
-                                <a href="#" class="btn">Riscatta</a>
+                                <a href="{{ route('riscatta', ['promozione' => $promozione->idPromozione]) }}" class="btn">Riscatta</a>
                             @endcan
                         @else
                             <a href="{{ route('signup') }}" class="btn">Effettua il signup per riscattare</a>

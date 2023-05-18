@@ -9,11 +9,25 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    public function index() {
-        $promozioni = Promozione::all();
-        $promozioniPaginated = Promozione::paginate(12);
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $promozioni = null;
+        $promozioniPaginated = null;
+
+        if ($search) {
+            $promozioniPaginated = Promozione::query()
+                ->where('titolo', 'LIKE', "%{$search}%")
+                ->orWhere('descrizione', 'LIKE', "%{$search}%")
+                ->paginate(12);
+        } else {
+            $promozioni = Promozione::all();
+            $promozioniPaginated = Promozione::paginate(12);
+        }
+
         return view('homepage', compact('promozioni', 'promozioniPaginated'));
     }
+
 
     public function aziende() {
         $aziende = Azienda::paginate(16);

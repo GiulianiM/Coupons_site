@@ -48,7 +48,7 @@
                                     @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
                                 </div>
                                 <div class="card-body">
-                                    <a href="/promozione/{{$promozione->idPromozione}}" class="card-link">
+                                    <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}" class="card-link">
                                         <h5 class="card-title">{{ $promozione->titolo }}</h5>
                                     </a>
                                     <p class="card-text">{{ $promozione->sconto }}</p>

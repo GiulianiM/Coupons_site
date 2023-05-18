@@ -14,6 +14,8 @@ class Coupon extends Model
 
     protected $fillable = [
         'codice',
+        'idPromozione',
+        'idUtente',
     ];
 
     public function promozione() {
