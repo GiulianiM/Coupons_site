@@ -5,6 +5,10 @@
 @section('extra-css')
     <style>
         @media print {
+            #alert{
+                display: none !important;
+            }
+
             .navbar {
                 display: none; !important;
             }
@@ -19,7 +23,7 @@
 @section('content')
 
     @if (session('message'))
-        <div class="alert alert-warning text-center">
+        <div class="alert alert-warning text-center" id="alert">
             <i class="fas fa-exclamation-triangle"></i> {{ session('message') }}
         </div>
     @endif
