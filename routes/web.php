@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AziendaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\StaffController;
+
 // USE DEL PROFESSORE
 // use App\Http\Controllers\OldPublicController;
 // use App\Http\Controllers\AdminController;
@@ -23,43 +25,53 @@ use \App\Http\Controllers\StaffController;
 
 /*Rotte public*/
 Route::get('/', [PublicController::class, 'index'])
-        ->name('homepage');
+    ->name('homepage');
 
 Route::get('/aziende', [PublicController::class, 'aziende'])
-        ->name('aziende');
+    ->name('aziende');
 
 Route::get('/aziende/{azienda}', [PublicController::class, 'azienda'])
     ->name('azienda');
 
 Route::get('/promozione/{promozione}', [PublicController::class, 'promozione'])
-        ->name('promozione');
+    ->name('promozione');
 
 Route::get('/faq', [PublicController::class, 'faq'])
-        ->name('faq');
+    ->name('faq');
 
 Route::get('/profilo', [UserController::class, 'profilo'])
-        ->name('profilo');
+    ->name('profilo');
 
 /* Rotte admin*/
-Route::get('/admin', [AdminController::class, 'index'])
-    ->name('admin');
+Route::get('/admin/aziende', [AdminController::class, 'index'])
+    ->name('admin.aziende');
 
 Route::get('/admin/faq', [AdminController::class, 'faq'])
-    ->name('adminFaq');
+    ->name('admin.faq');
 
 Route::get('/admin/utenti', [AdminController::class, 'users'])
-    ->name('adminUsers');
+    ->name('admin.users');
 
-Route::get('/admin/staff', [AdminController::class, 'staff'])
-    ->name('adminStaff');
+Route::get('/admin/staff.blade.php', [AdminController::class, 'staff'])
+    ->name('admin.staff');
 
 Route::get('/admin/stats', [AdminController::class, 'stats'])
-    ->name('adminStats');
+    ->name('admin.stats');
 
-Route::get('/staff', [StaffController::class, 'promos'])
-    ->name('staffPromos');
+Route::get('/staff.blade.php', [StaffController::class, 'promos'])
+    ->name('staff.promos');
 
+Route::get('/admin/azienda/create', [AziendaController::class, 'create'])
+    ->name('azienda.create');
 
+Route::post('/admin/azienda', [AziendaController::class, 'store'])
+    ->name('azienda.store');
+
+Route::get('/admin/azienda/{azienda}/edit', [AziendaController::class, 'edit'])
+    ->name('azienda.edit');
+
+Route::put('/admin/azienda/{azienda}', [AziendaController::class, 'update'])
+    ->name('azienda.update');
 
 
 // ROTTE DEL PROFESSORE
@@ -102,4 +114,4 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 */
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

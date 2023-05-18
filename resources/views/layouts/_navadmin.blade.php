@@ -5,10 +5,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         @can('isAdmin')
-            <a class="navbar-brand fw-bold" href="{{route('admin')}}">Dashboard Admin</a>
+            <a class="navbar-brand fw-bold" href="{{route('admin.aziende')}}">Dashboard Admin</a>
         @endcan
         @can('isStaff')
-            <a class="navbar-brand fw-bold" href="{{route('staffPromos')}}">Dashboard Staff</a>
+            <a class="navbar-brand fw-bold" href="{{route('staff.promos')}}">Dashboard Staff</a>
         @endcan
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
@@ -19,25 +19,25 @@
                 @can('isAdmin')
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'admin' ? 'active' : '' }}"
-                           href="{{ route('admin') }}">Aziende</a>
+                           href="{{ route('admin.aziende') }}">Aziende</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'adminFaq' ? 'active' : '' }}"
-                           href="{{ route('adminFaq') }}">FAQ</a>
+                           href="{{ route('admin.faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'adminStaff' ? 'active' : '' }}"
-                           href="{{ route('adminStaff') }}">Staff</a>
+                           href="{{ route('admin.staff') }}">Staff</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'adminUsers' ? 'active' : '' }}"
-                           href="{{ route('adminUsers') }}">Utenti</a>
+                           href="{{ route('admin.users') }}">Utenti</a>
                     </li>
                 @endcan
                 @can('isStaff')
                     <li class="nav-item">
                         <a class="nav-link {{ Request::route()->getName() == 'staffPromos' ? 'active' : '' }}"
-                           href="{{ route('staffPromos') }}">Promozioni</a>
+                           href="{{ route('staff.promos') }}">Promozioni</a>
                     </li>
                 @endcan
                 <li class="nav-item">

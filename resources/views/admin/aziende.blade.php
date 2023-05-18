@@ -39,10 +39,10 @@
                                       <td>{{ $loop->iteration }}</td>
                                       <td>{{ $azienda->idAzienda }}</td>
                                       <td>{{ $azienda->nome }}</td>
-                                      <td>{{ $azienda->ragioneSociale }}</td>
+                                      <td>{{ $azienda->ragione_sociale }}</td>
                                       <td>{{ $azienda->citta }}</td>
                                       <!-- da aggiungere pagina di modifica e funzione di delete -->
-                                      <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+                                      <td><a href="{{ route('azienda.edit', ['azienda' => $azienda->idAzienda]) }}"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
                                       <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                   @endforeach
@@ -57,14 +57,15 @@
                 <div class="border rounded shadow box-content">
                     <strong>Pannello</strong>
                     <div class="d-md-flex justify-content-md-center btn-add-box">
-                        <button class="btn btn-warning btn-add" type="button">Inserisci azienda</button>
+                        <button class="btn btn-warning btn-add" type="button" onclick="window.location='{{ route('azienda.create') }}'">Inserisci azienda</button>
                     </div>
                     <hr>
                     <div><span>Ordina per</span>
                         <div>
                             <select>
                                 <optgroup>
-                                    <option value="" selected>Nome azienda</option>
+                                    <option value="" selected>ID azienda</option>
+                                    <option value="" >Nome azienda</option>
                                     <option value="">Ragione sociale</option>
                                     <option value="">Localizzazione</option>
                                 </optgroup>

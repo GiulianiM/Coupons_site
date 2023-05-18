@@ -65,7 +65,7 @@
                         <div>
                             <select>
                                 <optgroup>
-                                    <option value="" selected>Nome promozione/option>
+                                    <option value="" selected>Nome promozione</option>
                                     <option value="">Azienda</option>
                                     <option value="">Data creazione</option>
                                     <option value="">Data inizio</option>

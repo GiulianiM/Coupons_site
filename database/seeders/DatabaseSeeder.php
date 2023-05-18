@@ -34,15 +34,15 @@ class DatabaseSeeder extends Seeder
         }
 
         DB::table('utente')->insert([
-            'nome' => 'staff',
-            'cognome' => 'staff',
+            'nome' => 'staff.blade.php',
+            'cognome' => 'staff.blade.php',
             'genere' => 1,
             'eta' => 22,
             'email' => Str::random(6) . '@gmail.com',
             'telefono' => '1234567890',
-            'username' => 'staff',
-            'password' => Hash::make('staff') ,
-            'livello' => 'staff',
+            'username' => 'staff.blade.php',
+            'password' => Hash::make('staff.blade.php') ,
+            'livello' => 'staff.blade.php',
         ]);
 
         for ($i = 1; $i <= 12; $i++) {
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
                 'citta' => Str::random(10),
                 'cap' => '12345',
                 'logo' => 'company.png',
-                'ragioneSociale' => Str::random(10),
+                'ragione_sociale' => Str::random(10),
                 'descrizione' => self::DESCPROD,
                 'tipologia' => Str::random(10),
             ]);

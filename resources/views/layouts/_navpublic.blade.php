@@ -23,12 +23,12 @@
                 </li>
                 @can('isStaff')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('staffPromos') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('staff.promos') }}">Dashboard</a>
                     </li>
                 @endcan
                 @can('isAdmin')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.aziende') }}">Dashboard</a>
                     </li>
                 @endcan
                 @can('isUser')

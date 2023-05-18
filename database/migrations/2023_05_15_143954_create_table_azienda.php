@@ -21,10 +21,11 @@ class CreateTableAzienda extends Migration
             $table->string('via');
             $table->string('citta');
             $table->integer('cap');
-            $table->string('logo');
-            $table->string('ragioneSociale');
+            $table->string('logo', 2048);
+            $table->string('ragione_sociale');
             $table->string('descrizione', 1200);
             $table->string('tipologia');
+            $table->timestamps();
         });
     }
 
