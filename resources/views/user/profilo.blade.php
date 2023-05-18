@@ -37,28 +37,28 @@
     </section>
 
     @can('isUser')
-        @isset($promozioni)
-            <div id="promozioni">
+        @isset($coupons)
+            <div id="coupons">
                 <div class="coupons-container">
                     <h1 class="d-flex justify-content-center fw-bold pb-3">Promozioni riscattate</h1>
                     <div class="grid-view">
-                        @foreach($promozioni as $promozione)
+                        @foreach($coupons as $coupon)
                             <div class="card">
                                 <div class="image">
-                                    @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+                                    @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $coupon->promozione->immagine])
                                 </div>
                                 <div class="card-body">
-                                    <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}" class="card-link">
-                                        <h5 class="card-title">{{ $promozione->titolo }}</h5>
+                                    <a href="{{ route('coupon.profilo', ['coupon' => $coupon->idCoupon]) }}" class="card-link">
+                                        <h5 class="card-title">{{ $coupon->promozione->titolo }}</h5>
                                     </a>
-                                    <p class="card-text">{{ $promozione->sconto }}</p>
+                                    <p class="card-text">{{ $coupon->promozione->sconto }}</p>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    @include('pagination.paginator', ['paginator' => $promozioni->fragment('promozioni')])
+                    @include('pagination.paginator', ['paginator' => $coupons->fragment('coupons')])
                 </div>
             </div>
         @endisset

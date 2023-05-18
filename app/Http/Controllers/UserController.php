@@ -10,23 +10,40 @@ class UserController extends Controller {
 
     public function profilo() {
         $utente = auth()->user();
-        $promozioni = $utente->promozioni()->paginate(8);
-        return view('user.profilo', compact('utente', 'promozioni'));
+        $coupons = $utente->coupons()->paginate(8);
+        return view('user.profilo', compact('utente', 'coupons'));
     }
 
-    public function riscatta($id) {
+    public function riscatta($id)
+    {
         $promozione = Promozione::findOrFail($id);
+        $userId = auth()->user()->idUtente;
+
+        $existingCoupon = Coupon::where('idPromozione', $promozione->idPromozione)
+            ->where('idUtente', $userId)
+            ->first();
+
+        if ($existingCoupon) {
+            // User already has a coupon for this promozione
+            return redirect()->route('coupon', ['promozione' => $promozione->idPromozione, 'coupon' => $existingCoupon->idCoupon])
+                ->with('message', 'Hai già riscattato un coupon per questa promozione.');
+        }
 
         $coupon = Coupon::create([
             'codice' => Str::random(6),
             'idPromozione' => $promozione->idPromozione,
-            'idUtente' => auth()->user()->idUtente,
+            'idUtente' => $userId,
         ]);
 
         return redirect()->route('coupon', ['promozione' => $promozione->idPromozione, 'coupon' => $coupon->idCoupon]);
     }
 
-    public function coupon($idPromozione, $idCoupon) {
+    public function coupon($idCoupon) {
+        $coupon = Coupon::findOrFail($idCoupon);
+        return view('user.coupon', compact('coupon'));
+    }
+
+    public function couponProfilo($idCoupon) {
         $coupon = Coupon::findOrFail($idCoupon);
         return view('user.coupon', compact('coupon'));
     }

@@ -43,11 +43,17 @@ Route::get('/profilo', [UserController::class, 'profilo'])
     ->name('profilo')
     ->middleware('auth', 'can:isUserOrStaff');
 
+Route::get('/profilo/coupon/{coupon}', [UserController::class, 'couponProfilo'])
+    ->name('coupon.profilo')
+    ->middleware('auth', 'can:isUser');
+
 Route::get('/promozione/{promozione}/riscatta', [UserController::class, 'riscatta'])
     ->name('riscatta');
 
 Route::get('/promozione/{promozione}/{coupon}', [UserController::class, 'coupon'])
     ->name('coupon');
+
+
 
 /* Rotte admin*/
 Route::get('/admin/aziende', [AdminController::class, 'index'])

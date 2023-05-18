@@ -123,6 +123,9 @@ html, body {
     border-color: #F5C703;
 }
 
+.coupon-info .coupon-info-value {
+    margin: 0;
+}
 
 .wrapper .text-muted {
     text-align: end;
@@ -220,6 +223,12 @@ html, body {
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.card img.coupon-image {
+    width: 40%;
+    height: auto;
+    justify-content: center;
 }
 
 .card .card-title {
