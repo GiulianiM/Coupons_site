@@ -19,6 +19,7 @@ class CreateTableAzienda extends Migration
             $table->foreign('idUtente')->references('idUtente')->on('utente');
             $table->string('nome');
             $table->string('via');
+            $table->integer('numero_civico');
             $table->string('citta');
             $table->integer('cap');
             $table->string('logo', 2048);

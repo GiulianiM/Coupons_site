@@ -1,9 +1,19 @@
-
-
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%
+}
+.container-form{
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+}
 .container {
     width: 80%;
-    padding: 0
+    margin-top: 50px;
 }
+
 
 .navigation,
 .navigation:hover {
@@ -45,16 +55,6 @@
 .btn-add-box {
     margin-top: 10px;
     margin-bottom: 10px
-}
-
-
-footer {
-    margin-top: 50px;
-    line-height: 50px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%
 }
 
 .custom-scrollbar {

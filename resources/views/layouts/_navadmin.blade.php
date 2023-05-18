@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light shadow">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
                 aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,20 +18,24 @@
                 </li>
                 @can('isAdmin')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'admin' ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::route()->getName() == 'admin.aziende' ? 'active' : '' }}"
                            href="{{ route('admin.aziende') }}">Aziende</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'adminFaq' ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::route()->getName() == 'admin.faq' ? 'active' : '' }}"
                            href="{{ route('admin.faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'adminStaff' ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::route()->getName() == 'admin.staff' ? 'active' : '' }}"
                            href="{{ route('admin.staff') }}">Staff</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'adminUsers' ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::route()->getName() == 'admin.users' ? 'active' : '' }}"
                            href="{{ route('admin.users') }}">Utenti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::route()->getName() == 'admin.stats' ? 'active' : '' }}"
+                           href="{{ route('admin.stats') }}">Statistiche</a>
                     </li>
                 @endcan
                 @can('isStaff')

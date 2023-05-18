@@ -15,6 +15,7 @@ class Azienda extends Model
         'via',
         'citta',
         'cap',
+        'numero_civico',
         'logo',
         'ragione_sociale',
         'descrizione',

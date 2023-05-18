@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
                 'nome' => Str::random(10),
                 'via' => Str::random(10),
                 'citta' => Str::random(10),
+                'numero_civico' => '65010',
                 'cap' => '12345',
                 'logo' => 'company.png',
                 'ragione_sociale' => Str::random(10),
