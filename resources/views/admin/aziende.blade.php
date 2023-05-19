@@ -12,12 +12,20 @@
                             aziende</strong>
                     </div>
                     <div class="right">
-                        <div class="input-group">
-                            <input class="form-control autocomplete" type="text" placeholder="Cerca...">
-                            <button class="btn btn-warning" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+                        <form class="d-flex" action="{{ route('admin.aziende') }}" method="GET">
+                            <div class="input-group">
+                                <input class="form-control autocomplete" type="search" placeholder="Cerca..."
+                                       aria-label="Search" name="search">
+                                <button class="btn btn-warning" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                @isset($search)
+                                    <button class="btn btn-warning" type="reset" onclick="window.location='{{ route('admin.aziende') }}'">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </button>
+                                @endisset
+                            </div>
+                        </form>
                     </div>
 
                     <div class="table-responsive table table-bordered custom-scrollbar mt-5">
@@ -28,7 +36,7 @@
                                     <th>#</th>
                                     <th>ID Azienda</th>
                                     <th>Nome azienda</th>
-                                    <th>Ragione sociale</th>
+                                    <th>Tipologia</th>
                                     <th>Localizzazione</th>
                                     <th colspan="2"></th>
                                 </tr>
@@ -39,8 +47,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $azienda->idAzienda }}</td>
                                         <td>{{ $azienda->nome }}</td>
-                                        <td>{{ $azienda->ragione_sociale }}</td>
-                                        <td>{{ $azienda->citta }}</td>
+                                        <td>{{ $azienda->tipologia }}</td>
+                                        <td>{{ implode(', ', [$azienda->citta,$azienda->cap, $azienda->via, $azienda->numero_civico]) }}</td>
 
                                         <td><a href="{{ route('azienda.edit', ['azienda' => $azienda->idAzienda]) }}"><i
                                                     class="fas fa-pencil-alt table-icon-edit"></i></a></td>
@@ -64,20 +72,23 @@
                         </button>
                     </div>
                     <hr>
-                    <div><span>Ordina per</span>
-                        <div>
-                            <select>
-                                <optgroup>
-                                    <option value="" selected>ID azienda</option>
-                                    <option value="">Nome azienda</option>
-                                    <option value="">Ragione sociale</option>
-                                    <option value="">Localizzazione</option>
-                                </optgroup>
-                            </select>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Ordina per
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach(['idAzienda', 'nome', 'tipologia', 'localizzazione'] as $option)
+                                <li>
+                                    <a class="dropdown-item{{ $orderby === $option ? ' active' : '' }}"
+                                       href="{{ route('admin.aziende', ['order_by' => $option]) }}">
+                                        {{ ucfirst($option) }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection

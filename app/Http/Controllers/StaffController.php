@@ -16,10 +16,30 @@ class StaffController extends Controller
         $this->middleware('can:isStaff')->except('edit', 'update', 'create', 'store', 'delete');
     }
 
-    public function promos()
+    public function promos(Request $request)
     {
-        $promos = Promozione::all();
-        return view('staff.promozioni', compact('promos'));
+        $search = $request->input('search');
+        $orderby = $request->input('order_by');
+
+        $promos = Promozione::query();
+
+        if ($search) {
+            $promos->where('titolo', 'LIKE', "%{$search}%")
+                ->orWhere('descrizione', 'LIKE', "%{$search}%");
+        }
+
+        if ($orderby) {
+            if($orderby == 'azienda'){
+                $promos->join('azienda', 'promozione.idAzienda', '=', 'azienda.idAzienda')
+                    ->orderBy('azienda.nome');
+            }else{
+                $promos->orderBy($orderby);
+            }
+        }
+
+        $promos = $promos->get();
+
+        return view('staff.promozioni', compact('promos', 'orderby', 'search'));
     }
 
     public function create()

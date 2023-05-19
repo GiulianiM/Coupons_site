@@ -55,7 +55,7 @@ class AziendaController extends Controller
             'nome' => ['required', 'string', 'max:255'],
             'via' => ['required', 'string', 'max:255'],
             'citta' => ['required', 'string', 'max:255'],
-            'cap' => ['required', 'integer', 'min:00100', 'max:98168'],
+            'cap' => ['required', 'integer', 'min:100', 'max:98168'],
             'logo' => ['required','string', 'max:2048'],
             'numero_civico' => ['required', 'integer', 'min:1', 'max:300'],
             'ragione_sociale' => ['required', 'string'],

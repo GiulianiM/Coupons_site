@@ -45,33 +45,34 @@ class DatabaseSeeder extends Seeder
             'livello' => 'staff',
         ]);
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 40; $i++) {
             DB::table('azienda')->insert([
                 'idUtente' => 1,
                 'nome' => Str::random(10),
                 'via' => Str::random(10),
                 'citta' => Str::random(10),
-                'numero_civico' => '65010',
-                'cap' => '12345',
+                'numero_civico' => 11,
+                'cap' => 65010,
                 'logo' => 'company.png',
                 'ragione_sociale' => Str::random(10),
                 'descrizione' => self::DESCPROD,
-                'tipologia' => Str::random(10),
+                'tipologia' => 'moda',
             ]);
 
             $idAzienda = DB::getPdo()->lastInsertId();
 
-            for ($j = 1; $j <= 8; $j++) {
+            for ($j = 1; $j <= 2; $j++) {
                 DB::table('promozione')->insert([
                     'idAzienda' => $idAzienda,
                     'titolo' => Str::random(10),
                     'descrizione' => self::DESCPROD,
                     'immagine' => 'promozione.png',
-                    'modalita' => 'modalita',
-                    'luogo' => 'luogo',
+                    'modalita' => 'online',
+                    'luogo' => 'https://www.google.it/maps',
                     'inizio' => '2023-05-15',
                     'fine' => '2023-06-15',
-                    'sconto' => '10',
+                    'sconto' => 'prezzo fisso',
+                    'valore_sconto' => '10€',
                 ]);
             }
 

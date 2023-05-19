@@ -12,12 +12,20 @@
                             FAQ</strong>
                     </div>
                     <div class="right">
-                        <div class="input-group">
-                            <input class="form-control autocomplete" type="text" placeholder="Cerca...">
-                            <button class="btn btn-warning" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+                        <form class="d-flex" action="{{ route('admin.faq') }}" method="GET">
+                            <div class="input-group">
+                                <input class="form-control autocomplete" type="search" placeholder="Cerca..."
+                                       aria-label="Search" name="search">
+                                <button class="btn btn-warning" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                @isset($search)
+                                    <button class="btn btn-warning" type="reset" onclick="window.location='{{ route('admin.faq') }}'">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </button>
+                                @endisset
+                            </div>
+                        </form>
                     </div>
                     <div class="table-responsive table table-bordered custom-scrollbar mt-5">
                         @isset($faqs)
@@ -61,13 +69,21 @@
                         </button>
                     </div>
                     <hr>
-                    <div><span>Ordina per</span>
-                        <div>
-                            <select>
-                                <option value="" selected>Titolo</option>
-                                <option value="">Descrizione</option>
-                            </select>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Ordina per
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach(['titolo', 'descrizione'] as $option)
+                                <li>
+                                    <a class="dropdown-item{{ $orderby === $option ? ' active' : '' }}"
+                                       href="{{ route('admin.faq', ['order_by' => $option]) }}">
+                                        {{ ucfirst($option) }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>

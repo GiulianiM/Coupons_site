@@ -25,6 +25,7 @@ class CreateTablePromozione extends Migration
             $table->date('inizio');
             $table->date('fine');
             $table->string('sconto');
+            $table->string('valore_sconto');
             $table->timestamps();
         });
     }

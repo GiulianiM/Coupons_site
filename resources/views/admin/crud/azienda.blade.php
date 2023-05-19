@@ -13,6 +13,12 @@
                 @method('PUT')
             @endif
 
+            @isset($azienda)
+                <h3>Modifica azienda</h3>
+            @else
+                <h3>Aggiungi azienda</h3>
+            @endisset
+
             <div class="form-floating mb-3">
                 <input type="text" name="nome" id="nome"
                        class="{{ $errors->has('nome') ? 'form-control is-invalid' : 'form-control' }}"
@@ -26,6 +32,7 @@
                     @endforeach
                 @endif
             </div>
+
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating mb-3">
@@ -45,10 +52,12 @@
                 </div>
                 <div class="col-md">
                     <div class="form-floating mb-3">
-                        <input type="text" name="numero_civico" id="numero_civico"
+                        <input type="number" name="numero_civico" id="numero_civico"
                                class="{{ $errors->has('numero_civico') ? 'form-control is-invalid' : 'form-control'}}"
                                value="{{ isset($azienda) ? $azienda->numero_civico : old('numero_civico') }}"
-                               placeholder="Numero civico">
+                               placeholder="Numero civico"
+                               min="1"
+                               max="300">
                         <label for="numero_civico">Numero civico</label>
                         @if ($errors->first('numero_civico'))
                             @foreach ($errors->get('numero_civico') as $message)
@@ -66,7 +75,8 @@
                     <div class="form-floating mb-3">
                         <input type="text" name="citta" id="citta"
                                class="{{ $errors->has('citta') ? 'form-control is-invalid' : 'form-control' }}"
-                               value="{{ isset($azienda) ? $azienda->citta : old('citta') }}">
+                               value="{{ isset($azienda) ? $azienda->citta : old('citta') }}"
+                               placeholder="Citta">
                         <label for="citta">Città</label>
                         @if ($errors->first('citta'))
                             @foreach ($errors->get('citta') as $message)
@@ -81,7 +91,10 @@
                     <div class="form-floating mb-3">
                         <input type="number" name="cap" id="cap"
                                class="{{ $errors->has('cap') ? 'form-control is-invalid' : 'form-control' }}"
-                               value="{{ isset($azienda) ? $azienda->cap : old('cap') }}">
+                               value="{{ isset($azienda) ? $azienda->cap : old('cap') }}"
+                               placeholder="CAP"
+                               min="00100"
+                               max="98168">
                         <label for="cap">CAP</label>
                         @if ($errors->first('cap'))
                             @foreach ($errors->get('cap') as $message)
@@ -124,12 +137,17 @@
             </div>
 
 
-
             <div class="form-floating mb-3">
 
                 <select name="tipologia" id="tipologia"
                         class="{{$errors->has('tipologia') ? 'form-control is-invalid' : 'form-control' }}">
-                    <option value="1" {{ isset($azienda) && $azienda->tipologia == 1 ? 'selected' : '' }}>Tipologia
+                    @foreach(['elettronica', 'moda', 'alimentare', 'turismo'] as $option)
+                        <option value="{{$option}}" {{isset($azienda) && $azienda->tipologia === $option ? 'selected' : '' }} >
+                            {{ ucfirst($option) }}
+                        </option>
+                    @endforeach
+                    {{--Metodo classico--}}
+                    {{--<option value="" {{ isset($azienda) && $azienda->tipologia == 1 ? 'selected' : '' }}>Tipologia
                         1
                     </option>
                     <option value="2" {{ isset($azienda) && $azienda->tipologia == 2 ? 'selected' : '' }}>Tipologia
@@ -137,7 +155,7 @@
                     </option>
                     <option value="3" {{ isset($azienda) && $azienda->tipologia == 3 ? 'selected' : '' }}>Tipologia
                         3
-                    </option>
+                    </option>--}}
                 </select>
                 <label for="tipologia">Tipologia</label>
                 @if ($errors->first('tipologia'))

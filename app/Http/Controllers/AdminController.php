@@ -7,6 +7,7 @@ use App\Models\oldModels\Admin;
 use App\Models\Resources\Faq;
 use App\Models\Resources\Promozione;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -16,29 +17,99 @@ class AdminController extends Controller
         $this->middleware('can:isAdmin');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $aziende = Azienda::all();
-        return view('admin.aziende', compact('aziende'));
+        $search = $request->input('search');
+        $orderby = $request->input('order_by');
+
+        $aziende = Azienda::query();
+
+        if ($search) {
+            $aziende->where('nome', 'LIKE', "%{$search}%")
+                ->orWhere('tipologia', 'LIKE', "%{$search}%");
+        }
+
+        if ($orderby) {
+            if ($orderby == 'localizzazione') {
+                $aziende->orderBy('citta')->orderBy('via')->orderBy('numero_civico');
+            } else {
+                $aziende->orderBy($orderby);
+            }
+        }
+
+        $aziende = $aziende->get();
+
+        return view('admin.aziende', compact('aziende', 'orderby', 'search'));
     }
 
-    public function faq()
+    public function faq(Request $request)
     {
-        $faqs = FAQ::all();
-        return view('admin.faq', compact('faqs'));
+        $search = $request->input('search');
+        $orderby = $request->input('order_by');
+
+        $faqs = Faq::query();
+
+        if ($search) {
+            $faqs->where('titolo', 'LIKE', "%{$search}%");
+        }
+
+        if ($orderby) {
+            $faqs->orderBy($orderby);
+        }
+
+        $faqs = $faqs->get();
+        return view('admin.faq', compact('faqs', 'orderby', 'search'));
     }
 
-    public function users()
+    public function staff(Request $request)
     {
-        $users = User::where('livello', 'user')->get();
-        return view('admin.utenti', compact('users'));
+        $search = $request->input('search');
+        $orderby = $request->input('order_by');
+
+        $staff = User::query();
+        $staff->where('livello', 'staff');
+        if ($search) {
+            $staff->where(function ($query) use ($search) {
+                $query->where('nome', 'LIKE', "%{$search}%")
+                    ->orWhere('cognome', 'LIKE', "%{$search}%");
+            });
+        }
+
+        if ($orderby) {
+            $staff->orderBy($orderby);
+        }
+
+        $staffs = $staff->get();
+        return view('admin.staff', compact('staffs', 'orderby', 'search'));
     }
 
-    public function staff()
+
+    public function users(Request $request)
     {
-        $staffs = User::where('livello', 'staff')->get();
-        return view('admin.staff', compact('staffs'));
+        $search = $request->input('search');
+        $orderby = $request->input('order_by');
+
+        $users = User::query();
+
+        $users->where('livello', 'user');
+
+        if ($search) {
+            $users->where(function ($query) use ($search) {
+                $query->where('nome', 'LIKE', "%{$search}%")
+                    ->orWhere('cognome', 'LIKE', "%{$search}%")
+                    ->orWhere('email', 'LIKE', "%{$search}%");
+            });
+        }
+
+        if ($orderby) {
+            $users->orderBy($orderby);
+        }
+
+        $users = $users->get();
+        return view('admin.utenti', compact('users', 'orderby', 'search'));
     }
+
+
 
     public function stats()
     {
