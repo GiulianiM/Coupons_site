@@ -40,7 +40,7 @@
                                         <td>{{ $staff->nome }}</td>
                                         <td>{{ $staff->cognome }}</td>
                                         <td><a href="{{ route('staff.edit', ['staff' => $staff->idUtente]) }}"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                        <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                        <td><a href="{{ route('staff.delete', ['staff' => $staff->idUtente]) }}"><i class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

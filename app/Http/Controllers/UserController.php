@@ -7,6 +7,10 @@ use App\Models\User;
 use Illuminate\Support\Str;
 
 class UserController extends Controller {
+    public function __construct()
+    {
+        $this->middleware('can:isAdmin')->only('delete');
+    }
 
     public function profilo() {
         $utente = auth()->user();
@@ -46,5 +50,16 @@ class UserController extends Controller {
     public function couponProfilo($idCoupon) {
         $coupon = Coupon::findOrFail($idCoupon);
         return view('user.coupon', compact('coupon'));
+    }
+
+    public function delete($dUser)
+    {
+        $dUser = User::find($dUser);
+
+        if ($dUser) {
+            $dUser->delete();
+        }
+
+        return redirect()->route('admin.users');
     }
 }

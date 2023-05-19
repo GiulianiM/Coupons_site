@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resources\Faq;
 use Illuminate\Validation\Rules;
 use App\Models\Resources\Promozione;
 use App\Models\User;
@@ -12,7 +13,7 @@ class StaffController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:isStaff')->except('edit', 'update', 'create', 'store');
+        $this->middleware('can:isStaff')->except('edit', 'update', 'create', 'store', 'delete');
     }
 
     public function promos()
@@ -51,6 +52,17 @@ class StaffController extends Controller
 
         $staff->fill($validatedData);
         $staff->save();
+
+        return redirect()->route('admin.staff');
+    }
+
+    public function delete($idStaff)
+    {
+        $idStaff = User::find($idStaff);
+
+        if ($idStaff) {
+            $idStaff->delete();
+        }
 
         return redirect()->route('admin.staff');
     }

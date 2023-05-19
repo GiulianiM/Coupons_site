@@ -40,7 +40,8 @@
 
                                         <td><a href="{{ route('faq.edit', ['faq' => $faq->idFaq]) }}"><i
                                                     class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                        <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                        <td><a href="{{ route('faq.delete', ['faq' => $faq->idFaq]) }}"><i
+                                                    class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                 @endforeach
 
@@ -55,7 +56,9 @@
                 <div class="border rounded shadow box-content">
                     <strong>Pannello</strong>
                     <div class="d-md-flex justify-content-md-center btn-add-box">
-                        <button class="btn btn-warning btn-add" type="button" onclick="window.location='{{ route('faq.create') }}'">Inserisci FAQ</button>
+                        <button class="btn btn-warning btn-add" type="button"
+                                onclick="window.location='{{ route('faq.create') }}'">Inserisci FAQ
+                        </button>
                     </div>
                     <hr>
                     <div><span>Ordina per</span>

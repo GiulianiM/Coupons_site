@@ -20,36 +20,38 @@
                         </div>
                     </div>
 
-                        <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                    @isset($aziende)
+                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                        @isset($aziende)
                             <table class="table">
                                 <thead class="table-light">
-                                  <tr>
+                                <tr>
                                     <th>#</th>
                                     <th>ID Azienda</th>
                                     <th>Nome azienda</th>
                                     <th>Ragione sociale</th>
                                     <th>Localizzazione</th>
                                     <th colspan="2"></th>
-                                  </tr>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($aziende as $azienda)
+                                @foreach($aziende as $azienda)
                                     <tr>
-                                      <td>{{ $loop->iteration }}</td>
-                                      <td>{{ $azienda->idAzienda }}</td>
-                                      <td>{{ $azienda->nome }}</td>
-                                      <td>{{ $azienda->ragione_sociale }}</td>
-                                      <td>{{ $azienda->citta }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $azienda->idAzienda }}</td>
+                                        <td>{{ $azienda->nome }}</td>
+                                        <td>{{ $azienda->ragione_sociale }}</td>
+                                        <td>{{ $azienda->citta }}</td>
 
-                                      <td><a href="{{ route('azienda.edit', ['azienda' => $azienda->idAzienda]) }}"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                      <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                        <td><a href="{{ route('azienda.edit', ['azienda' => $azienda->idAzienda]) }}"><i
+                                                    class="fas fa-pencil-alt table-icon-edit"></i></a></td>
+                                        <td><a href="{{ route('azienda.delete', ['azienda' => $azienda->idAzienda]) }}"><i
+                                                    class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
-                                  @endforeach
+                                @endforeach
                                 </tbody>
-                           </table>
-                    @endisset
-                        </div>
+                            </table>
+                        @endisset
+                    </div>
                 </div>
             </div>
 
@@ -57,7 +59,9 @@
                 <div class="border rounded shadow box-content">
                     <strong>Pannello</strong>
                     <div class="d-md-flex justify-content-md-center btn-add-box">
-                        <button class="btn btn-warning btn-add" type="button" onclick="window.location='{{ route('azienda.create') }}'">Inserisci azienda</button>
+                        <button class="btn btn-warning btn-add" type="button"
+                                onclick="window.location='{{ route('azienda.create') }}'">Inserisci azienda
+                        </button>
                     </div>
                     <hr>
                     <div><span>Ordina per</span>
@@ -65,7 +69,7 @@
                             <select>
                                 <optgroup>
                                     <option value="" selected>ID azienda</option>
-                                    <option value="" >Nome azienda</option>
+                                    <option value="">Nome azienda</option>
                                     <option value="">Ragione sociale</option>
                                     <option value="">Localizzazione</option>
                                 </optgroup>

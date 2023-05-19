@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AziendaController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PromozioneController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
@@ -88,6 +89,10 @@ Route::get('/admin/azienda/{azienda}/edit', [AziendaController::class, 'edit'])
 Route::put('/admin/azienda/{azienda}', [AziendaController::class, 'update'])
     ->name('azienda.update');
 
+Route::get('/admin/azienda/{azienda}/delete', [AziendaController::class, 'delete'])
+    ->name('azienda.delete');
+
+
 // Rotte per la CRUD faq
 Route::get('/admin/faq/create', [FaqController::class, 'create'])
     ->name('faq.create');
@@ -100,6 +105,10 @@ Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])
 
 Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])
     ->name('faq.update');
+
+Route::get('/admin/faq/{faq}/delete', [FaqController::class, 'delete'])
+    ->name('faq.delete');
+
 
 // Rotte per la CRUD staff
 Route::get('/admin/staff/create', [StaffController::class, 'create'])
@@ -114,6 +123,28 @@ Route::get('/admin/staff/{staff}/edit', [StaffController::class, 'edit'])
 Route::put('/admin/staff/{staff}', [StaffController::class, 'update'])
     ->name('staff.update');
 
+Route::get('/admin/staff/{staff}/delete', [StaffController::class, 'delete'])
+    ->name('staff.delete');
+
+//Rotte per la delete degli utenti
+Route::get('/admin/user/{user}/delete', [UserController::class, 'delete'])
+    ->name('user.delete');
+
+//Rotte per la CRUD promozioni
+Route::get('/staff/promo/create', [PromozioneController::class, 'create'])
+    ->name('promo.create');
+
+Route::post('/staff/promo', [PromozioneController::class, 'store'])
+    ->name('promo.store');
+
+Route::get('/staff/promo/{promo}/edit', [PromozioneController::class, 'edit'])
+    ->name('promo.edit');
+
+Route::put('/staff/promo/{promo}', [PromozioneController::class, 'update'])
+    ->name('promo.update');
+
+Route::get('/staff/promo/{promo}/delete', [PromozioneController::class, 'delete'])
+    ->name('promo.delete');
 
 // ROTTE DEL PROFESSORE
 // Route::get('/', [OldPublicController::class, 'showCatalog1'])

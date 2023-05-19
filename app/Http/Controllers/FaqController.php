@@ -14,17 +14,12 @@ class FaqController extends Controller
 
     public function store(Request $request)
     {
-        // Validazione dei dati ricevuti dal form
         $validatedData = $this->validateData($request);
 
-        // Creazione di una nuova istanza di Azienda
         $faq = new Faq;
         $faq->fill($validatedData);
-
-        // Salvataggio dell'azienda nel database
         $faq->save();
 
-        // Reindirizzamento alla pagina desiderata
         return redirect()->route('admin.faq');
     }
 
@@ -33,17 +28,24 @@ class FaqController extends Controller
         return view('admin.crud.faq', compact('faq'));
     }
 
-    // Metodo per gestire la modifica di un'azienda esistente
     public function update(Request $request, Faq $faq)
     {
-        // Validazione dei dati ricevuti dal form
         $validatedData = $this->validateData($request);
 
-        // Aggiornamento dei dati dell'azienda
         $faq->fill($validatedData);
         $faq->save();
 
-        // Reindirizzamento alla pagina desiderata
+        return redirect()->route('admin.faq');
+    }
+
+    public function delete($idFaq)
+    {
+        $idFaq = Faq::find($idFaq);
+
+        if ($idFaq) {
+            $idFaq->delete();
+        }
+
         return redirect()->route('admin.faq');
     }
 

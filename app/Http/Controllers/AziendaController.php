@@ -14,17 +14,12 @@ class AziendaController extends Controller
 
     public function store(Request $request)
     {
-        // Validazione dei dati ricevuti dal form
         $validatedData = $this->validateData($request);
 
-        // Creazione di una nuova istanza di Azienda
         $azienda = new Azienda;
         $azienda->fill($validatedData);
-
-        // Salvataggio dell'azienda nel database
         $azienda->save();
 
-        // Reindirizzamento alla pagina desiderata
         return redirect()->route('admin.aziende');
     }
 
@@ -33,19 +28,26 @@ class AziendaController extends Controller
         return view('admin.crud.azienda', compact('azienda'));
     }
 
-    // Metodo per gestire la modifica di un'azienda esistente
     public function update(Request $request, Azienda $azienda)
     {
-        // Validazione dei dati ricevuti dal form
         $validatedData = $this->validateData($request);
 
-        // Aggiornamento dei dati dell'azienda
         $azienda->fill($validatedData);
         $azienda->save();
-
-        // Reindirizzamento alla pagina desiderata
         return redirect()->route('admin.aziende');
     }
+
+    public function delete($idAzienda)
+    {
+        $idAzienda = Azienda::find($idAzienda);
+
+        if ($idAzienda) {
+            $idAzienda->delete();
+        }
+
+        return redirect()->route('admin.aziende');
+    }
+
 
     private function validateData(Request $request): array
     {

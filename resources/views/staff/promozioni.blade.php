@@ -43,7 +43,7 @@
                                         <td>{{$promozione->inizio}}</td>
                                         <td>{{$promozione->fine}}</td>
                                         <td><a href="#"><i class="fas fa-pencil-alt table-icon-edit"></i></a></td>
-                                        <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                        <td><a href="{{ route('promo.delete', ['promo' => $promozione->idPromozione]) }}"><i class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                 @endforeach
 

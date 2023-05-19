@@ -39,7 +39,7 @@
                                         <td>{{$user->nome}}</td>
                                         <td>{{$user->cognome}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td><a href="#"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                        <td><a href="{{ route('user.delete', ['user' => $user->idUtente]) }}"><i class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

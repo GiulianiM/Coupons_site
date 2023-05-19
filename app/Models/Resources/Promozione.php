@@ -30,6 +30,11 @@ class Promozione extends Model
         return $this->belongsTo(Azienda::class, 'idAzienda');
     }
 
+    public function coupon()
+    {
+        return $this->hasMany(Coupon::class, 'idPromozione');
+    }
+
     public function gestionePromozione()
     {
         return $this->belongsToMany(User::class, 'gestione_promozione', 'idPromozione', 'idUtente');

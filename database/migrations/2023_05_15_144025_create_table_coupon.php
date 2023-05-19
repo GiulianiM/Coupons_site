@@ -17,8 +17,8 @@ class CreateTableCoupon extends Migration
             $table->bigIncrements('idCoupon');
             $table->bigInteger('idUtente')->unsigned()->index();
             $table->bigInteger('idPromozione')->unsigned()->index();
-            $table->foreign('idUtente')->references('idUtente')->on('utente');
-            $table->foreign('idPromozione')->references('idPromozione')->on('promozione');
+            $table->foreign('idUtente')->references('idUtente')->on('utente')->onDelete('cascade');
+            $table->foreign('idPromozione')->references('idPromozione')->on('promozione')->onDelete('cascade');
             $table->string('codice',6)->unique();
         });
     }
