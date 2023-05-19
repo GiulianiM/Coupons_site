@@ -51,7 +51,7 @@ class FaqController extends Controller
     {
         $validatedData = $request->validate([
             'titolo' => ['required', 'string', 'max:50'],
-            'descrzione' => ['required', 'string', 'max:1200'],
+            'descrizione' => ['required', 'string', 'max:1200'],
         ]);
         return $validatedData;
     }

@@ -40,34 +40,35 @@
                 @endif
             </div>
 
-            <div class="form-floating mb-3">
-                <input type="text" name="username" id="username"
-                       class="{{ $errors->has('username') ? 'form-control is-invalid' : 'form-control' }}"
-                       value="{{ isset($staff) ? $staff->username : old('username') }}" placeholder="Username">
-                <label for="username">Username</label>
-                @if ($errors->first('username'))
-                    @foreach ($errors->get('username') as $message)
-                        <div class="invalid-feedback ms-2">
-                            {{$message}}
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-
             @if (!isset($staff))
-            <div class="form-floating mb-3">
-                <input type="password" name="password" id="password"
-                       class="{{ $errors->has('password') ? 'form-control is-invalid' : 'form-control' }}"
-                       value="{{ isset($staff) ? $staff->password : old('password') }}" placeholder="Password">
-                <label for="password">Password</label>
-                @if ($errors->first('password'))
-                    @foreach ($errors->get('password') as $message)
-                        <div class="invalid-feedback ms-2">
-                            {{$message}}
-                        </div>
-                    @endforeach
-                @endif
-            </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" id="username"
+                           class="{{ $errors->has('username') ? 'form-control is-invalid' : 'form-control' }}"
+                           value="{{ isset($staff) ? $staff->username : old('username') }}" placeholder="Username">
+                    <label for="username">Username</label>
+                    @if ($errors->first('username'))
+                        @foreach ($errors->get('username') as $message)
+                            <div class="invalid-feedback ms-2">
+                                {{$message}}
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" id="password"
+                           class="{{ $errors->has('password') ? 'form-control is-invalid' : 'form-control' }}"
+                           value="{{ isset($staff) ? $staff->password : old('password') }}" placeholder="Password">
+                    <label for="password">Password</label>
+                    @if ($errors->first('password'))
+                        @foreach ($errors->get('password') as $message)
+                            <div class="invalid-feedback ms-2">
+                                {{$message}}
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             @endif
 
             <button type="reset" class="btn btn-danger" onclick="window.location.href='{{ route('admin.staff') }}'">

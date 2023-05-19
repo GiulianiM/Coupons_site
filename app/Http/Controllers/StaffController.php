@@ -57,12 +57,18 @@ class StaffController extends Controller
 
     private function validateData(Request $request): array
     {
-        $validatedData = $request->validate([
+        $rules = [
             'nome' => ['required', 'string', 'max:255'],
             'cognome' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', Rules\Password::defaults()],
-            'username' => ['required', 'string', 'max:255', 'unique:utente,username'],
-        ]);
-        return $validatedData;
+        ];
+
+        if ($request->isMethod('post')) {
+            // Creating a new staff user
+            $rules['password'] = ['required', 'string', Rules\Password::defaults()];
+            $rules['username'] = ['required', 'string', 'max:255', 'unique:utente,username'];
+        }
+
+        return $request->validate($rules);
     }
+
 }
