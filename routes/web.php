@@ -48,6 +48,14 @@ Route::get('/profilo', [UserController::class, 'profilo'])
     ->name('profilo')
     ->middleware('auth', 'can:isUserOrStaff');
 
+Route::get('/profilo/edit', [UserController::class, 'edit'])
+    ->name('profilo.edit')
+    ->middleware('auth', 'can:isUserOrStaff');
+
+Route::put('/profilo', [UserController::class, 'update'])
+    ->name('profilo.update')
+    ->middleware('auth', 'can:isUserOrStaff');
+
 Route::get('/profilo/coupon/{coupon}', [UserController::class, 'couponProfilo'])
     ->name('coupon.profilo')
     ->middleware('auth', 'can:isUser');

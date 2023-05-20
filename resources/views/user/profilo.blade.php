@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="text-center">
-                        <a class="btn my-3 py-2 px-5" href="" role="button">Modifica profilo</a>
+                        <a class="btn my-3 py-2 px-5" href="{{ route('profilo.edit') }}" role="button">Modifica profilo</a>
                     </div>
                 </div>
             </form>

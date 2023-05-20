@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col">
               <div class="image">
-                  @include('helpers.aziendaImg', ['attrs' => 'card-img-top', 'imgFile' => $azienda->logo])
+                  @include('helpers.aziendaImg', ['attrs' => '', 'imgFile' => $azienda->logo])
               </div>
           </div>
           <div class="col">

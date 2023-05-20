@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
                 'email' => Str::random(6) . '@gmail.com',
                 'telefono' => '1234567890',
                 'username' => ($i == 1) ? 'admin' : 'user',
-                'password' => ($i == 1) ? Hash::make('admin') : Hash::make('user'),
+                'password' => ($i == 1) ? Hash::make('adminadmin') : Hash::make('useruser'),
                 'livello' => ($i == 1) ? 'admin' : 'user',
             ]);
         }
@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'email' => Str::random(6) . '@gmail.com',
             'telefono' => '1234567890',
             'username' => 'staff',
-            'password' => Hash::make('staff') ,
+            'password' => Hash::make('staffstaff') ,
             'livello' => 'staff',
         ]);
 
