@@ -7,7 +7,8 @@
 
         <form
             action="{{ isset($azienda) ? route('azienda.update', ['azienda' => $azienda->idAzienda]) : route('azienda.store') }}"
-            method="POST" class="rounded shadow p-5">
+            method="POST" class="rounded shadow p-5"
+            enctype="multipart/form-data">
             @csrf
             @if (isset($azienda))
                 @method('PUT')
@@ -177,6 +178,8 @@
                     @endforeach
                 @endif
             </div>
+
+            <input type="hidden" value="{{ isset($azienda) ? $azienda->logo : '' }}" name="old_logo">
 
             <button type="reset" class="btn btn-danger" onclick="window.location.href='{{ route('admin.aziende') }}'">
                 Annulla

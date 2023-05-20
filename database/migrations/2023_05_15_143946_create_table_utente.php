@@ -17,7 +17,7 @@ class CreateTableUtente extends Migration
             $table->bigIncrements('idUtente');
             $table->string('nome');
             $table->string('cognome');
-            $table->tinyInteger('genere')->nullable();
+            $table->string('genere')->nullable();
             $table->integer('eta')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();

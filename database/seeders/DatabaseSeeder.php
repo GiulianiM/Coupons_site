@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             DB::table('utente')->insert([
                 'nome' => ($i == 1) ? 'admin' : 'user',
                 'cognome' => ($i == 1) ? 'admin' : 'user',
-                'genere' => 1,
+                'genere' => "M",
                 'eta' => 22,
                 'email' => Str::random(6) . '@gmail.com',
                 'telefono' => '1234567890',
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         DB::table('utente')->insert([
             'nome' => 'staff',
             'cognome' => 'staff',
-            'genere' => 1,
+            'genere' => "M",
             'eta' => 22,
             'email' => Str::random(6) . '@gmail.com',
             'telefono' => '1234567890',

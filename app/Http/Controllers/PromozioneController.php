@@ -34,6 +34,10 @@ class PromozioneController extends Controller
 
     public function update(Request $request, Promozione $promozione)
     {
+        if($request->immmagine == null){
+            $request->merge(['immagine' => $request->old_immagine]);
+        }
+
         $validatedData = $this->validateData($request);
 
         $promozione->fill($validatedData);

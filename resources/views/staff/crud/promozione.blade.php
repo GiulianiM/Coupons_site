@@ -61,8 +61,6 @@
         });
     </script>
 
-
-
     {{--Script per la select di 'modalita' e 'luogo' per la fruizione delle promozioni--}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -97,7 +95,8 @@
 
         <form
             action="{{ isset($promo) ? route('promo.update', ['promo' => $promo->idPromozione]) : route('promo.store') }}"
-            method="POST" class="rounded shadow p-5">
+            method="POST" class="rounded shadow p-5"
+            enctype="multipart/form-data">
             @csrf
             @if (isset($promo))
                 @method('PUT')

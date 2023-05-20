@@ -3,6 +3,7 @@
 use App\Http\Controllers\AziendaController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PromozioneController;
+use App\Http\Controllers\StatController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
