@@ -113,7 +113,7 @@ class AdminController extends Controller
 
     public function stats()
     {
-        //$stats = Stat::all();
+        $stats = Stat::all();
         //return view('admin.stats', compact('stats'));
         return view('admin.statistiche');
     }

@@ -9,6 +9,8 @@ use App\Http\Controllers\PublicController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\StaffController;
 
+
+
 // USE DEL PROFESSORE
 // use App\Http\Controllers\OldPublicController;
 // use App\Http\Controllers\AdminController;
@@ -145,6 +147,16 @@ Route::put('/staff/promo/{promo}', [PromozioneController::class, 'update'])
 
 Route::get('/staff/promo/{promo}/delete', [PromozioneController::class, 'delete'])
     ->name('promo.delete');
+
+//Rotte per le statistiche
+Route::get('/admin/stats', [StatController::class, 'stats'])
+    ->name('admin.stats');
+
+/*Route::get('/admin/stats/users', [StatController::class, 'userStats'])
+    ->name('admin.stats.users');
+
+Route::get('/admin/stats/promozioni', [StatController::class, 'promoStats'])
+    ->name('admin.stats.promozioni');*/
 
 // ROTTE DEL PROFESSORE
 // Route::get('/', [OldPublicController::class, 'showCatalog1'])
