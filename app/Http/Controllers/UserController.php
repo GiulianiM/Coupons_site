@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
 class UserController extends Controller {
@@ -29,22 +30,36 @@ class UserController extends Controller {
 
     public function update(Request $request)
     {
-        $validatedData = $this->validateData($request);
-
         $utente = auth()->user();
+        $validatedData = $this->validateData($request, $utente);
+
         $utente->nome = $validatedData['nome'];
         $utente->cognome = $validatedData['cognome'];
-        $utente->telefono = $validatedData['telefono'];
-        $utente->email = $validatedData['email'];
-        $utente->eta = $validatedData['eta'];
-        $utente->genere = $validatedData['genere'];
 
-        if ($validatedData['newPassword']) {
-            if (!Hash::check($validatedData['oldPassword'], $utente->password)) {
+        if (auth()->user()->can('isUser')) {
+            $utente->telefono = $validatedData['telefono'];
+            $utente->email = $validatedData['email'];
+            $utente->eta = $validatedData['eta'];
+            $utente->genere = $validatedData['genere'];
+        }
+
+        $oldPassword = $validatedData['oldPassword'];
+        $newPassword = $validatedData['newPassword'];
+
+        if ($oldPassword && !$newPassword) {
+            return redirect()->back()->withErrors(['newPassword' => 'Inserisci la nuova password.']);
+        }
+
+        if (!$oldPassword && $newPassword) {
+            return redirect()->back()->withErrors(['oldPassword' => 'Inserisci la vecchia password.']);
+        }
+
+        if ($oldPassword && $newPassword) {
+            if (!Hash::check($oldPassword, $utente->password)) {
                 return redirect()->back()->withErrors(['oldPassword' => 'La vecchia password non è corretta.']);
             }
 
-            $utente->password = Hash::make($validatedData['newPassword']);
+            $utente->password = Hash::make($newPassword);
         }
 
         $utente->save();
@@ -98,15 +113,15 @@ class UserController extends Controller {
         return redirect()->route('admin.users');
     }
 
-    private function validateData(Request $request): array
+    private function validateData(Request $request, User $utente): array
     {
         $validatedData = $request->validate([
-            'nome' => ['sometimes', 'required', 'string', 'max:255'],
-            'cognome' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'telefono' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'email' => ['sometimes', 'nullable', 'string', 'email', 'max:255'],
-            'eta' => ['sometimes', 'nullable', 'integer', 'min:16', 'max:99'],
-            'genere' => ['sometimes', 'nullable', 'string', 'max:1'],
+            'nome' => ['sometimes', 'required', 'string', 'min:3', 'max:255'],
+            'cognome' => ['sometimes', 'required', 'string', 'min:3', 'max:255'],
+            'telefono' => ['sometimes', 'required', 'string', 'size:10', Rule::unique('utente')->ignore($utente->idUtente, 'idUtente')],
+            'email' => ['sometimes', 'required', 'string', 'email', 'max:255', Rule::unique('utente')->ignore($utente->idUtente, 'idUtente')],
+            'eta' => ['sometimes', 'required', 'integer', 'min:16', 'max:99'],
+            'genere' => ['sometimes', 'required', 'string', 'in:M,F'],
             'oldPassword' => ['sometimes', 'nullable', 'string', 'min:8', Rules\Password::defaults()],
             'newPassword' => ['sometimes', 'nullable', 'string', 'min:8', Rules\Password::defaults()],
         ]);

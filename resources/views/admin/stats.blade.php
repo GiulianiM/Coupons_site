@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <div class="border rounded shadow d-xl-flex justify-content-xl-center py-3"><strong>Coupo Totali:&nbsp;{{$numeroCouponTotali}}</strong></div>
+        <div class="border rounded shadow d-xl-flex justify-content-xl-center py-3"><strong>Coupon Totali:&nbsp;{{$numeroCouponTotali}}</strong></div>
 
 
 

@@ -21,7 +21,7 @@ class CreateTableUtente extends Migration
             $table->integer('eta')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('telefono',10)->nullable();
+            $table->string('telefono',10)->unique()->nullable();
             $table->string('username',20)->nullable()->unique();
             $table->string('password')->nullable();
             $table->string('livello')->default('user');

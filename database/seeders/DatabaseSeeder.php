@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,48 +16,48 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    const DESCPROD = 'Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Phasellus pellentesque. Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Phasellus pellentesque. Mauris quam enim, molestie in, rhoncus ut, lobortis a, est.';
 
     public function run()
     {
-        for ($i = 1; $i <= 2; $i++) {
-            DB::table('utente')->insert([
-                'nome' => ($i == 1) ? 'admin' : 'user',
-                'cognome' => ($i == 1) ? 'admin' : 'user',
-                'genere' => "M",
-                'eta' => 22,
-                'email' => Str::random(6) . '@gmail.com',
-                'telefono' => '1234567890',
-                'username' => ($i == 1) ? 'admin' : 'user',
-                'password' => ($i == 1) ? Hash::make('adminadmin') : Hash::make('useruser'),
-                'livello' => ($i == 1) ? 'admin' : 'user',
-            ]);
-        }
+        $faker = Faker::create();
+
+        DB::table('utente')->insert([
+            'username' => 'admin',
+            'password' => Hash::make('adminadmin') ,
+            'livello' => 'admin',
+        ]);
 
         DB::table('utente')->insert([
             'nome' => 'staff',
             'cognome' => 'staff',
-            'genere' => "M",
-            'eta' => 22,
-            'email' => Str::random(6) . '@gmail.com',
-            'telefono' => '1234567890',
             'username' => 'staff',
             'password' => Hash::make('staffstaff') ,
             'livello' => 'staff',
         ]);
 
+        DB::table('utente')->insert([
+            'nome' => $faker->firstName,
+            'cognome' => $faker->lastName,
+            'genere' => $faker->randomElement(['M', 'F']),
+            'eta' => $faker->numberBetween(18, 60),
+            'email' => $faker->unique()->safeEmail,
+            'telefono' => $faker->unique()->regexify('3[0-9]{9}'),
+            'username' => 'user',
+            'password' => Hash::make('useruser'),
+        ]);
+
         for ($i = 1; $i <= 40; $i++) {
             DB::table('azienda')->insert([
                 'idUtente' => 1,
-                'nome' => Str::random(10),
-                'via' => Str::random(10),
-                'citta' => Str::random(10),
-                'numero_civico' => 11,
-                'cap' => 65010,
+                'nome' => $faker->company,
+                'via' => $faker->streetName,
+                'citta' => $faker->city,
+                'numero_civico' => $faker->buildingNumber,
+                'cap' => str_pad($faker->numberBetween(0, 99100), 5, '0', STR_PAD_BOTH),
                 'logo' => 'company.png',
-                'ragione_sociale' => Str::random(10),
-                'descrizione' => self::DESCPROD,
-                'tipologia' => 'moda',
+                'ragione_sociale' => $faker->companySuffix,
+                'descrizione' => $faker->text,
+                'tipologia' => $faker->randomElement(['moda', 'tecnologia', 'alimentari']),
             ]);
 
             $idAzienda = DB::getPdo()->lastInsertId();
@@ -64,22 +65,22 @@ class DatabaseSeeder extends Seeder
             for ($j = 1; $j <= 2; $j++) {
                 DB::table('promozione')->insert([
                     'idAzienda' => $idAzienda,
-                    'titolo' => Str::random(10),
-                    'descrizione' => self::DESCPROD,
+                    'titolo' => $faker->sentence,
+                    'descrizione' => $faker->text,
                     'immagine' => 'promozione.png',
                     'modalita' => 'online',
-                    'luogo' => 'https://www.google.it/maps',
-                    'inizio' => '2023-05-15',
-                    'fine' => '2023-06-15',
+                    'luogo' => $faker->url,
+                    'inizio' => $faker->dateTimeBetween('-1 week', '+1 day'),
+                    'fine' => $faker->dateTimeBetween('+1 week', '+1 week'),
                     'sconto' => 'prezzo fisso',
-                    'valore_sconto' => '10€',
+                    'valore_sconto' => '-10€',
                 ]);
             }
 
             $idPromozione = DB::getPdo()->lastInsertId();
             DB::table('coupon')->insert([
                 'idCoupon' => $i,
-                'idutente' => 2,
+                'idutente' => 3,
                 'idPromozione' => $idPromozione,
                 'codice' => Str::random(6),
             ]);
@@ -89,8 +90,8 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 6; $i++) {
             DB::table('faq')->insert([
                 'idUtente' => 1,
-                'titolo' => Str::random(10),
-                'descrizione' => self::DESCPROD,
+                'titolo' => $faker->sentence,
+                'descrizione' => $faker->text,
             ]);
         }
     }

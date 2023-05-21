@@ -10,13 +10,18 @@
 @section('content')
     <div class="search-container">
         <form class="d-flex" action="{{ route('homepage') }}" method="GET">
-            <input class="form-control" type="search" placeholder="Cerca..." aria-label="Search" name="search" required>
+            <div class="form-group">
+                <input class="form-control" type="text" id="company" name="company" placeholder="Nome azienda" value="{{ request('company') }}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" id="description" name="description" placeholder="Descrizione offerta" value="{{ request('description') }}">
+            </div>
             <button class="btn" type="submit">Search</button>
         </form>
     </div>
 
         <!-- Nuovi Coupon carousel -->
-    @if(empty($search) && isset($promozioni))
+    @if(empty($search) && isset($promozioniCarosello))
         <div class="coupons-container">
 
             <h1 class="d-flex justify-content-center fw-bold pb-3">Nuove Promozioni</h1>
@@ -28,7 +33,7 @@
                 <div class="carousel-wrapper">
 
                     <div class="carousel">
-                        @foreach($promozioni as $promozione)
+                        @foreach($promozioniCarosello as $promozione)
                             <div class="slide">
                                 <div class="card">
                                     <div class="image">
@@ -39,6 +44,7 @@
                                             <h5 class="card-title">{{ $promozione->titolo }}</h5>
                                         </a>
                                         <p class="card-text">{{ $promozione->sconto }}</p>
+                                        <p class="card-text">{{ $promozione->valore_sconto }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +75,7 @@
                                     <h5 class="card-title">{{ $promozione->titolo }}</h5>
                                 </a>
                                 <p class="card-text">{{ $promozione->sconto }}</p>
+                                <p class="card-text">{{ $promozione->valore_sconto }}</p>
                             </div>
                         </div>
                     @endforeach

@@ -53,6 +53,7 @@
                         <div class="form-floating mb-3">
                             <select name="genere" class="form-select{{ $errors->has('genere') ? ' is-invalid' : '' }}"
                                     id="genere" placeholder="Genere">
+                                <option value="" {{ (old('genere') == null) ? 'selected' : '' }} disabled>Seleziona il genere</option>
                                 <option value="M" {{ old('genere') == 'M' ? 'selected' : '' }}>Maschio</option>
                                 <option value="F" {{ old('genere') == 'F' ? 'selected' : '' }}>Femmina</option>
                             </select>
@@ -94,8 +95,7 @@
                             @endif
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" name="telefono"
-                                   class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" id="telefono"
+                            <input type="number" name="telefono" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" id="telefono"
                                    placeholder="Telefono" value="{{ old('telefono') }}">
                             <label for="telefono">Telefono</label>
                             @if ($errors->has('telefono'))

@@ -10,22 +10,26 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-3">
                         <p><strong>Username:</strong></p>
-                        <p><strong>Email:</strong></p>
                         <p><strong>Nome:</strong></p>
                         <p><strong>Cognome:</strong></p>
+                        @can('isUser')
+                        <p><strong>Email:</strong></p>
                         <p><strong>Telefono:</strong></p>
                         <p><strong>Genere:</strong></p>
                         <p><strong>Età:</strong></p>
+                        @endcan
                     </div>
 
                     <div class="col-md-3">
                         <p>{{ $utente->username }}</p>
-                        <p>{{ $utente->email }}</p>
                         <p>{{ $utente->nome }}</p>
                         <p>{{ $utente->cognome }}</p>
+                        @can('isUser')
+                        <p>{{ $utente->email }}</p>
                         <p>{{ $utente->telefono }}</p>
                         <p>{{ $utente->genere }}</p>
                         <p>{{ $utente->eta }}</p>
+                        @endcan
                     </div>
 
                     <div class="text-center">
@@ -52,6 +56,7 @@
                                         <h5 class="card-title">{{ $coupon->promozione->titolo }}</h5>
                                     </a>
                                     <p class="card-text">{{ $coupon->promozione->sconto }}</p>
+                                    <p class="card-text">{{ $coupon->promozione->valore_sconto }}</p>
                                 </div>
                             </div>
                         @endforeach

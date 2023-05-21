@@ -6,26 +6,36 @@ use App\Models\Azienda;
 use App\Models\Resources\Faq;
 use App\Models\Resources\Promozione;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PublicController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $promozioni = null;
-        $promozioniPaginated = null;
+        $searchCompany = $request->input('company');
+        $searchDescription = $request->input('description');
+        $promozioniCarosello = null;
 
-        if ($search) {
-            $promozioniPaginated = Promozione::query()
-                ->where('titolo', 'LIKE', "%{$search}%")
-                ->orWhere('descrizione', 'LIKE', "%{$search}%")
-                ->paginate(12);
+        if ($searchCompany || $searchDescription) {
+            $query = Promozione::query();
+
+            if ($searchCompany) {
+                $query->whereHas('azienda', function ($query) use ($searchCompany) {
+                    $query->where('nome', 'LIKE', "%{$searchCompany}%");
+                });
+            }
+
+            if ($searchDescription) {
+                $query->where('descrizione', 'LIKE', "%{$searchDescription}%");
+            }
+
+            $promozioniPaginated = $query->paginate(12);
         } else {
-            $promozioni = Promozione::all();
+            $promozioniCarosello = Promozione::where('inizio', '>=', Carbon::now()->subDays(2))->get();
             $promozioniPaginated = Promozione::paginate(12);
         }
 
-        return view('homepage', compact('promozioni', 'promozioniPaginated'));
+        return view('homepage', compact('promozioniCarosello', 'promozioniPaginated'));
     }
 
 

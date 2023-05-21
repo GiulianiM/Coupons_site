@@ -57,6 +57,24 @@ html, body {
 .slide {
     display: flex;
     flex-wrap: nowrap;
+    align-items: stretch; /* Added property */
+}
+
+.slide .card {
+    flex: 1; /* Added property */
+}
+
+/* Optional: Limit the maximum height of the card body */
+.slide .card-body {
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* Optional: Add ellipsis for long titles */
+.slide .card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Carousel styles */
@@ -103,7 +121,7 @@ html, body {
 }
 
 .company-container img {
-    width: 85%;
+    width: 70%;
     height: auto;
 }
 
@@ -154,7 +172,6 @@ html, body {
 .wrapper .submit_btn:focus{
     box-shadow: none;
 }
-
 
 .wrapper select {
     border-color: var(--light-white);

@@ -39,6 +39,7 @@ class AuthenticatedSessionController extends Controller {
         switch ($livello) {
             case 'admin': return redirect()->route('admin.aziende');
             case 'staff': return redirect()->route('staff.promos');
+            case 'user': return redirect()->route('profilo');
             default: return redirect()->route('homepage');
         }
     }

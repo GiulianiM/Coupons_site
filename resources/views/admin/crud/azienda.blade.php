@@ -93,9 +93,7 @@
                         <input type="number" name="cap" id="cap"
                                class="{{ $errors->has('cap') ? 'form-control is-invalid' : 'form-control' }}"
                                value="{{ isset($azienda) ? $azienda->cap : old('cap') }}"
-                               placeholder="CAP"
-                               min="00100"
-                               max="98168">
+                               placeholder="CAP">
                         <label for="cap">CAP</label>
                         @if ($errors->first('cap'))
                             @foreach ($errors->get('cap') as $message)

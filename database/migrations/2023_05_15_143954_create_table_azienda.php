@@ -21,7 +21,7 @@ class CreateTableAzienda extends Migration
             $table->string('via');
             $table->integer('numero_civico');
             $table->string('citta');
-            $table->integer('cap');
+            $table->string('cap', 5);
             $table->string('logo', 2048);
             $table->string('ragione_sociale');
             $table->string('descrizione', 1200);
