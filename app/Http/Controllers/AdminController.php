@@ -8,6 +8,8 @@ use App\Models\Resources\Faq;
 use App\Models\Resources\Promozione;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Resources\Coupon;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -111,11 +113,59 @@ class AdminController extends Controller
 
 
 
-    public function stats()
+    public function stats(Request $request)
     {
-        $stats = Stat::all();
+        // Calcola il numero totale di coupon emessi
+        $numeroCouponTotali = Coupon::count();
+
+        // Ottieni gli utenti con il conteggio dei coupon riscattati
+        $userSearch = $request->input('userSearch');
+        $userStats = Coupon::select('coupon.idUtente', 'utente.nome', 'utente.cognome',
+            DB::raw('COUNT(coupon.idCoupon) as numero_coupon'))
+            ->join('utente', 'coupon.idUtente', '=', 'utente.idUtente')
+            ->when($userSearch, function ($query) use ($userSearch) {
+                $query->where('utente.nome', 'LIKE', "%{$userSearch}%")
+                    ->orWhere('utente.cognome', 'LIKE', "%{$userSearch}%");
+            })
+            ->groupBy('coupon.idUtente', 'utente.nome', 'utente.cognome')
+            ->get();
+
+        // Ottieni le promozioni con il conteggio dei coupon riscattati e il loro stato
+        $promozioneSearch = $request->input('promozioneSearch');
+        $promozioneStats = Coupon::join('promozione', 'coupon.idPromozione', '=', 'promozione.idPromozione')
+            ->select('coupon.idPromozione', 'promozione.titolo', DB::raw('COUNT(coupon.idCoupon) as numero_coupon'),
+                DB::raw('CASE WHEN promozione.inizio <= CURDATE() AND promozione.fine >= CURDATE() THEN "Attiva"
+                ELSE "Scaduta" END as stato'))
+            ->when($promozioneSearch, function ($query) use ($promozioneSearch) {
+                $query->where('promozione.titolo', 'LIKE', "%{$promozioneSearch}%");
+            })
+            ->groupBy('coupon.idPromozione', 'promozione.titolo', 'promozione.inizio', 'promozione.fine')
+            ->get();
+
+        // Passa il numero totale di coupon alla vista
+        return view('admin.stats', compact('numeroCouponTotali', 'userStats', 'userSearch', 'promozioneStats', 'promozioneSearch'));
+
+        /*$userSearch = $request->input('user_search');
+        $promozioneSearch = $request->input('promozione_search');
+
+        $userStats = User::query();
+        $promozioneStats = Promozione::query();
+
+        if ($userSearch) {
+            $userStats->where('nome', 'LIKE', "%{$userSearch}%")
+                    ->orWhere('cognome', 'LIKE', "%{$userSearch}%");
+
+        }
+
+        if ($promozioneSearch) {
+            $promozioneStats->where('titolo', 'LIKE', "%{$promozioneSearch}%");
+        }
+
+        $userStats = $userStats->get();
+        $promozioneStats = $promozioneStats->get();
+
         //return view('admin.stats', compact('stats'));
-        return view('admin.stats', compact('stats'));
+        return view('admin.stats', compact('userStats', 'userSearch', 'promozioneStats', 'promozioneSearch'));*/
     }
 
 
