@@ -21,7 +21,7 @@
     </div>
 
         <!-- Nuovi Coupon carousel -->
-    @if(empty($search) && isset($promozioniCarosello))
+    @if(empty($search) && isset($promozioniCarosello) && count($promozioniCarosello) > 0)
         <div class="coupons-container">
 
             <h1 class="d-flex justify-content-center fw-bold pb-3">Nuove Promozioni</h1>
