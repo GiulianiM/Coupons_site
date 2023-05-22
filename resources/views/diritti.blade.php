@@ -5,12 +5,6 @@
 @section('content')
     <div class="company-container">
         <form class="rounded bg-white shadow p-5">
-            <div class="col">
-                <div class="image">
-                    <img src="{{asset('images/logo.png')}}" class="d-inline-block align-top" alt="Logo" style="width: 150px; height: auto">
-                </div>
-            </div>
-            <div class="col">
                 <h1 class="text-dark fw-bolder fs-1 mb-2">Diritti & Privacy</h1>
                 <br>
                 <h5 style="font-weight: normal">Grazie per aver scelto il nostro sito di coupon riscattabili. La tua privacy e la protezione dei tuoi dati personali sono di fondamentale importanza per noi. Per garantirti una chiara comprensione dei tuoi diritti e sulla nostra politica di privacy, forniamo di seguito un modello che descrive come trattiamo le informazioni raccolte e come ci impegniamo a proteggere la tua privacy.</h5>
@@ -38,10 +32,8 @@
                 <h5 style="font-weight: normal">Ci riserviamo il diritto di apportare modifiche a questa politica di privacy. Le modifiche saranno pubblicate sul nostro sito e ti invitiamo a rivedere regolarmente la politica per rimanere informato sulle nostre pratiche di privacy aggiornate.</h5>
                 <br>
                 <h5 style="font-weight: normal">Se hai domande, commenti o richieste riguardanti la tua privacy o questa politica, ti invitiamo a contattarci tramite le informazioni di contatto fornite sul nostro sito.
-
                     Grazie per la fiducia che ci accordi nella gestione delle tue informazioni personali. </h5>
 
-                </div>
         </form>
     </div>
 @endsection

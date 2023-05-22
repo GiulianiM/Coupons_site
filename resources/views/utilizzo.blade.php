@@ -5,13 +5,7 @@
 @section('content')
     <div class="company-container">
         <form class="rounded bg-white shadow p-5">
-                <div class="col">
-                    <div class="image">
-                        <img src="{{asset('images/logo.png')}}" class="d-inline-block align-top" alt="Logo" style="width: 150px; height: auto">
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 class="text-dark fw-bolder fs-1 mb-2">Come utilizzare il nostro sito:</h3>
+                <h3 class="text-dark fw-bolder fs-1 mb-2">Come utilizzare il nostro sito:</h3>
                     <br>
                     <h5 style="font-weight: normal"> Il nostro sito è progettato per rendere il processo di utilizzo dei coupon estremamente facile ed efficiente, tutto ciò che devi fare è effettuare il login o registrarti per accedere alle nostre offerte.</h5>
                     <br>
@@ -21,7 +15,6 @@
                         Ti ricordiamo che i coupon possono avere diverse restrizioni e condizioni di utilizzo, come una data di scadenza o un importo minimo di spesa. Assicurati di leggere attentamente i dettagli del coupon per garantire un riscatto senza intoppi.</h5>
                     <br>
                     <h5 style="font-weight: normal"> Ti invitiamo a unirti a noi sul nostro sito di coupon e a sfruttare al massimo le fantastiche offerte e sconti che abbiamo da offrire. Il risparmio è a portata di clic!</h5>
-                </div>
         </form>
     </div>
 @endsection
