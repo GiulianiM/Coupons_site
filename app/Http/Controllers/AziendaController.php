@@ -18,17 +18,22 @@ class AziendaController extends Controller
         return view('admin.crud.azienda');
     }
 
+
     public function store(Request $request)
     {
-        if ($request->logo == null) {
-            $validatedData = $this->validateData($request, true);
-        } else {
-            $validatedData = $this->validateData($request, false);
+        $azienda = new Azienda;
+        $validatedData = $this->validateStoreData($request);
+
+        //Controlla se è stato caricato un file
+        //Se si, allora salvalo in locale
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path('images/aziende'), $fileName);
         }
 
-
-        $azienda = new Azienda;
         $azienda->fill($validatedData);
+        $azienda->logo = $fileName;
         $azienda->save();
 
         return redirect()->route('admin.aziende');
@@ -42,12 +47,25 @@ class AziendaController extends Controller
 
     public function update(Request $request, Azienda $azienda)
     {
-        if ($request->logo == null) {
-            $request->merge(['logo' => $request->old_logo]);
-            $validatedData = $this->validateData($request, true);
+        //dd($azienda);
+        $validatedData = $this->validateUpdateData($request);
+
+        //Controlla se è stato caricato un file
+        //Se si, allora salvalo in locale ed elimina il vecchio file
+        //Altrimenit mantieni il vecchio file
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path('images/aziende'), $fileName);
+            if ($azienda->logo && file_exists(public_path('images/aziende/' . $azienda->logo))) {
+                unlink(public_path('images/aziende/' . $azienda->logo));
+            }
+        }else{
+            $fileName = $azienda->logo;
         }
 
         $azienda->fill($validatedData);
+        $azienda->logo = $fileName;
         $azienda->save();
         return redirect()->route('admin.aziende');
     }
@@ -64,36 +82,33 @@ class AziendaController extends Controller
     }
 
 
-    private function validateData(Request $request, bool $logoNull): array
+    private function validateStoreData(Request $request): array
     {
-        if ($logoNull) {
-            $validatedData = $request->validate([
-                'nome' => ['required', 'string', 'max:255'],
-                'via' => ['required', 'string', 'max:255'],
-                'citta' => ['required', 'string', 'max:255'],
-                'cap' => ['required', 'numeric', 'digits_between:1,5', 'between:00100,99100'],
-                //'logo' => ['required', 'image', 'mimes:jpeg,png,gif,svg', 'max:2048'],
-                'logo' => ['required', 'string', 'max:2048'],
-                'numero_civico' => ['required', 'integer', 'min:1', 'max:300'],
-                'ragione_sociale' => ['required', 'string'],
-                'descrizione' => ['required', 'string', 'max:1200'],
-                'tipologia' => ['required', 'string'],
-            ]);
-        } else {
-            $validatedData = $request->validate([
-                'nome' => ['required', 'string', 'max:255'],
-                'via' => ['required', 'string', 'max:255'],
-                'citta' => ['required', 'string', 'max:255'],
-                'cap' => ['required', 'string', 'size:5'],
-                'logo' => ['required', 'image', 'mimes:jpeg,png,gif,svg', 'max:2048'],
-                //'logo'=> ['required', 'string', 'max:2048'],
-                'numero_civico' => ['required', 'integer', 'min:1', 'max:300'],
-                'ragione_sociale' => ['required', 'string'],
-                'descrizione' => ['required', 'string', 'max:1200'],
-                'tipologia' => ['required', 'string'],
-            ]);
-        }
+        return $request->validate([
+            'nome' => ['required', 'string', 'max:255'],
+            'via' => ['required', 'string', 'max:255'],
+            'citta' => ['required', 'string', 'max:255'],
+            'cap' => ['required', 'numeric', 'digits_between:1,5', 'between:00100,99100'],
+            'logo' => ['required', 'image', 'mimes:jpeg,png,gif,svg'],
+            'numero_civico' => ['required', 'integer', 'min:1', 'max:300'],
+            'ragione_sociale' => ['required', 'string'],
+            'descrizione' => ['required', 'string', 'max:1200'],
+            'tipologia' => ['required', 'string'],
+        ]);
+    }
 
-        return $validatedData;
+    private function validateUpdateData(Request $request): array
+    {
+        return $request->validate([
+            'nome' => ['required', 'string', 'max:255'],
+            'via' => ['required', 'string', 'max:255'],
+            'citta' => ['required', 'string', 'max:255'],
+            'cap' => ['required', 'numeric', 'digits_between:1,5', 'between:00100,99100'],
+            'logo' => ['sometimes', 'image', 'mimes:jpeg,png,gif,svg'],
+            'numero_civico' => ['required', 'integer', 'min:1', 'max:300'],
+            'ragione_sociale' => ['required', 'string'],
+            'descrizione' => ['required', 'string', 'max:1200'],
+            'tipologia' => ['required', 'string'],
+        ]);
     }
 }

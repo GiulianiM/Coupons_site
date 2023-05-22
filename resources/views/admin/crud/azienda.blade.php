@@ -177,7 +177,7 @@
                 @endif
             </div>
 
-            <input type="hidden" value="{{ isset($azienda) ? $azienda->logo : '' }}" name="old_logo">
+            {{--<input type="hidden" value="{{ isset($azienda) ? $azienda->logo : '' }}" name="old_logo">--}}
 
             <button type="reset" class="btn btn-danger" onclick="window.location.href='{{ route('admin.aziende') }}'">
                 Annulla
