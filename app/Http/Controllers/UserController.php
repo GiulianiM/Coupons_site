@@ -107,9 +107,15 @@ class UserController extends Controller
         return redirect()->route('coupon', ['promozione' => $promozione->idPromozione, 'coupon' => $coupon->idCoupon]);
     }
 
-    public function coupon($idCoupon)
+    public function coupon($idPromozione, $idCoupon)
     {
-        $coupon = Coupon::findOrFail($idCoupon);
+        $promozione = Promozione::findOrFail($idPromozione);
+        if ($promozione == null) {
+            abort(404);
+        }
+        $coupon = Coupon::where('idPromozione', $idPromozione)
+            ->where('idCoupon', $idCoupon)
+            ->firstOrFail();
 
         if (Carbon::now()->isAfter($coupon->promozione->fine)) {
             return view('expired_promozione');
@@ -120,7 +126,13 @@ class UserController extends Controller
 
     public function couponProfilo($idCoupon)
     {
-        $coupon = Coupon::findOrFail($idCoupon);
+        $coupon = Coupon::findOrFail($idCoupon);$coupon = Coupon::findOrFail($idCoupon);
+
+        // Check if the current user has the coupon
+        $user = auth()->user();
+        if (!$user->hasCoupon($coupon)) {
+            abort(404);
+        }
 
         if (Carbon::now()->isAfter($coupon->promozione->fine)) {
             return view('expired_promozione');
@@ -143,12 +155,12 @@ class UserController extends Controller
     private function validateData(Request $request, User $utente): array
     {
         $validatedData = $request->validate([
-            'nome' => ['sometimes', 'required', 'string', 'min:3', 'max:255'],
-            'cognome' => ['sometimes', 'required', 'string', 'min:3', 'max:255'],
-            'telefono' => ['sometimes', 'required', 'string', 'size:10', Rule::unique('utente')->ignore($utente->idUtente, 'idUtente')],
-            'email' => ['sometimes', 'required', 'string', 'email', 'max:255', Rule::unique('utente')->ignore($utente->idUtente, 'idUtente')],
-            'eta' => ['sometimes', 'required', 'integer', 'min:16', 'max:99'],
-            'genere' => ['sometimes', 'required', 'string', 'in:M,F'],
+            'nome' => ['required', 'string', 'min:3', 'max:255'],
+            'cognome' => ['required', 'string', 'min:3', 'max:255'],
+            'telefono' => ['sometimes', 'string', 'size:10', Rule::unique('utente')->ignore($utente->idUtente, 'idUtente')],
+            'email' => ['sometimes', 'string', 'email', 'max:255', Rule::unique('utente')->ignore($utente->idUtente, 'idUtente')],
+            'eta' => ['sometimes', 'integer', 'min:16', 'max:99'],
+            'genere' => ['sometimes', 'string', 'in:M,F'],
             'oldPassword' => ['sometimes', 'nullable', 'string', 'min:8', Rules\Password::defaults()],
             'newPassword' => ['sometimes', 'nullable', 'string', 'min:8', Rules\Password::defaults()],
         ]);

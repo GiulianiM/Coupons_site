@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class PromozioneController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isStaff');
+    }
     public function create()
     {
         $aziende = Azienda::orderBy('nome')->get();

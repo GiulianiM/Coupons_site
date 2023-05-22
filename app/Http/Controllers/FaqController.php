@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isAdmin');
+    }
+
     public function create()
     {
         return view('admin.crud.faq');
@@ -18,6 +23,7 @@ class FaqController extends Controller
 
         $faq = new Faq;
         $faq->fill($validatedData);
+        $faq->idUtente = auth()->user()->idUtente;
         $faq->save();
 
         return redirect()->route('admin.faq');
