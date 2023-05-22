@@ -20,51 +20,41 @@
     </div>
 
     <!-- end #content -->
-    <footer class="row row-cols-5 row-cols-sm-5 row-cols-md-5 pt-5 mt-5 mx-0 border-top">
-        <div class="col mb-3">
+
+    <!-- Footer -->
+    <footer class="row row-cols-5 5 pt-5 mt-5 mx-0 border-top">
+        <div class="col-2 me-auto mb-3">
             <a href="{{ route('homepage') }}" class="d-flex align-items-center link-dark text-decoration-none">
                 <img src="{{asset('images/logo.png')}}" alt="coupon1">
             </a>
         </div>
 
-        <div class="col mb-3">
-
-        </div>
-
-        <div class="col mb-3">
-            <h5>Section</h5>
+        <div class="col me-auto">
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                <li class="nav-item mb-2"><a href="{{ route('homepage') }}" class="nav-link p-0 text-muted">Nome sito</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Telefono</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Email</a></li>
             </ul>
         </div>
 
-        <div class="col mb-3">
-            <h5>Section</h5>
+        <div class="col me-auto">
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Azienda</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Chi siamo</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Collabora con noi</a></li>
             </ul>
         </div>
 
-        <div class="col mb-3">
-            <h5>Section</h5>
+        <div class="col">
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Utilizzo</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQ</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Diritti & Privacy</a></li>
             </ul>
         </div>
     </footer>
     <!-- end #footer -->
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
             crossorigin="anonymous"></script>
