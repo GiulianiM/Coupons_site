@@ -158,8 +158,8 @@ Route::get('/staff/promo/{promo}/delete', [PromozioneController::class, 'delete'
     ->name('promo.delete');
 
 //Rotte per le statistiche
-Route::get('/admin/stats', [StatController::class, 'stats'])
-    ->name('admin.stats');
+/*Route::get('/admin/stats', [StatController::class, 'stats'])
+    ->name('admin.stats');*/
 
 /*Route::get('/admin/stats/users', [StatController::class, 'userStats'])
     ->name('admin.stats.users');
