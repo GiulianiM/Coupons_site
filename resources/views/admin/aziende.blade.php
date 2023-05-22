@@ -2,6 +2,7 @@
 
 @section('title', 'Gestione Aziende')
 
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -20,7 +21,8 @@
                                     <i class="fa fa-search"></i>
                                 </button>
                                 @isset($search)
-                                    <button class="btn btn-warning" type="reset" onclick="window.location='{{ route('admin.aziende') }}'">
+                                    <button class="btn btn-warning" type="reset"
+                                            onclick="window.location='{{ route('admin.aziende') }}'">
                                         <i class="fa-solid fa-rotate-left"></i>
                                     </button>
                                 @endisset
@@ -30,7 +32,7 @@
 
                     <div class="table-responsive table table-bordered custom-scrollbar mt-5">
                         @isset($aziende)
-                            <table class="table">
+                            <table class="table" id="myTable">
                                 <thead class="table-light">
                                 <tr>
                                     <th>#</th>

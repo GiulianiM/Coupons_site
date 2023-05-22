@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class AziendaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isAdmin');
+    }
+
     public function create()
     {
         return view('admin.crud.azienda');

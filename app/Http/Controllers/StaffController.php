@@ -13,7 +13,8 @@ class StaffController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:isStaff')->except('edit', 'update', 'create', 'store', 'delete');
+        $this->middleware('can:isStaff')->only('promos');
+        $this->middleware('can:isAdmin')->except('promos');
     }
 
     public function promos(Request $request)
@@ -62,6 +63,9 @@ class StaffController extends Controller
 
     public function edit(User $staff)
     {
+        if(!$staff->hasLivello('staff')){
+            abort(404);
+        }
         return view('admin.crud.staff', compact('staff'));
     }
 
