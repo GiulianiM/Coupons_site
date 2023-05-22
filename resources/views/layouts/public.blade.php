@@ -8,6 +8,8 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     @yield('extra-css')
     <title>@yield('title')</title>
+    <link rel=”icon” type=”image/ico” href=”http://coupons_site.test/favicon.ico”>
+
 </head>
 <body>
 <div id="wrapper">
@@ -31,25 +33,17 @@
 
         <div class="col me-auto">
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="{{ route('homepage') }}" class="nav-link p-0 text-muted">Nome sito</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Telefono</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Email</a></li>
+                <li class="nav-item mb-2"><a href="{{ route('homepage') }}" class="nav-link p-0 text-muted">Coupon site</a></li>
+                <li class="nav-item mb-2"><a href="{{route ('company')}}" class="nav-link p-0 text-muted">Azienda</a></li>
+                <li class="nav-item mb-2"><a href="{{route ('collabora')}}" class="nav-link p-0 text-muted">Collabora con noi</a></li>
             </ul>
         </div>
 
         <div class="col me-auto">
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Azienda</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Chi siamo</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Collabora con noi</a></li>
-            </ul>
-        </div>
-
-        <div class="col">
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Utilizzo</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQ</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Diritti & Privacy</a></li>
+                <li class="nav-item mb-2"><a href="{{ route('faq') }}" class="nav-link p-0 text-muted">FAQ</a></li>
+                <li class="nav-item mb-2"><a href="{{ route('utilizzo') }}" class="nav-link p-0 text-muted">Utilizzo</a></li>
+                <li class="nav-item mb-2"><a href="{{route ('diritti')}}" class="nav-link p-0 text-muted">Diritti & Privacy</a></li>
             </ul>
         </div>
     </footer>

@@ -32,6 +32,18 @@ use \App\Http\Controllers\StaffController;
 Route::get('/', [PublicController::class, 'index'])
     ->name('homepage');
 
+Route::get('/company', [PublicController::class, 'company'])
+    ->name('company');
+
+Route::get('/utilizzo', [PublicController::class, 'utilizzo'])
+    ->name('utilizzo');
+
+Route::get('/diritti', [PublicController::class, 'diritti'])
+    ->name('diritti');
+
+Route::get('/collabora', [PublicController::class, 'collabora'])
+    ->name('collabora');
+
 Route::get('/aziende', [PublicController::class, 'aziende'])
     ->name('aziende');
 

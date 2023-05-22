@@ -64,4 +64,19 @@ class PublicController extends Controller
         return view('faq', compact('faqs'));
     }
 
+    public function company() {
+        return view('company');
+    }
+
+    public function utilizzo() {
+        return view('utilizzo');
+    }
+
+    public function collabora() {
+        return view('collabora');
+    }
+
+    public function diritti() {
+        return view('diritti');
+    }
 }
