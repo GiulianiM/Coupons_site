@@ -14,6 +14,7 @@ class Faq extends Model
     protected $fillable = [
         'titolo',
         'descrizione',
+        'idUtente'
     ];
 
     public function admin() {

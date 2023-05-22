@@ -23,6 +23,7 @@ class FaqController extends Controller
 
         $faq = new Faq;
         $faq->fill($validatedData);
+        $faq->idUtente = auth()->user()->idUtente;
         $faq->save();
 
         return redirect()->route('admin.faq');
