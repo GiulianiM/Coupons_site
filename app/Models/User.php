@@ -61,4 +61,9 @@ class User extends Authenticatable
         return $this->livello === $livello;
     }
 
+    public function hasCoupon(Coupon $coupon)
+    {
+        return $this->coupons()->where('idCoupon', $coupon->idCoupon)->exists();
+    }
+
 }

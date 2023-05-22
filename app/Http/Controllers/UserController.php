@@ -107,9 +107,12 @@ class UserController extends Controller
         return redirect()->route('coupon', ['promozione' => $promozione->idPromozione, 'coupon' => $coupon->idCoupon]);
     }
 
-    public function coupon($idCoupon)
+    public function coupon($idPromozione, $idCoupon)
     {
-        $coupon = Coupon::findOrFail($idCoupon);
+        $promozione = Promozione::findOrFail($idPromozione);
+        $coupon = Coupon::where('idPromozione', $idPromozione)
+            ->where('idCoupon', $idCoupon)
+            ->firstOrFail();
 
         if (Carbon::now()->isAfter($coupon->promozione->fine)) {
             return view('expired_promozione');
@@ -120,7 +123,13 @@ class UserController extends Controller
 
     public function couponProfilo($idCoupon)
     {
-        $coupon = Coupon::findOrFail($idCoupon);
+        $coupon = Coupon::findOrFail($idCoupon);$coupon = Coupon::findOrFail($idCoupon);
+
+        // Check if the current user has the coupon
+        $user = auth()->user();
+        if (!$user->hasCoupon($coupon)) {
+            abort(404);
+        }
 
         if (Carbon::now()->isAfter($coupon->promozione->fine)) {
             return view('expired_promozione');

@@ -61,10 +61,13 @@ Route::get('/profilo/coupon/{coupon}', [UserController::class, 'couponProfilo'])
     ->middleware('auth', 'can:isUser');
 
 Route::get('/promozione/{promozione}/riscatta', [UserController::class, 'riscatta'])
-    ->name('riscatta');
+    ->name('riscatta')
+    ->middleware('auth', 'can:isUser');
 
 Route::get('/promozione/{promozione}/{coupon}', [UserController::class, 'coupon'])
-    ->name('coupon');
+    ->name('coupon')
+    ->middleware('auth', 'can:isUser')
+    ->where(['coupon' => '[0-9]+']);
 
 
 
