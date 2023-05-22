@@ -110,6 +110,9 @@ class UserController extends Controller
     public function coupon($idPromozione, $idCoupon)
     {
         $promozione = Promozione::findOrFail($idPromozione);
+        if ($promozione == null) {
+            abort(404);
+        }
         $coupon = Coupon::where('idPromozione', $idPromozione)
             ->where('idCoupon', $idCoupon)
             ->firstOrFail();
