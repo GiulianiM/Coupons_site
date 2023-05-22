@@ -26,18 +26,17 @@ class PublicController extends Controller
             }
 
             if ($searchDescription) {
-                $query->where('descrizione', 'LIKE', "%{$searchDescription}%");
+                $query->where('fine', '>', Carbon::now())->where('descrizione', 'LIKE', "%{$searchDescription}%");
             }
 
             $promozioniPaginated = $query->paginate(12);
         } else {
-            $promozioniCarosello = Promozione::where('inizio', '>=', Carbon::now()->subDays(2))->get();
-            $promozioniPaginated = Promozione::paginate(12);
+            $promozioniCarosello = Promozione::where('inizio', '>=', Carbon::now()->subDays(2))->where('fine', '>', Carbon::now())->get();
+            $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())->paginate(12);
         }
 
         return view('homepage', compact('promozioniCarosello', 'promozioniPaginated'));
     }
-
 
     public function aziende() {
         $aziende = Azienda::paginate(16);
@@ -52,6 +51,11 @@ class PublicController extends Controller
 
     public function promozione($id) {
         $promozione = Promozione::findOrFail($id);
+
+        if (Carbon::now()->isAfter($promozione->fine)) {
+            return view('expired_promozione');
+        }
+
         return view('promozione', compact('promozione'));
     }
 

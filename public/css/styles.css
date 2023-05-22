@@ -31,6 +31,19 @@ html, body {
     height: 2em;
 }
 
+.error-container {
+    margin: 5% 20%;
+    padding: 20px 50px;
+}
+
+.error-container .btn {
+    background-color: #F5C703;
+}
+
+.error-container .btn:hover {
+    border-color: #F5C703;
+}
+
 .search-container {
     margin: 0 auto;
     padding: 20px 50px;

@@ -10,15 +10,15 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'homepage' ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('homepage') ? 'active' : '' }}"
                        href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'aziende' || Request::route()->getName() == 'azienda' ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('aziende', 'azienda') ? 'active' : '' }}"
                        href="{{ route('aziende') }}">Aziende</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'faq' ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}"
                        href="{{ route('faq') }}">FAQ</a>
                 </li>
                 @can('isStaff')
@@ -33,13 +33,13 @@
                 @endcan
                 @can('isUser')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'profilo' ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('profilo') ? 'active' : '' }}"
                            href="{{ route('profilo') }}">Profilo</a>
                     </li>
                 @endcan
                 @can('isStaff')
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'profilo' ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('profilo') ? 'active' : '' }}"
                            href="{{ route('profilo') }}">Profilo</a>
                     </li>
                 @endcan
@@ -55,11 +55,11 @@
                 @endauth
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'Login' ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
                            href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'signup' ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('signup') ? 'active' : '' }}"
                            href="{{ route('signup') }}">Signup</a>
                     </li>
                 @endguest

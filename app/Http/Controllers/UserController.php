@@ -1,26 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Resources\Coupon;
 use App\Models\Resources\Promozione;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
     public function __construct()
     {
         $this->middleware('can:isAdmin')->only('delete');
     }
 
-    public function profilo() {
+    public function profilo()
+    {
         $utente = auth()->user();
-        $coupons = $utente->coupons()->paginate(8);
-        return view('user.profilo', compact('utente', 'coupons'));
+        $coupons = $utente->coupons()->whereHas('promozione', function ($query) {
+            $query->where('fine', '>', Carbon::now());
+        })->paginate(8);
+
+        $expiredCoupons = $utente->coupons()->whereHas('promozione', function ($query) {
+            $query->where('fine', '<=', Carbon::now());
+        })->paginate(8);
+
+        return view('user.profilo', compact('utente', 'coupons', 'expiredCoupons'));
     }
+
 
     public function edit()
     {
@@ -92,13 +107,25 @@ class UserController extends Controller {
         return redirect()->route('coupon', ['promozione' => $promozione->idPromozione, 'coupon' => $coupon->idCoupon]);
     }
 
-    public function coupon($idCoupon) {
+    public function coupon($idCoupon)
+    {
         $coupon = Coupon::findOrFail($idCoupon);
+
+        if (Carbon::now()->isAfter($coupon->promozione->fine)) {
+            return view('expired_promozione');
+        }
+
         return view('user.coupon', compact('coupon'));
     }
 
-    public function couponProfilo($idCoupon) {
+    public function couponProfilo($idCoupon)
+    {
         $coupon = Coupon::findOrFail($idCoupon);
+
+        if (Carbon::now()->isAfter($coupon->promozione->fine)) {
+            return view('expired_promozione');
+        }
+
         return view('user.coupon', compact('coupon'));
     }
 

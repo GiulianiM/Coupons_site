@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
                     'modalita' => 'online',
                     'luogo' => $faker->url,
                     'inizio' => $faker->dateTimeBetween('-1 week', '+1 day'),
-                    'fine' => $faker->dateTimeBetween('+1 week', '+1 week'),
+                    'fine' => $faker->dateTimeBetween('-2 day', '+1 week'),
                     'sconto' => 'prezzo fisso',
                     'valore_sconto' => '-10€',
                 ]);
