@@ -2,36 +2,94 @@
 
 @section('title', 'Gestione Utenti')
 
+@section('extra-css-jquery')
+    <script>
+        $(function () {
+            initializeDataTable('#table-utenti', [4]);
+
+            function initializeDataTable(selector, disableColumns) {
+                $(selector).DataTable({
+                    columnDefs: [
+                        {targets: disableColumns, orderable: false}
+                    ],
+                    lengthChange: false,
+                    searching: false,
+                    paging: false,
+                    info: false,
+                });
+            }
+        });
+
+        $(function () {
+            //imposto all'inizio che il pulsante di reset sia nascosto
+            $('.resetButton').hide();
+
+            /* al click del pulsante di ricerca prendo il testo scritto nella barra di ricerca
+             e lo confronto con il testo di ogni riga della tabella
+             se il testo della riga contiene il testo della barra di ricerca allora mostro la riga
+             altrimenti la nascondo*/
+            $('.searchButton').click(function () {
+                var searchText = $('.searchInput').val().toLowerCase();
+
+                $('table tbody tr').each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    if (rowText.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                toggleResetButton();
+            });
+
+            $('.resetButton').click(function () {
+                $('#searchInput').val('');
+                $('table tbody tr').show();
+                toggleResetButton();
+            });
+
+            function toggleResetButton() {
+                var searchText = $('.searchInput').val();
+
+                if (searchText.trim() !== '') {
+                    $('.resetButton').show();
+                } else {
+                    $('.resetButton').hide();
+                }
+            }
+        });
+
+    </script>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="border rounded shadow box-content">
                     <div class="d-md-flex align-items-md-center left">
                         <strong class="d-md-flex d-lg-flex align-items-md-center align-items-lg-center">Lista
                             utenti</strong>
                     </div>
                     <div class="right">
-                        <form class="d-flex" action="{{ route('admin.users') }}" method="GET">
-                            <div class="input-group">
-                                <input class="form-control autocomplete" type="search" placeholder="Cerca..."
-                                       aria-label="Search" name="search">
-                                <button class="btn btn-warning" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                @isset($search)
-                                    <button class="btn btn-warning" type="reset" onclick="window.location='{{ route('admin.users') }}'">
-                                        <i class="fa-solid fa-rotate-left"></i>
-                                    </button>
-                                @endisset
-                            </div>
-                        </form>
+                        <div class="input-group">
+                            <input class="form-control searchInput" type="search" placeholder="Cerca..."
+                                   aria-label="Search">
+                            <button class="btn btn-warning searchButton" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button class="btn btn-warning resetButton" type="button">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
                     </div>
 
-                        <div class="table-responsive table table-bordered custom-scrollbar mt-5">
-                    @isset($users)
-                            <table class="table">
-                                <thead class="table-light">
+                    <div class="table-responsive table custom-scrollbar max-height overflow-auto">
+                        @isset($users)
+                            <table class="table" id="table-utenti">
+                                <thead class="table-light sticky-top">
                                 <tr>
                                     <th>#</th>
                                     <th>Nome</th>
@@ -47,38 +105,17 @@
                                         <td>{{$user->nome}}</td>
                                         <td>{{$user->cognome}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td><a href="{{ route('user.delete', ['user' => $user->idUtente]) }}"><i class="fas fa-trash table-icon-trash"></i></a></td>
+                                        <td><a href="{{ route('user.delete', ['user' => $user->idUtente]) }}"><i
+                                                    class="fas fa-trash table-icon-trash"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                    @endisset
-                        </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="border rounded shadow box-content">
-                    <strong>Pannello</strong>
-                    <hr>
-                    <div class="dropdown">
-                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            Ordina per {{ ucfirst($orderby) }}
-                        </button>
-                        <ul class="dropdown-menu">
-                            @foreach(['nome', 'cognome', 'email'] as $option)
-                                <li>
-                                    <a class="dropdown-item{{ $orderby === $option ? ' active' : '' }}"
-                                       href="{{ route('admin.users', ['order_by' => $option]) }}">
-                                        {{ ucfirst($option) }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @endisset
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection

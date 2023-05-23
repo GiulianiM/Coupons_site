@@ -4,13 +4,43 @@
 
 @section('extra-css-jquery')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker3.min.css">
 @endsection
 
 @section('content')
     {{--Aggiunge un suffisso in base al tipo di sconto selezionato--}}
     <script>
-        $(document).ready(function() {
+        $(function () {
+            const currentDate = new Date();
+            const dateFormat = 'yyyy-mm-dd';
+
+            // Inizializza il datepicker per la data di inizio
+            $('#inizio').datepicker({
+                format: dateFormat,
+                startDate: currentDate,
+                language: 'it',
+                autoclose: true,
+                todayHighlight: true,
+            }).on('changeDate', function (selected) {
+                const startDate = new Date(selected.date.valueOf());
+                $('#fine').datepicker('setStartDate', startDate);
+            });
+
+            // Inizializza il datepicker per la data di fine
+            $('#fine').datepicker({
+                language: 'it',
+                autoclose: true,
+                todayHighlight: true,
+                format: dateFormat,
+                startDate: currentDate
+            }).on('changeDate', function (selected) {
+                const endDate = new Date(selected.date.valueOf());
+                $('#inizio').datepicker('setEndDate', endDate);
+            });
+        });
+
+        $(function () {
             const scontoSelect = $('#sconto');
             const scontoSuffix = $('#valore_sconto_suffisso');
 
@@ -42,7 +72,6 @@
             updateScontoSuffix();
         });
     </script>
-    {{--Datepicker--}}
 
 
     <div class="container">

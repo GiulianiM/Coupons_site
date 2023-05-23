@@ -2,6 +2,68 @@
 
 @section('title', 'Gestione FAQ')
 
+@section('extra-css-jquery')
+    <script>
+        $(function () {
+            initializeDataTable('#table-faq', [3, 4]);
+
+            function initializeDataTable(selector, disableColumns) {
+                $(selector).DataTable({
+                    columnDefs: [
+                        { targets: disableColumns, orderable: false }
+                    ],
+                    lengthChange: false,
+                    searching: false,
+                    paging: false,
+                    info: false,
+                });
+            }
+        });
+
+        $(function () {
+            //imposto all'inizio che il pulsante di reset sia nascosto
+            $('.resetButton').hide();
+
+            /* al click del pulsante di ricerca prendo il testo scritto nella barra di ricerca
+             e lo confronto con il testo di ogni riga della tabella
+             se il testo della riga contiene il testo della barra di ricerca allora mostro la riga
+             altrimenti la nascondo*/
+            $('.searchButton').click(function () {
+                var searchText = $('.searchInput').val().toLowerCase();
+
+                $('table tbody tr').each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    if (rowText.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                toggleResetButton();
+            });
+
+            $('.resetButton').click(function () {
+                $('#searchInput').val('');
+                $('table tbody tr').show();
+                toggleResetButton();
+            });
+
+            function toggleResetButton() {
+                var searchText = $('.searchInput').val();
+
+                if (searchText.trim() !== '') {
+                    $('.resetButton').show();
+                } else {
+                    $('.resetButton').hide();
+                }
+            }
+        });
+
+    </script>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -12,30 +74,27 @@
                             FAQ</strong>
                     </div>
                     <div class="right">
-                        <form class="d-flex" action="{{ route('admin.faq') }}" method="GET">
-                            <div class="input-group">
-                                <input class="form-control autocomplete" type="search" placeholder="Cerca..."
-                                       aria-label="Search" name="search">
-                                <button class="btn btn-warning" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                @isset($search)
-                                    <button class="btn btn-warning" type="reset" onclick="window.location='{{ route('admin.faq') }}'">
-                                        <i class="fa-solid fa-rotate-left"></i>
-                                    </button>
-                                @endisset
-                            </div>
-                        </form>
+                        <div class="input-group">
+                            <input class="form-control searchInput" type="search"  placeholder="Cerca..."
+                                   aria-label="Search">
+                            <button class="btn btn-warning searchButton"  type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button class="btn btn-warning resetButton" type="button">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                    <div class="table-responsive table custom-scrollbar max-height overflow-auto">
                         @isset($faqs)
-                            <table class="table">
-                                <thead class="table-light">
+                            <table class="table" id="table-faq">
+                                <thead class="table-light sticky-top">
                                 <tr>
                                     <th>#</th>
                                     <th>Titolo</th>
                                     <th>Descrizione</th>
-                                    <th colspan="2"></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -67,23 +126,6 @@
                         <button class="btn btn-warning btn-add" type="button"
                                 onclick="window.location='{{ route('faq.create') }}'">Inserisci FAQ
                         </button>
-                    </div>
-                    <hr>
-                    <div class="dropdown">
-                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            Ordina per {{ ucfirst($orderby) }}
-                        </button>
-                        <ul class="dropdown-menu">
-                            @foreach(['titolo', 'descrizione'] as $option)
-                                <li>
-                                    <a class="dropdown-item{{ $orderby === $option ? ' active' : '' }}"
-                                       href="{{ route('admin.faq', ['order_by' => $option]) }}">
-                                        {{ ucfirst($option) }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
                     </div>
                 </div>
             </div>

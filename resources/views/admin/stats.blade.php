@@ -2,35 +2,126 @@
 
 @section('title', 'Statistiche')
 
+@section('extra-css-jquery')
+    <script>
+        $(function () {
+            initializeDataTable('#table-statistiche-promozioni, #table-statistiche-utenti', [3, 4]);
+
+            function initializeDataTable(selector, disableColumns) {
+                $(selector).DataTable({
+                    columnDefs: [
+                        { targets: disableColumns, orderable: false }
+                    ],
+                    lengthChange: false,
+                    searching: false,
+                    paging: false,
+                    info: false,
+                });
+            }
+        });
+
+        $(function () {
+            $('.resetButton-utenti').hide();
+
+            $('.searchButton-utenti').click(function () {
+                var searchText = $('.searchInput-utenti').val().toLowerCase();
+
+                $('#table-statistiche-utenti tbody tr').each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    if (rowText.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                toggleResetButton('.searchInput-utenti', '.resetButton-utenti');
+            });
+
+            $('.resetButton-utenti').click(function () {
+                $('.searchInput-utenti').val('');
+                $('#table-statistiche-utenti tbody tr').show();
+                toggleResetButton('.searchInput-utenti', '.resetButton-utenti');
+            });
+
+            function toggleResetButton(searchInputClass, resetButtonClass) {
+                var searchText = $(searchInputClass).val();
+
+                if (searchText.trim() !== '') {
+                    $(resetButtonClass).show();
+                } else {
+                    $(resetButtonClass).hide();
+                }
+            }
+        });
+
+        $(function () {
+            // Imposto all'inizio che il pulsante di reset sia nascosto
+            $('.resetButton-promozioni').hide();
+
+            // Al click del pulsante di ricerca per le promozioni
+            $('.searchButton-promozioni').click(function () {
+                var searchText = $('.searchInput-promozioni').val().toLowerCase();
+
+                $('#table-statistiche-promozioni tbody tr').each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    if (rowText.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                toggleResetButton('.searchInput-promozioni', '.resetButton-promozioni');
+            });
+
+            // Al click del pulsante di reset per le promozioni
+            $('.resetButton-promozioni').click(function () {
+                $('.searchInput-promozioni').val('');
+                $('#table-statistiche-promozioni tbody tr').show();
+                toggleResetButton('.searchInput-promozioni', '.resetButton-promozioni');
+            });
+
+            function toggleResetButton(searchInputClass, resetButtonClass) {
+                var searchText = $(searchInputClass).val();
+
+                if (searchText.trim() !== '') {
+                    $(resetButtonClass).show();
+                } else {
+                    $(resetButtonClass).hide();
+                }
+            }
+        });
+
+    </script>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="border rounded shadow d-xl-flex justify-content-xl-center py-3 my-5">
-            <strong>Coupon Totali:&nbsp;{{$numeroCouponTotali}}</strong></div>
+            <strong>Coupon Totali: {{$numeroCouponTotali}}</strong></div>
 
         <div class="border rounded shadow box-content my-5">
             <div class="d-md-flex align-items-md-center left">
                 <strong class="d-md-flex d-lg-flex align-items-md-center align-items-lg-center">Coupon per utente</strong>
             </div>
             <div class="right">
-              <form class="d-flex" action="{{ route('admin.stats') }}" method="GET">
                 <div class="input-group">
-                    <input class="form-control autocomplete" type="search" placeholder="Cerca..."
-                           aria-label="Search" name="userSearch">
-                    <button class="btn btn-warning" type="submit">
+                    <input class="form-control searchInput-utenti" type="search"  placeholder="Cerca..." aria-label="Search">
+                    <button class="btn btn-warning searchButton-utenti" type="button">
                         <i class="fa fa-search"></i>
                     </button>
-                    @isset($userSearch)
-                        <button class="btn btn-warning" type="reset" onclick="window.location='{{ route('admin.stats') }}'">
-                            <i class="fa-solid fa-rotate-left"></i>
-                        </button>
-                    @endisset
+                    <button class="btn btn-warning resetButton-utenti" type="button">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
                 </div>
-              </form>
             </div>
-            <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+            <div class="table-responsive table custom-scrollbar max-height overflow-auto">
                 @isset($userStats)
-                <table class="table">
-                    <thead class="table-light">
+                <table class="table" id="table-statistiche-utenti">
+                    <thead class="table-light sticky-top">
                     <tr>
                         <th>#</th>
                         <th>Id utente</th>
@@ -55,30 +146,24 @@
             </div>
         </div>
 
-
         <div class="border rounded shadow box-content my-5">
             <div class="d-md-flex align-items-md-center left">
                 <strong class="d-md-flex d-lg-flex align-items-md-center align-items-lg-center">Coupon per Promozione</strong></div>
             <div class="right">
-                <form class="d-flex" action="{{ route('admin.stats') }}" method="GET">
-                    <div class="input-group">
-                        <input class="form-control autocomplete" type="search" placeholder="Cerca..."
-                               aria-label="Search" name="promozioneSearch">
-                        <button class="btn btn-warning" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        @isset($promozioneSearch)
-                            <button class="btn btn-warning" type="reset" onclick="window.location='{{ route('admin.stats') }}'">
-                                <i class="fa-solid fa-rotate-left"></i>
-                            </button>
-                        @endisset
-                    </div>
-                </form>
+                <div class="input-group">
+                    <input class="form-control searchInput-promozioni" type="search"  placeholder="Cerca..." aria-label="Search">
+                    <button class="btn btn-warning searchButton-promozioni" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-warning resetButton-promozioni" type="button">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+                </div>
             </div>
-            <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+            <div class="table-responsive table custom-scrollbar max-height overflow-auto">
                 @isset($promozioneStats)
-                <table class="table">
-                    <thead class="table-light">
+                <table class="table" id="table-statistiche-promozioni">
+                    <thead class="table-light sticky-top">
                     <tr>
                         <th>#</th>
                         <th>Id promozione</th>

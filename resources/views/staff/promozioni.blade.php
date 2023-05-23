@@ -2,6 +2,68 @@
 
 @section('title', 'Gestione Promozioni')
 
+@section('extra-css-jquery')
+    <script>
+        $(function () {
+            initializeDataTable('#table-promozioni', [6, 7]);
+
+            function initializeDataTable(selector, disableColumns) {
+                $(selector).DataTable({
+                    columnDefs: [
+                        { targets: disableColumns, orderable: false }
+                    ],
+                    lengthChange: false,
+                    searching: false,
+                    paging: false,
+                    info: false,
+                });
+            }
+        });
+
+        $(function () {
+            //imposto all'inizio che il pulsante di reset sia nascosto
+            $('.resetButton').hide();
+
+            /* al click del pulsante di ricerca prendo il testo scritto nella barra di ricerca
+             e lo confronto con il testo di ogni riga della tabella
+             se il testo della riga contiene il testo della barra di ricerca allora mostro la riga
+             altrimenti la nascondo*/
+            $('.searchButton').click(function () {
+                var searchText = $('.searchInput').val().toLowerCase();
+
+                $('table tbody tr').each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    if (rowText.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                toggleResetButton();
+            });
+
+            $('.resetButton').click(function () {
+                $('#searchInput').val('');
+                $('table tbody tr').show();
+                toggleResetButton();
+            });
+
+            function toggleResetButton() {
+                var searchText = $('.searchInput').val();
+
+                if (searchText.trim() !== '') {
+                    $('.resetButton').show();
+                } else {
+                    $('.resetButton').hide();
+                }
+            }
+        });
+
+    </script>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -12,26 +74,21 @@
                             promozioni</strong>
                     </div>
                     <div class="right">
-                        <form class="d-flex" action="{{ route('staff.promos') }}" method="GET">
-                            <div class="input-group">
-                                <input class="form-control autocomplete" type="search" placeholder="Cerca..."
-                                       aria-label="Search" name="search">
-                                <button class="btn btn-warning" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                @isset($search)
-                                    <button class="btn btn-warning" type="reset"
-                                            onclick="window.location='{{ route('staff.promos') }}'">
-                                        <i class="fa-solid fa-rotate-left"></i>
-                                    </button>
-                                @endisset
-                            </div>
-                        </form>
+                        <div class="input-group">
+                            <input class="form-control searchInput" type="search" placeholder="Cerca..."
+                                   aria-label="Search">
+                            <button class="btn btn-warning searchButton" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button class="btn btn-warning resetButton" type="button">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="table-responsive table table-bordered custom-scrollbar mt-5">
+                    <div class="table-responsive table mt-5 custom-scrollbar max-height overflow-auto">
                         @isset($promos)
-                            <table class="table">
-                                <thead class="table-light">
+                            <table class="table" id="table-promozioni">
+                                <thead class="table-light sticky-top">
                                 <tr>
                                     <th>#</th>
                                     <th>Titolo</th>
@@ -39,7 +96,8 @@
                                     <th>Descrizione</th>
                                     <th>Data inizio</th>
                                     <th>Data fine</th>
-                                    <th colspan="2"></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -74,35 +132,7 @@
                                 onclick="window.location='{{ route('promo.create') }}'">Inserisci Promozione
                         </button>
                     </div>
-                    <hr>
 
-                    <div class="dropdown">
-                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            Ordina per {{ ucfirst($orderby) }}
-                        </button>
-                        {{--Metodo abbreviato--}}
-                        <ul class="dropdown-menu">
-                            @foreach(['titolo', 'azienda', 'descrizione', 'inizio', 'fine'] as $option)
-                                <li>
-                                    <a class="dropdown-item{{ $orderby === $option ? ' active' : '' }}"
-                                       href="{{ route('staff.promos', ['order_by' => $option]) }}">
-                                        {{ ucfirst($option) }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-
-
-                        {{--Metodo lungo--}}
-                        {{--<ul class="dropdown-menu">
-                            <li><a class="dropdown-item {{ $orderby === 'titolo' ? ' active' : '' }}" href="{{ route('staff.promos', ['order_by' => 'titolo']) }}">Titolo</a></li>
-                            <li><a class="dropdown-item {{ $orderby === 'idAzienda' ? ' active' : '' }}" href="{{ route('staff.promos', ['order_by' => 'idAzienda']) }}">Azienda</a></li>
-                            <li><a class="dropdown-item {{ $orderby === 'descrizione' ? ' active' : '' }}" href="{{ route('staff.promos', ['order_by' => 'descrizione']) }}">Descrizione</a></li>
-                            <li><a class="dropdown-item {{ $orderby === 'inizio' ? ' active' : '' }}" href="{{ route('staff.promos', ['order_by' => 'inizio']) }}">Data inizio</a></li>
-                            <li><a class="dropdown-item {{ $orderby === 'fine' ? ' active' : '' }}" href="{{ route('staff.promos', ['order_by' => 'fine']) }}">Data fine</a></li>
-                        </ul>--}}
-                    </div>
                 </div>
             </div>
         </div>
