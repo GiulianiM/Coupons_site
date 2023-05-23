@@ -2,13 +2,6 @@
 
 @section('title', 'Gestione Promozioni')
 
-@section('extra-css-jquery')
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -18,21 +11,23 @@
                         <strong class="d-md-flex d-lg-flex align-items-md-center align-items-lg-center">Lista
                             promozioni</strong>
                     </div>
-                    <form class="d-flex" action="{{ route('staff.promos') }}" method="GET">
-                        <div class="input-group">
-                            <input class="form-control autocomplete" type="search" placeholder="Cerca..."
-                                   aria-label="Search" name="search">
-                            <button class="btn btn-warning" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            @isset($search)
-                                <button class="btn btn-warning" type="reset"
-                                        onclick="window.location='{{ route('staff.promos') }}'">
-                                    <i class="fa-solid fa-rotate-left"></i>
+                    <div class="right">
+                        <form class="d-flex" action="{{ route('staff.promos') }}" method="GET">
+                            <div class="input-group">
+                                <input class="form-control autocomplete" type="search" placeholder="Cerca..."
+                                       aria-label="Search" name="search">
+                                <button class="btn btn-warning" type="submit">
+                                    <i class="fa fa-search"></i>
                                 </button>
-                            @endisset
-                        </div>
-                    </form>
+                                @isset($search)
+                                    <button class="btn btn-warning" type="reset"
+                                            onclick="window.location='{{ route('staff.promos') }}'">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </button>
+                                @endisset
+                            </div>
+                        </form>
+                    </div>
                     <div class="table-responsive table table-bordered custom-scrollbar mt-5">
                         @isset($promos)
                             <table class="table">
@@ -80,10 +75,11 @@
                         </button>
                     </div>
                     <hr>
+
                     <div class="dropdown">
                         <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                            Ordina per
+                            Ordina per {{ ucfirst($orderby) }}
                         </button>
                         {{--Metodo abbreviato--}}
                         <ul class="dropdown-menu">
@@ -96,6 +92,8 @@
                                 </li>
                             @endforeach
                         </ul>
+
+
                         {{--Metodo lungo--}}
                         {{--<ul class="dropdown-menu">
                             <li><a class="dropdown-item {{ $orderby === 'titolo' ? ' active' : '' }}" href="{{ route('staff.promos', ['order_by' => 'titolo']) }}">Titolo</a></li>
@@ -105,7 +103,6 @@
                             <li><a class="dropdown-item {{ $orderby === 'fine' ? ' active' : '' }}" href="{{ route('staff.promos', ['order_by' => 'fine']) }}">Data fine</a></li>
                         </ul>--}}
                     </div>
-
                 </div>
             </div>
         </div>

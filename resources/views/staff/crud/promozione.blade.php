@@ -2,17 +2,21 @@
 
 @section('title', 'Form Promozione')
 
+@section('extra-css-jquery')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker3.min.css">
+@endsection
+
 @section('content')
     {{--Aggiunge un suffisso in base al tipo di sconto selezionato--}}
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const scontoSelect = document.getElementById('sconto');
-            //var scontoValoreInput = document.getElementById('valore_sconto');
-            const scontoSuffix = document.getElementById('valore_sconto_suffisso');
+        $(document).ready(function() {
+            const scontoSelect = $('#sconto');
+            const scontoSuffix = $('#valore_sconto_suffisso');
 
             function updateScontoSuffix() {
-                const selectedOption = scontoSelect.options[scontoSelect.selectedIndex];
-                const scontoType = selectedOption.value;
+                const selectedOption = scontoSelect.find('option:selected');
+                const scontoType = selectedOption.val();
                 let suffix = '';
 
                 switch (scontoType) {
@@ -28,71 +32,20 @@
                         break;
                 }
 
-                scontoSuffix.textContent = suffix;
+                scontoSuffix.text(suffix);
             }
 
             // Aggiorna il suffisso ogni volta che cambia la select
-            scontoSelect.addEventListener('change', updateScontoSuffix);
+            scontoSelect.on('change', updateScontoSuffix);
 
             // Aggiorna il suffisso in base alla scelta iniziale
             updateScontoSuffix();
         });
     </script>
     {{--Datepicker--}}
-    <script>
-        $(document).ready(function () {
-            var today = new Date(); // Ottiene la data odierna
-
-            $('#inizio').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true,
-                startDate: today, // Imposta la data di inizio a oggi
-            }).datepicker("setDate", today);
-
-            $('#fine').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true,
-            });
-
-            $('#inizio').on('changeDate', function (selected) {
-                var startDate = new Date(selected.date.valueOf());
-                $('#fine').datepicker('setStartDate', startDate); // Imposta la data di inizio per l'input 'fine'
-            });
-        });
-    </script>
-
-    {{--Script per la select di 'modalita' e 'luogo' per la fruizione delle promozioni--}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-
-            var modalitaSelect = document.getElementById('modalita');
-            var luogoSelect = document.getElementById('luogo');
-
-            function populateLuogoSelect() {
-                //var modalitaValue = modalitaSelect.value;
-                var luoghi = modalitaSelect.options[modalitaSelect.selectedIndex].getAttribute('data-luoghi');
-                var luoghiArray = luoghi.split(',');
-                luogoSelect.innerHTML = '';
-
-                luoghiArray.forEach(function (luogo) {
-                    var option = document.createElement('option');
-                    option.value = luogo;
-                    option.text = luogo;
-                    luogoSelect.appendChild(option);
-                });
-            }
-
-            // aggiorna la select ogni volta che cambia la modalità
-            modalitaSelect.addEventListener('change', populateLuogoSelect);
-
-            // popola la select al primo caricamento della pagina
-            populateLuogoSelect();
-        });
-    </script>
 
 
     <div class="container">
-
         <form
             action="{{ isset($promo) ? route('promo.update', ['promo' => $promo->idPromozione]) : route('promo.store') }}"
             method="POST" class="rounded shadow p-5"
@@ -112,9 +65,11 @@
             <div class="form-floating mb-3">
                 <select name="idAzienda" id="idAzienda"
                         class="{{$errors->has('idAzienda') ? 'form-control is-invalid' : 'form-control' }}">
+                    <option value="" {{ (old('idAzienda') == null) ? 'selected' : '' }} disabled>Seleziona l'azienda
+                    </option>
                     @foreach($aziende as $azienda)
                         <option value="{{$azienda->idAzienda}}"
-                            {{ isset($promo) && $promo->idAzienda == $azienda->idAzienda ? 'selected' : '' }}>
+                            {{ isset($promo) && $promo->idAzienda == $azienda->idAzienda || old('idAzienda') == $azienda->idAzienda ? 'selected' : '' }}>
                             {{$azienda->nome}}
                         </option>
                     @endforeach
@@ -166,18 +121,21 @@
                     <div class="form-floating mb-3">
                         <select name="modalita" id="modalita"
                                 class="{{$errors->has('modalita') ? 'form-control is-invalid' : 'form-control' }}">
+                            <option value="" {{ (old('modalita') == null) ? 'selected' : '' }} disabled>Seleziona la
+                                modalità
+                            </option>
                             <option value="online"
-                                    {{ isset($promo) && $promo->modalita == 'online' ? 'selected' : '' }}
+                                    {{ isset($promo) && $promo->modalita == 'online' || old('modalita') == 'online'? 'selected' : '' }}
                                     data-luoghi="Sito web, Piattaforma online, URL specifico">
                                 Online
                             </option>
                             <option value="negozio"
-                                    {{ isset($promo) && $promo->modalita == 'negozio' ? 'selected' : '' }}
+                                    {{ isset($promo) && $promo->modalita == 'negozio' || old('modalita') == 'negozio' ? 'selected' : '' }}
                                     data-luoghi="Nome del negozio, Indirizzo del negozio, Città del negozio">
                                 Negozio
                             </option>
                             <option value="online_e_negozio"
-                                    {{ isset($promo) && $promo->modalita == 'online_e_negozio' ? 'selected' : '' }}
+                                    {{ isset($promo) && $promo->modalita == 'online_e_negozio' || old('modalita') == 'online_e_negozio' ? 'selected' : '' }}
                                     data-luoghi="Sito web, Piattaforma online, URL specifico, Nome del negozio, Indirizzo del negozio, Città del negozio">
                                 Online e negozio
                             </option>
@@ -196,18 +154,10 @@
                     {{--Luogo di fruizione--}}
                     <div class="form-floating mb-3">
                         <div class="form-floating mb-3">
-                            <select name="luogo" id="luogo"
-                                    class="{{$errors->has('luogo') ? 'form-control is-invalid' : 'form-control' }}">
-                                <option value="1" {{ isset($promo) && $promo->luogo == 1 ? 'selected' : '' }}>
-
-                                </option>
-                                <option value="2" {{ isset($promo) && $promo->luogo == 2 ? 'selected' : '' }}>
-
-                                </option>
-                                <option value="3" {{ isset($promo) && $promo->luogo == 3 ? 'selected' : '' }}>
-
-                                </option>
-                            </select>
+                            <input type="text" name="luogo" id="luogo"
+                                   class="{{$errors->has('luogo') ? 'form-control is-invalid' : 'form-control' }}"
+                                   placeholder="Luogo di fruizione"
+                                   value="{{ isset($promo) ? $promo->luogo : old('luogo') }}">
                             <label for="luogo">Luogo di fruizione</label>
                             @if ($errors->first('luogo'))
                                 @foreach ($errors->get('luogo') as $message)
@@ -260,39 +210,40 @@
             <div class="row g-2">
                 {{--Tipo di sconto--}}
                 <div class="col-md">
-                        <div class="form-floating mb-3">
-                            <select name="sconto" id="sconto"
-                                    class="{{$errors->has('sconto') ? 'form-control is-invalid' : 'form-control' }}">
-                                {{--Riduzione di un importo fisso dal prezzo totale--}}
-                                <option
-                                    value="prezzo_fisso" {{ isset($promo) && $promo->sconto == 'prezzo_fisso' ? 'selected' : '' }}>
-                                    Prezzo fisso
-                                </option>
-                                {{--Percentuale sull'importo totale--}}
-                                <option
-                                    value="percentuale" {{ isset($promo) && $promo->sconto == 'percentuale' ? 'selected' : '' }}>
-                                    Percentuale
-                                </option>
-                                {{--Sconto basato sulla quantità di prodotti acquistati. Ad esempio, uno sconto del 10% sull'acquisto di 3 o più articoli.--}}
-                                <option
-                                    value="quantita" {{ isset($promo) && $promo->sconto == 'quantita' ? 'selected' : '' }}>
-                                    Quantità
-                                </option>
-                                {{--Sconto per i nuovi clienti che effettuano il loro primo acquisto.--}}
-                                <option
-                                    value="benvenuto" {{ isset($promo) && $promo->sconto == 'benvenuto' ? 'selected' : '' }}>
-                                    Benvenuto
-                                </option>
-                            </select>
-                            <label for="sconto">Tipo di sconto</label>
-                            @if ($errors->first('sconto'))
-                                @foreach ($errors->get('sconto') as $message)
-                                    <div class="invalid-feedback ms-2">
-                                        {{$message}}
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
+                    <div class="form-floating mb-3">
+                        <select name="sconto" id="sconto"
+                                class="{{$errors->has('sconto') ? 'form-control is-invalid' : 'form-control' }}">
+                            <option value="" {{ (old('sconto') == null) ? 'selected' : '' }} disabled>Seleziona</option>
+                            {{--Riduzione di un importo fisso dal prezzo totale--}}
+                            <option
+                                value="prezzo_fisso" {{ isset($promo) && $promo->sconto == 'prezzo_fisso' || old('sconto') == 'prezzo_fisso'  ? 'selected' : '' }}>
+                                Prezzo fisso
+                            </option>
+                            {{--Percentuale sull'importo totale--}}
+                            <option
+                                value="percentuale" {{ isset($promo) && $promo->sconto == 'percentuale' || old('sconto') == 'percentuale' ? 'selected' : '' }}>
+                                Percentuale
+                            </option>
+                            {{--Sconto basato sulla quantità di prodotti acquistati. Ad esempio, uno sconto del 10% sull'acquisto di 3 o più articoli.--}}
+                            <option
+                                value="quantita" {{ isset($promo) && $promo->sconto == 'quantita' || old('sconto') == 'quantita' ? 'selected' : '' }}>
+                                Quantità
+                            </option>
+                            {{--Sconto per i nuovi clienti che effettuano il loro primo acquisto.--}}
+                            <option
+                                value="benvenuto" {{ isset($promo) && $promo->sconto == 'benvenuto' || old('sconto') == 'benvenuto' ? 'selected' : '' }}>
+                                Benvenuto
+                            </option>
+                        </select>
+                        <label for="sconto">Tipo di sconto</label>
+                        @if ($errors->first('sconto'))
+                            @foreach ($errors->get('sconto') as $message)
+                                <div class="invalid-feedback ms-2">
+                                    {{$message}}
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
                 {{--Valore dello sconto--}}
                 <div class="col-md">

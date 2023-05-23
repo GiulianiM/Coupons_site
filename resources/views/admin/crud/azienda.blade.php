@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-md">
                     <div class="form-floating mb-3">
-                        <input type="number" name="numero_civico" id="numero_civico"
+                        <input type="text" name="numero_civico" id="numero_civico"
                                class="{{ $errors->has('numero_civico') ? 'form-control is-invalid' : 'form-control'}}"
                                value="{{ isset($azienda) ? $azienda->numero_civico : old('numero_civico') }}"
                                placeholder="Numero civico"
@@ -140,8 +140,9 @@
 
                 <select name="tipologia" id="tipologia"
                         class="{{$errors->has('tipologia') ? 'form-control is-invalid' : 'form-control' }}">
+                    <option value="" {{ (old('tipologia') == null) ? 'selected' : '' }} disabled>Seleziona la tipologia</option>
                     @foreach(['elettronica', 'moda', 'alimentare', 'turismo'] as $option)
-                        <option value="{{$option}}" {{isset($azienda) && $azienda->tipologia === $option ? 'selected' : '' }} >
+                        <option value="{{$option}}" {{isset($azienda) && $azienda->tipologia === $option || old('tipologia') == $option ? 'selected' : '' }} >
                             {{ ucfirst($option) }}
                         </option>
                     @endforeach

@@ -19,7 +19,7 @@ class CreateTablePromozione extends Migration
             $table->foreign('idAzienda')->references('idAzienda')->on('azienda')->onDelete('cascade');
             $table->string('titolo');
             $table->string('descrizione', 1200);
-            $table->string('immagine', 2048);
+            $table->string('immagine', 2048)->nullable();
             $table->string('modalita');
             $table->string('luogo');
             $table->date('inizio');

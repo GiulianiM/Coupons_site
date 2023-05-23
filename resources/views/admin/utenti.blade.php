@@ -64,7 +64,7 @@
                     <div class="dropdown">
                         <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                            Ordina per
+                            Ordina per {{ ucfirst($orderby) }}
                         </button>
                         <ul class="dropdown-menu">
                             @foreach(['nome', 'cognome', 'email'] as $option)

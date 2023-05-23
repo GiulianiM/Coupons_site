@@ -15,7 +15,7 @@ class PromozioneController extends Controller
     }
     public function create()
     {
-        $aziende = Azienda::orderBy('nome')->get();
+        $aziende = Azienda::orderBy('idAzienda')->get();
         return view('staff.crud.promozione', compact('aziende'));
     }
 
@@ -40,12 +40,13 @@ class PromozioneController extends Controller
 
     public function edit(Promozione $promo)
     {
-        $aziende = Azienda::orderBy('nome')->get();
+        $aziende = Azienda::orderBy('idAzienda')->get();
         return view('staff.crud.promozione', compact('promo', 'aziende'));
     }
 
     public function update(Request $request, Promozione $promo)
     {
+
         $validatedData = $this->validateUpdateData($request);
 
         //Controlla se è stato caricato un file

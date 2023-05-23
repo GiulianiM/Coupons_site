@@ -105,7 +105,7 @@ class AziendaController extends Controller
             'citta' => ['required', 'string', 'max:255'],
             'cap' => ['required', 'numeric', 'digits_between:1,5', 'between:00100,99100'],
             'logo' => ['sometimes', 'image', 'mimes:jpeg,png,gif,svg'],
-            'numero_civico' => ['required', 'integer', 'min:1', 'max:300'],
+            'numero_civico' => ['required', 'string'],
             'ragione_sociale' => ['required', 'string'],
             'descrizione' => ['required', 'string', 'max:1200'],
             'tipologia' => ['required', 'string'],
