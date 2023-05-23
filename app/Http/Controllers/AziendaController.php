@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Azienda;
+use Illuminate\Support\Str;
 
 class AziendaController extends Controller
 {
@@ -27,7 +28,8 @@ class AziendaController extends Controller
         //Se si, allora salvalo in locale
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $fileName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $fileName = Str::random(10) . '.' . $extension;
             $file->move(public_path('images/aziende'), $fileName);
         }
 
@@ -54,7 +56,8 @@ class AziendaController extends Controller
         //Altrimenit mantieni il vecchio file
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $fileName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $fileName = Str::random(10) . '.' . $extension;
             $file->move(public_path('images/aziende'), $fileName);
             if ($azienda->logo && file_exists(public_path('images/aziende/' . $azienda->logo))) {
                 unlink(public_path('images/aziende/' . $azienda->logo));

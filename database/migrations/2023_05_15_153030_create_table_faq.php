@@ -14,7 +14,7 @@ class CreateTableFaq extends Migration
     public function up()
     {
         Schema::create('faq', function (Blueprint $table) {
-            $table->bigIncrements('idFaq');
+            $table->id('idFaq');
             $table->bigInteger('idUtente')->unsigned()->index();
             $table->foreign('idUtente')->references('idUtente')->on('utente');
             $table->string('titolo',70);

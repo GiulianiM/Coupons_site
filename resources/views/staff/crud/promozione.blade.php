@@ -154,19 +154,12 @@
                                 modalità
                             </option>
                             <option value="online"
-                                    {{ isset($promo) && $promo->modalita == 'online' || old('modalita') == 'online'? 'selected' : '' }}
-                                    data-luoghi="Sito web, Piattaforma online, URL specifico">
+                                    {{ isset($promo) && $promo->modalita == 'online' || old('modalita') == 'online'? 'selected' : '' }}>
                                 Online
                             </option>
                             <option value="negozio"
-                                    {{ isset($promo) && $promo->modalita == 'negozio' || old('modalita') == 'negozio' ? 'selected' : '' }}
-                                    data-luoghi="Nome del negozio, Indirizzo del negozio, Città del negozio">
+                                    {{ isset($promo) && $promo->modalita == 'negozio' || old('modalita') == 'negozio' ? 'selected' : '' }}>
                                 Negozio
-                            </option>
-                            <option value="online_e_negozio"
-                                    {{ isset($promo) && $promo->modalita == 'online_e_negozio' || old('modalita') == 'online_e_negozio' ? 'selected' : '' }}
-                                    data-luoghi="Sito web, Piattaforma online, URL specifico, Nome del negozio, Indirizzo del negozio, Città del negozio">
-                                Online e negozio
                             </option>
                         </select>
                         <label for="modalita">Modalità di fruizione</label>

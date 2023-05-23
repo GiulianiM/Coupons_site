@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Azienda;
 use App\Models\Resources\Promozione;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PromozioneController extends Controller
 {
@@ -27,7 +28,8 @@ class PromozioneController extends Controller
         //Se si, allora salvalo in locale
         if ($request->hasFile('immagine')) {
             $file = $request->file('immagine');
-            $fileName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $fileName = Str::random(10) . '.' . $extension;
             $file->move(public_path('images/promozioni'), $fileName);
         }
 
@@ -54,7 +56,8 @@ class PromozioneController extends Controller
         //Altrimenit mantieni il vecchio file
         if ($request->hasFile('immagine')) {
             $file = $request->file('immagine');
-            $fileName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $fileName = Str::random(10) . '.' . $extension;
             $file->move(public_path('images/promozioni'), $fileName);
             if ($promo->immagine && file_exists(public_path('images/promozioni/' . $promo->immagine))) {
                 unlink(public_path('images/promozioni/' . $promo->immagine));

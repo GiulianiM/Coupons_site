@@ -141,7 +141,7 @@
                 <select name="tipologia" id="tipologia"
                         class="{{$errors->has('tipologia') ? 'form-control is-invalid' : 'form-control' }}">
                     <option value="" {{ (old('tipologia') == null) ? 'selected' : '' }} disabled>Seleziona la tipologia</option>
-                    @foreach(['elettronica', 'moda', 'alimentare', 'turismo'] as $option)
+                    @foreach(['tecnologia', 'moda', 'alimentari'] as $option)
                         <option value="{{$option}}" {{isset($azienda) && $azienda->tipologia === $option || old('tipologia') == $option ? 'selected' : '' }} >
                             {{ ucfirst($option) }}
                         </option>

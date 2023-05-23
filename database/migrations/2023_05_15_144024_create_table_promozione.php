@@ -14,7 +14,7 @@ class CreateTablePromozione extends Migration
     public function up()
     {
         Schema::create('promozione', function (Blueprint $table) {
-            $table->bigIncrements('idPromozione');
+            $table->id('idPromozione');
             $table->bigInteger('idAzienda')->unsigned()->index();
             $table->foreign('idAzienda')->references('idAzienda')->on('azienda')->onDelete('cascade');
             $table->string('titolo');

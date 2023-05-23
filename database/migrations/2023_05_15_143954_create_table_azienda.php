@@ -14,7 +14,7 @@ class CreateTableAzienda extends Migration
     public function up()
     {
         Schema::create('azienda', function (Blueprint $table) {
-            $table->bigIncrements('idAzienda');
+            $table->id('idAzienda');
             $table->bigInteger('idUtente')->unsigned()->index();
             $table->foreign('idUtente')->references('idUtente')->on('utente');
             $table->string('nome');

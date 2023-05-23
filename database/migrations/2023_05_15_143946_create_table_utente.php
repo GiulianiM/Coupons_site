@@ -14,7 +14,7 @@ class CreateTableUtente extends Migration
     public function up()
     {
         Schema::create('utente', function (Blueprint $table) {
-            $table->bigIncrements('idUtente');
+            $table->id('idUtente');
             $table->string('nome')->nullable();
             $table->string('cognome')->nullable();
             $table->string('genere')->nullable();

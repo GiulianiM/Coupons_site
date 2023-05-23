@@ -14,7 +14,7 @@ class CreateTableCoupon extends Migration
     public function up()
     {
         Schema::create('coupon', function (Blueprint $table) {
-            $table->bigIncrements('idCoupon');
+            $table->id('idCoupon');
             $table->bigInteger('idUtente')->unsigned()->index();
             $table->bigInteger('idPromozione')->unsigned()->index();
             $table->foreign('idUtente')->references('idUtente')->on('utente')->onDelete('cascade');
