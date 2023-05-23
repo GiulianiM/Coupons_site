@@ -19,131 +19,55 @@ class AdminController extends Controller
         $this->middleware('can:isAdmin');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->input('search');
-        $orderby = $request->input('order_by');
-
-        $aziende = Azienda::query();
-
-        if ($search) {
-            $aziende->where('nome', 'LIKE', "%{$search}%")
-                ->orWhere('tipologia', 'LIKE', "%{$search}%");
-        }
-
-        if ($orderby) {
-            if ($orderby == 'localizzazione') {
-                $aziende->orderBy('citta')->orderBy('via')->orderBy('numero_civico');
-            } else {
-                $aziende->orderBy($orderby);
-            }
-        }
-
-        $aziende = $aziende->get();
-
-        return view('admin.aziende', compact('aziende', 'orderby', 'search'));
+        $aziende = Azienda::all();
+        return view('admin.aziende', compact('aziende'));
     }
 
-    public function faq(Request $request)
+    public function faq()
     {
-        $search = $request->input('search');
-        $orderby = $request->input('order_by');
-
-        $faqs = Faq::query();
-
-        if ($search) {
-            $faqs->where('titolo', 'LIKE', "%{$search}%");
-        }
-
-        if ($orderby) {
-            $faqs->orderBy($orderby);
-        }
-
-        $faqs = $faqs->get();
-        return view('admin.faq', compact('faqs', 'orderby', 'search'));
+        $faqs = Faq::all();
+        return view('admin.faq', compact('faqs'));
     }
 
-    public function staff(Request $request)
+    public function staff()
     {
-        $search = $request->input('search');
-        $orderby = $request->input('order_by');
-
-        $staff = User::query();
-        $staff->where('livello', 'staff');
-        if ($search) {
-            $staff->where(function ($query) use ($search) {
-                $query->where('nome', 'LIKE', "%{$search}%")
-                    ->orWhere('cognome', 'LIKE', "%{$search}%");
-            });
-        }
-
-        if ($orderby) {
-            $staff->orderBy($orderby);
-        }
-
-        $staffs = $staff->get();
-        return view('admin.staff', compact('staffs', 'orderby', 'search'));
+        $staffs = User::where('livello', 'staff')->get();
+        return view('admin.staff', compact('staffs'));
     }
 
 
-    public function users(Request $request)
+    public function users()
     {
-        $search = $request->input('search');
-        $orderby = $request->input('order_by');
-
-        $users = User::query();
-
-        $users->where('livello', 'user');
-
-        if ($search) {
-            $users->where(function ($query) use ($search) {
-                $query->where('nome', 'LIKE', "%{$search}%")
-                    ->orWhere('cognome', 'LIKE', "%{$search}%")
-                    ->orWhere('email', 'LIKE', "%{$search}%");
-            });
-        }
-
-        if ($orderby) {
-            $users->orderBy($orderby);
-        }
-
-        $users = $users->get();
-        return view('admin.utenti', compact('users', 'orderby', 'search'));
+        $users = User::where('livello', 'user')->get();
+        return view('admin.utenti', compact('users'));
     }
 
 
-
-    public function stats(Request $request)
+    public function stats()
     {
         // Calcola il numero totale di coupon emessi
         $numeroCouponTotali = Coupon::count();
 
         // Ottieni gli utenti con il conteggio dei coupon riscattati
-        $userSearch = $request->input('userSearch');
         $userStats = Coupon::select('coupon.idUtente', 'utente.nome', 'utente.cognome',
             DB::raw('COUNT(coupon.idCoupon) as numero_coupon'))
             ->join('utente', 'coupon.idUtente', '=', 'utente.idUtente')
-            ->when($userSearch, function ($query) use ($userSearch) {
-                $query->where('utente.nome', 'LIKE', "%{$userSearch}%")
-                    ->orWhere('utente.cognome', 'LIKE', "%{$userSearch}%");
-            })
             ->groupBy('coupon.idUtente', 'utente.nome', 'utente.cognome')
             ->get();
 
         // Ottieni le promozioni con il conteggio dei coupon riscattati e il loro stato
-        $promozioneSearch = $request->input('promozioneSearch');
+
         $promozioneStats = Coupon::join('promozione', 'coupon.idPromozione', '=', 'promozione.idPromozione')
             ->select('coupon.idPromozione', 'promozione.titolo', DB::raw('COUNT(coupon.idCoupon) as numero_coupon'),
                 DB::raw('CASE WHEN promozione.inizio <= CURDATE() AND promozione.fine >= CURDATE() THEN "Attiva"
                 ELSE "Scaduta" END as stato'))
-            ->when($promozioneSearch, function ($query) use ($promozioneSearch) {
-                $query->where('promozione.titolo', 'LIKE', "%{$promozioneSearch}%");
-            })
             ->groupBy('coupon.idPromozione', 'promozione.titolo', 'promozione.inizio', 'promozione.fine')
             ->get();
 
         // Passa il numero totale di coupon alla vista
-        return view('admin.stats', compact('numeroCouponTotali', 'userStats', 'userSearch', 'promozioneStats', 'promozioneSearch'));
+        return view('admin.stats', compact('numeroCouponTotali', 'userStats', 'promozioneStats'));
 
         /*$userSearch = $request->input('user_search');
         $promozioneSearch = $request->input('promozione_search');

@@ -85,10 +85,10 @@
                             </button>
                         </div>
                     </div>
-                    <div class="table-responsive table custom-scrollbar max-height overflow-auto">
+                    <div class="table custom-scrollbar max-height overflow-auto">
                         @isset($faqs)
                             <table class="table" id="table-faq">
-                                <thead class="table-light sticky-top">
+                                <thead class="table-light ">
                                 <tr>
                                     <th>#</th>
                                     <th>Titolo</th>

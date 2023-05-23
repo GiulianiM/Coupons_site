@@ -118,10 +118,10 @@
                     </button>
                 </div>
             </div>
-            <div class="table-responsive table custom-scrollbar max-height overflow-auto">
+            <div class="table custom-scrollbar max-height overflow-auto">
                 @isset($userStats)
                 <table class="table" id="table-statistiche-utenti">
-                    <thead class="table-light sticky-top">
+                    <thead class="table-light ">
                     <tr>
                         <th>#</th>
                         <th>Id utente</th>
@@ -160,10 +160,10 @@
                     </button>
                 </div>
             </div>
-            <div class="table-responsive table custom-scrollbar max-height overflow-auto">
+            <div class="table custom-scrollbar max-height overflow-auto">
                 @isset($promozioneStats)
                 <table class="table" id="table-statistiche-promozioni">
-                    <thead class="table-light sticky-top">
+                    <thead class="table-light ">
                     <tr>
                         <th>#</th>
                         <th>Id promozione</th>

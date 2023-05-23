@@ -11,8 +11,8 @@ html, body {
 }
 .container {
     width: 80%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
 }
 .box-form{
     display: flex;
@@ -50,7 +50,7 @@ html, body {
 }
 
 .box-content {
-    padding: 20px
+    padding: 20px;
 }
 
 .btn-add,
@@ -65,7 +65,14 @@ html, body {
 
 .custom-scrollbar {
     position: relative;
-    height: 300px;
+    height: 50vh;
     overflow: auto;
-    display: block
+    display: block;
+    margin-top: 50px;
 }
+
+table thead {
+    position: sticky;
+    top: 0;
+}
+

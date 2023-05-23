@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Azienda;
-use Illuminate\Support\Facades\Storage;
 
 class AziendaController extends Controller
 {
