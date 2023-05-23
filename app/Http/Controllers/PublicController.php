@@ -65,18 +65,18 @@ class PublicController extends Controller
     }
 
     public function company() {
-        return view('company');
+        return view('footer.company');
     }
 
     public function utilizzo() {
-        return view('utilizzo');
+        return view('footer.utilizzo');
     }
 
     public function collabora() {
-        return view('collabora');
+        return view('footer.collabora');
     }
 
     public function diritti() {
-        return view('diritti');
+        return view('footer.diritti');
     }
 }
