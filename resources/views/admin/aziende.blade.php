@@ -10,7 +10,7 @@
             function initializeDataTable(selector, disableColumns) {
                 $(selector).DataTable({
                     columnDefs: [
-                        { targets: disableColumns, orderable: false }
+                        {targets: disableColumns, orderable: false}
                     ],
                     lengthChange: false,
                     searching: false,
@@ -75,9 +75,9 @@
                     </div>
                     <div class="right">
                         <div class="input-group">
-                            <input class="form-control searchInput" type="search"  placeholder="Cerca..."
+                            <input class="form-control searchInput" type="search" placeholder="Cerca..."
                                    aria-label="Search">
-                            <button class="btn btn-warning searchButton"  type="button">
+                            <button class="btn btn-warning searchButton" type="button">
                                 <i class="fa fa-search"></i>
                             </button>
                             <button class="btn btn-warning resetButton" type="button">
@@ -129,8 +129,8 @@
                                 onclick="window.location='{{ route('azienda.create') }}'">Inserisci azienda
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
+    </div>
 @endsection

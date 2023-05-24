@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    @yield('extra-css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/49d9d591d6.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    @yield('extra-css-jquery')
     <title>@yield('title')</title>
     <link rel=”icon” type=”image/ico” href=”http://coupons_site.test/favicon.ico”>
 
@@ -23,40 +25,22 @@
 
     <!-- end #content -->
 
-    <!-- Footer -->
-    <footer class="row row-cols-5 5 pt-5 mt-5 mx-0 border-top">
-        <div class="col-2 me-auto mb-3">
-            <a href="{{ route('homepage') }}" class="d-flex align-items-center link-dark text-decoration-none">
-                <img src="{{asset('images/logo.png')}}" alt="coupon1">
-            </a>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <span class="mb-3 mb-md-0 text-muted">&copy; 2023 Coupons Site</span>
         </div>
 
-        <div class="col me-auto">
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="{{ route('homepage') }}" class="nav-link p-0 text-muted">Coupon site</a></li>
-                <li class="nav-item mb-2"><a href="{{route ('company')}}" class="nav-link p-0 text-muted">Azienda</a></li>
-                <li class="nav-item mb-2"><a href="{{route ('collabora')}}" class="nav-link p-0 text-muted">Collabora con noi</a></li>
-            </ul>
-        </div>
-
-        <div class="col me-auto">
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="{{ route('faq') }}" class="nav-link p-0 text-muted">FAQ</a></li>
-                <li class="nav-item mb-2"><a href="{{ route('utilizzo') }}" class="nav-link p-0 text-muted">Utilizzo</a></li>
-                <li class="nav-item mb-2"><a href="{{route ('diritti')}}" class="nav-link p-0 text-muted">Diritti & Privacy</a></li>
-            </ul>
-        </div>
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="{{ route('homepage') }}" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="{{route ('company') }}" class="nav-link px-2 text-muted">Azienda</a></li>
+            <li class="nav-item"><a href="{{route ('collabora') }}" class="nav-link px-2 text-muted">Collabora con
+                    noi</a></li>
+            <li class="nav-item"><a href="{{ route('utilizzo') }}" class="nav-link px-2 text-muted">Utilizzo</a></li>
+            <li class="nav-item"><a href="{{route ('diritti') }}" class="nav-link px-2 text-muted">Diritti & Privacy</a></li>
+        </ul>
     </footer>
     <!-- end #footer -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-            crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/49d9d591d6.js" crossorigin="anonymous"></script>
-    @yield('extra-js')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>
 </body>
 </html>

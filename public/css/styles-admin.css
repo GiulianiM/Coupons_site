@@ -11,8 +11,8 @@ html, body {
 }
 .container {
     width: 80%;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    margin: 0 auto;
+    padding: 4% 50px;
 }
 .box-form{
     display: flex;

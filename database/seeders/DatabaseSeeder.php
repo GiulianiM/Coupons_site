@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < count($company_tipologia); $i++) {
             $tipologia = $company_tipologia[$i];
 
-            for ($j = 0; $j < 4; $j++) {
+            for ($j = 0; $j < 6; $j++) {
 
                 DB::table('azienda')->insert([
                     'idUtente' => 1,
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
                         $luogo = $faker->address;
                         $modalita = 'negozio';
                     }
-                    for ($j = 1; $j <= 2; $j++) {
+                    for ($l = 1; $l <= 2; $l++) {
                         DB::table('promozione')->insert([
                             'idAzienda' => $idAzienda,
                             'titolo' => $faker->sentence,

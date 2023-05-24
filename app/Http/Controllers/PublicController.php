@@ -12,44 +12,31 @@ class PublicController extends Controller
 {
     public function index(Request $request)
     {
-        $searchCompany = $request->input('company');
-        $searchDescription = $request->input('description');
-        $promozioniCarosello = null;
+        $promozioniCarosello = Promozione::where('inizio', '>=', Carbon::now()->subDays(2))
+            ->where('fine', '>', Carbon::now())
+            ->get();
 
-        if ($searchCompany || $searchDescription) {
-            $query = Promozione::query();
+        $promozioni = Promozione::where('fine', '>', Carbon::now())->get();
+        $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())->paginate(12);
 
-            if ($searchCompany) {
-                $query->whereHas('azienda', function ($query) use ($searchCompany) {
-                    $query->where('nome', 'LIKE', "%{$searchCompany}%");
-                });
-            }
-
-            if ($searchDescription) {
-                $query->where('fine', '>', Carbon::now())->where('descrizione', 'LIKE', "%{$searchDescription}%");
-            }
-
-            $promozioniPaginated = $query->paginate(12);
-        } else {
-            $promozioniCarosello = Promozione::where('inizio', '>=', Carbon::now()->subDays(2))->where('fine', '>', Carbon::now())->get();
-            $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())->paginate(12);
-        }
-
-        return view('homepage', compact('promozioniCarosello', 'promozioniPaginated'));
+        return view('homepage', compact('promozioniCarosello', 'promozioni', 'promozioniPaginated'));
     }
 
-    public function aziende() {
+    public function aziende()
+    {
         $aziende = Azienda::paginate(16);
         return view('aziende', compact('aziende'));
     }
 
-    public function azienda($id) {
+    public function azienda($id)
+    {
         $azienda = Azienda::findOrFail($id);
-        $promozioni = Promozione::where('idAzienda', $id)->paginate(8);
+        $promozioni = Promozione::where('idAzienda', $id)->where('fine', '>', Carbon::now())->paginate(8);
         return view('azienda', compact('azienda', 'promozioni'));
     }
 
-    public function promozione($id) {
+    public function promozione($id)
+    {
         $promozione = Promozione::findOrFail($id);
 
         if (Carbon::now()->isAfter($promozione->fine)) {
@@ -59,24 +46,29 @@ class PublicController extends Controller
         return view('promozione', compact('promozione'));
     }
 
-    public function faq() {
+    public function faq()
+    {
         $faqs = FAQ::all();
         return view('faq', compact('faqs'));
     }
 
-    public function company() {
+    public function company()
+    {
         return view('footer.company');
     }
 
-    public function utilizzo() {
+    public function utilizzo()
+    {
         return view('footer.utilizzo');
     }
 
-    public function collabora() {
+    public function collabora()
+    {
         return view('footer.collabora');
     }
 
-    public function diritti() {
+    public function diritti()
+    {
         return view('footer.diritti');
     }
 }

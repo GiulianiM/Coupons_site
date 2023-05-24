@@ -30,14 +30,16 @@
     </div>
 
 
-    <footer>
-        <div class="border-top mx-0">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12"><span>Tecnologie Web 2023</span></div>
-                </div>
-            </div>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="{{ route('homepage') }}" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                    <image href="{{asset('images/logo.png')}}" width="30" height="24"/>
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">&copy; 2023 Coupons Site</span>
         </div>
+
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>
