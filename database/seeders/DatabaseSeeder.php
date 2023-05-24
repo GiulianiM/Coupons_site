@@ -75,15 +75,24 @@ class DatabaseSeeder extends Seeder
 
                 $idAzienda = DB::getPdo()->lastInsertId();
 
-                for($k = 1; $k <= 2; $k++) {
-                    if($k==1){
+                for ($k = 1; $k <= 2; $k++) {
+                    if ($k == 1) {
                         $luogo = $faker->url;
                         $modalita = 'online';
-                    }else{
+                    } else {
                         $luogo = $faker->address;
                         $modalita = 'negozio';
                     }
                     for ($l = 1; $l <= 2; $l++) {
+                        $sconto = $faker->randomElement(['prezzo_fisso', 'quantita', 'percentuale']);
+                        if ($sconto === 'prezzo_fisso') {
+                            $valore_sconto = $faker->numberBetween(5, 20);
+                        } elseif ($sconto === 'quantita') {
+                            $valore_sconto = $faker->numberBetween(1, 5);
+                        } else {
+                            $valore_sconto = $faker->numberBetween(10, 50);
+                        }
+
                         DB::table('promozione')->insert([
                             'idAzienda' => $idAzienda,
                             'titolo' => $faker->sentence,
@@ -93,15 +102,17 @@ class DatabaseSeeder extends Seeder
                             'luogo' => $luogo,
                             'inizio' => $faker->dateTimeBetween('-1 week', '+1 day'),
                             'fine' => $faker->dateTimeBetween('-2 day', '+1 week'),
-                            'sconto' => 'prezzo_fisso',
-                            'valore_sconto' => '10€',
+                            'sconto' => $sconto,
+                            'valore_sconto' => $valore_sconto,
                         ]);
-                    $idPromozione = DB::getPdo()->lastInsertId();
-                    DB::table('coupon')->insert([
-                        'idutente' => 3,
-                        'idPromozione' => $idPromozione,
-                        'codice' => Str::random(6),
-                    ]);
+
+                        $idPromozione = DB::getPdo()->lastInsertId();
+
+                        DB::table('coupon')->insert([
+                            'idutente' => 3,
+                            'idPromozione' => $idPromozione,
+                            'codice' => Str::random(6),
+                        ]);
                     }
                 }
             }

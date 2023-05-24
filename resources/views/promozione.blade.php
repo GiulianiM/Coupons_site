@@ -25,7 +25,13 @@
                         <p class="card-text">Dove utilizzarlo: {{ $promozione->luogo }}</p>
                     </div>
                     <div class="mt-auto ms-5">
-                        <h5 class="card-title">Tipo di sconto: {{ $promozione->sconto }}</h5>
+                        @if ($promozione->sconto === 'prezzo_fisso')
+                            <h5 class="card-title">Offerta: {{ $promozione->valore_sconto }}€</h5>
+                        @elseif ($promozione->sconto === 'quantita')
+                            <h5 class="card-title">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in regalo</h5>
+                        @elseif ($promozione->sconto === 'percentuale')
+                            <h5 class="card-title">Sconto: -{{ $promozione->valore_sconto }}%</h5>
+                        @endif
                         @auth
                             @can('isUser')
                                 <a href="{{ route('riscatta', ['promozione' => $promozione->idPromozione]) }}" class="btn">Riscatta</a>

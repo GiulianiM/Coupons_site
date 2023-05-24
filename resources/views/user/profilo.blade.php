@@ -57,8 +57,13 @@
                                        class="card-link">
                                         <h5 class="card-title">{{ $coupon->promozione->titolo }}</h5>
                                     </a>
-                                    <p class="card-text">{{ $coupon->promozione->sconto }}</p>
-                                    <p class="card-text">{{ $coupon->promozione->valore_sconto }}</p>
+                                    @if ($coupon->promozione->sconto === 'prezzo_fisso')
+                                        <p class="card-text">Offerta: {{ $coupon->promozione->valore_sconto }}€</p>
+                                    @elseif ($coupon->promozione->sconto === 'quantita')
+                                        <p class="card-text">Acquista 1 e ricevi {{ $coupon->promozione->valore_sconto }} in regalo</p>
+                                    @elseif ($coupon->promozione->sconto === 'percentuale')
+                                        <p class="card-text">Sconto: -{{ $coupon->promozione->valore_sconto }}%</p>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
@@ -79,8 +84,13 @@
                                            class="card-link">
                                             <h5 class="card-title">{{ $coupon->promozione->titolo }}</h5>
                                         </a>
-                                        <p class="card-text">{{ $coupon->promozione->sconto }}</p>
-                                        <p class="card-text">{{ $coupon->promozione->valore_sconto }}</p>
+                                        @if ($coupon->promozione->sconto === 'prezzo_fisso')
+                                            <p class="card-text">Offerta: {{ $coupon->promozione->valore_sconto }}€</p>
+                                        @elseif ($coupon->promozione->sconto === 'quantita')
+                                            <p class="card-text">Acquista 1 e ricevi {{ $coupon->promozione->valore_sconto }} in regalo</p>
+                                        @elseif ($coupon->promozione->sconto === 'percentuale')
+                                            <p class="card-text">Sconto: -{{ $coupon->promozione->valore_sconto }}%</p>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach

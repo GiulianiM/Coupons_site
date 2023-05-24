@@ -75,6 +75,8 @@
                         } else {
                             card.hide();
                         }
+
+                        toggleSearchResults(hasResults);
                     });
                 } else {
                     alert('Inserisci del testo per effettuare la ricerca.');
@@ -98,8 +100,12 @@
 
         function toggleResetButton() {
             var searchText = $('.searchInput').val();
+            var descriptionText = $('.searchDescription').val();
 
             if (searchText.trim() !== '') {
+                $('.resetButton').show();
+            }
+            if (descriptionText.trim() !== '') {
                 $('.resetButton').show();
             } else {
                 $('.resetButton').hide();
@@ -107,10 +113,12 @@
         }
 
         function toggleSearchResults(hasResults) {
+            var searchHeader = $('#searchHeader');
+
             if (hasResults) {
-                $('#searchHeader').show();
+                searchHeader.text('Risultati della ricerca').show();
             } else {
-                $('#searchHeader').text('Nessun risultato trovato😔').show();
+                searchHeader.text('Nessun risultato trovato 😔').show();
             }
         }
 
@@ -155,8 +163,14 @@
                                            class="card-link">
                                             <h5 class="card-title">{{ $promozione->titolo }}</h5>
                                         </a>
-                                        <p class="card-text">{{ $promozione->sconto }}</p>
-                                        <p class="card-text">{{ $promozione->valore_sconto }}</p>
+                                        @if ($promozione->sconto === 'prezzo_fisso')
+                                            <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
+                                        @elseif ($promozione->sconto === 'quantita')
+                                            <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in
+                                                regalo</p>
+                                        @elseif ($promozione->sconto === 'percentuale')
+                                            <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -171,8 +185,9 @@
     @endif
 
     <!-- Tutti i coupon grid view -->
-    <div id="promozioniPaginated" class="coupons-container">
-        @if(isset($promozioniPaginated) && $promozioniPaginated->total() > 0)
+
+    @if(isset($promozioniPaginated) && $promozioniPaginated->count() > 0)
+        <div id="promozioniPaginated" class="coupons-container">
             <h1 class="d-flex justify-content-center fw-bold pb-3">Tutte le Promozioni</h1>
             <div class="grid-view">
                 @foreach($promozioniPaginated as $promozione)
@@ -185,19 +200,25 @@
                                class="card-link">
                                 <h5 class="card-title">{{ $promozione->titolo }}</h5>
                             </a>
-                            <p class="card-text">{{ $promozione->sconto }}</p>
-                            <p class="card-text">{{ $promozione->valore_sconto }}</p>
+                            @if ($promozione->sconto === 'prezzo_fisso')
+                                <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
+                            @elseif ($promozione->sconto === 'quantita')
+                                <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in regalo</p>
+                            @elseif ($promozione->sconto === 'percentuale')
+                                <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
+                            @endif
                         </div>
                     </div>
                 @endforeach
             </div>
             <div class="d-flex justify-content-center pt-3">
-                @include('pagination.paginator', ['paginator' => $promozioniPaginated->fragment('promozioni')])
+                @include('pagination.paginator', ['paginator' => $promozioniPaginated->fragment('promozioniPaginated')])
             </div>
-        @else
-            <h1 class="d-flex justify-content-center fw-bold pb-3">Nessuna promozione trovata 😔</h1>
-        @endif
-    </div>
+        </div>
+    @else
+        <h1 class="d-flex justify-content-center fw-bold pb-3">Nessuna promozione trovata 😔</h1>
+    @endif
+
 
     @isset($promozioni)
         <div id="promozioni" class="coupons-container">
@@ -215,8 +236,13 @@
                                class="card-link">
                                 <h5 class="card-title">{{ $promozione->titolo }}</h5>
                             </a>
-                            <p class="card-text">{{ $promozione->sconto }}</p>
-                            <p class="card-text">{{ $promozione->valore_sconto }}</p>
+                            @if ($promozione->sconto === 'prezzo_fisso')
+                                <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
+                            @elseif ($promozione->sconto === 'quantita')
+                                <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in regalo</p>
+                            @elseif ($promozione->sconto === 'percentuale')
+                                <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
+                            @endif
                         </div>
                     </div>
                 @endforeach
