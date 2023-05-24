@@ -9,7 +9,7 @@
         <form class="rounded bg-white shadow p-5">
             <div class="row">
                 <div class="col">
-                    <div class="image">
+                    <div id="logo" class="image">
                         @include('helpers.aziendaImg', ['attrs' => '', 'imgFile' => $azienda->logo])
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                     <h1 class="text-dark fw-bolder fs-1 mb-2">{{$azienda->nome}} {{$azienda->ragione_sociale}}</h1>
                     <br>
                     <h4>Info azienda:</h4>
-                    <h7>{{$azienda->descrizione}}</h7>
+                    <p>{{$azienda->descrizione}}</p>
                 </div>
             </div>
             <div class="row mt-4">

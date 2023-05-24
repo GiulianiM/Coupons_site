@@ -9,7 +9,7 @@
             <div class="row g-0">
                 <div class="col-md-4">
                     <div class="image">
-                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top pe-4', 'imgFile' => $promozione->immagine])
                     </div>
                     <div class="card-body">
                         <p class="card-text"><small class="text-muted">{{ $promozione->azienda->nome }}</small></p>

@@ -138,6 +138,11 @@ html, body {
     height: auto;
 }
 
+.company-container #logo {
+    max-width: 60%;
+    height: auto;
+}
+
 .promozione-container {
     margin: 0 auto;
     padding: 20px 50px;
@@ -274,7 +279,6 @@ html, body {
 
 .card p {
     font-size: 16px;
-    color: #333;
 }
 
 /* Footer styles */

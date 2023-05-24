@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Faker\Provider\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
@@ -107,46 +106,6 @@ class DatabaseSeeder extends Seeder
                 }
             }
         }
-        /* for ($i = 1; $i <= 40; $i++) {
-             DB::table('azienda')->insert([
-                 'idUtente' => 1,
-                 'nome' => $faker->company,
-                 'via' => $faker->streetName,
-                 'citta' => $faker->city,
-                 'numero_civico' => $faker->buildingNumber,
-                 'cap' => str_pad($faker->numberBetween(0, 99100), 5, '0', STR_PAD_BOTH),
-                 //'logo' => 'company.png',
-                 'ragione_sociale' => $faker->companySuffix,
-                 'descrizione' => $faker->text,
-                 'tipologia' => $faker->randomElement(['moda', 'tecnologia', 'alimentari']),
-             ]);
-
-             $idAzienda = DB::getPdo()->lastInsertId();
-
-             for ($j = 1; $j <= 2; $j++) {
-                 DB::table('promozione')->insert([
-                     'idAzienda' => $idAzienda,
-                     'titolo' => $faker->sentence,
-                     'descrizione' => $faker->text,
-                     //'immagine' => 'promozione.png',
-                     'modalita' => 'online',
-                     'luogo' => $faker->url,
-                     'inizio' => $faker->dateTimeBetween('-1 week', '+1 day'),
-                     'fine' => $faker->dateTimeBetween('-2 day', '+1 week'),
-                     'sconto' => 'prezzo fisso',
-                     'valore_sconto' => '-10€',
-                 ]);
-             }
-
-             $idPromozione = DB::getPdo()->lastInsertId();
-             DB::table('coupon')->insert([
-                 'idCoupon' => $i,
-                 'idutente' => 3,
-                 'idPromozione' => $idPromozione,
-                 'codice' => Str::random(6),
-             ]);
-
-         }*/
 
         for ($i = 1; $i <= 6; $i++) {
             DB::table('faq')->insert([
