@@ -2,19 +2,19 @@
 
 @section('title', 'Promozione')
 
-@section('extra-css')
+@section('extra-css-jquery')
     <style>
         @media print {
-            #alert{
+            #alert {
                 display: none !important;
             }
 
             .navbar {
-                display: none; !important;
+                display: none !important;
             }
 
-            footer {
-                display: none !important;
+            body footer {
+                visibility: hidden !important;
             }
         }
     </style>

@@ -3,10 +3,12 @@
 namespace App\Models\Resources;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
 {
+    use hasFactory;
 
     protected $table = 'coupon';
     protected $primaryKey = 'idCoupon';

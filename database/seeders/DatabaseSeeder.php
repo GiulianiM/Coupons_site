@@ -2,129 +2,41 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Resources\Coupon;
+use App\Models\Resources\Faq;
+use App\Models\Resources\Promozione;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use Faker\Factory as Faker;
+use App\Models\Azienda;
 
 class DatabaseSeeder extends Seeder
 {
-
     /**
      * Seed the application's database.
      *
      * @return void
      */
-
-
     public function run()
     {
-        $faker = Faker::create();
-        $company_tipologia = [
-            'tecnologia',
-            'moda',
-            'alimentari',
-        ];
+        User::factory()->admin()->create();
+        User::factory()->staff()->create();
+        User::factory()->user()->create();
 
+        Faq::factory()->count(6)->create();
 
-        DB::table('utente')->insert([
-            'username' => 'admin',
-            'password' => Hash::make('adminadmin'),
-            'livello' => 'admin',
-        ]);
+        Azienda::factory()->count(18)->create();
 
-        DB::table('utente')->insert([
-            'nome' => 'staff',
-            'cognome' => 'staff',
-            'username' => 'staff',
-            'password' => Hash::make('staffstaff'),
-            'livello' => 'staff',
-        ]);
+        Azienda::all()->each(function ($azienda) {
+            $azienda->promozioni()->saveMany(
+                Promozione::factory()->count(2)->make()
+            );
+        });
 
-        DB::table('utente')->insert([
-            'nome' => $faker->firstName,
-            'cognome' => $faker->lastName,
-            'genere' => $faker->randomElement(['M', 'F']),
-            'eta' => $faker->numberBetween(18, 60),
-            'email' => $faker->unique()->safeEmail,
-            'telefono' => $faker->unique()->regexify('3[0-9]{9}'),
-            'username' => 'user',
-            'password' => Hash::make('useruser'),
-        ]);
+        Promozione::all()->each(function ($promozione) {
+            $promozione->coupon()->save(
+                Coupon::factory()->create(['idPromozione' => $promozione->idPromozione])
+            );
+        });
 
-
-        for ($i = 0; $i < count($company_tipologia); $i++) {
-            $tipologia = $company_tipologia[$i];
-
-            for ($j = 0; $j < 6; $j++) {
-
-                DB::table('azienda')->insert([
-                    'idUtente' => 1,
-                    'nome' => $faker->company,
-                    'via' => $faker->streetName,
-                    'citta' => $faker->city,
-                    'numero_civico' => $faker->buildingNumber,
-                    'cap' => str_pad($faker->numberBetween(0, 99100), 5, '0', STR_PAD_BOTH),
-                    'logo' => $faker->image('public/images/aziende/', 640, 480, 'companies', false),
-                    'ragione_sociale' => $faker->companySuffix,
-                    'descrizione' => $faker->text,
-                    'tipologia' => $tipologia,
-                ]);
-
-
-                $idAzienda = DB::getPdo()->lastInsertId();
-
-                for ($k = 1; $k <= 2; $k++) {
-                    if ($k == 1) {
-                        $luogo = $faker->url;
-                        $modalita = 'online';
-                    } else {
-                        $luogo = $faker->address;
-                        $modalita = 'negozio';
-                    }
-                    for ($l = 1; $l <= 2; $l++) {
-                        $sconto = $faker->randomElement(['prezzo_fisso', 'quantita', 'percentuale']);
-                        if ($sconto === 'prezzo_fisso') {
-                            $valore_sconto = $faker->numberBetween(5, 20);
-                        } elseif ($sconto === 'quantita') {
-                            $valore_sconto = $faker->numberBetween(1, 5);
-                        } else {
-                            $valore_sconto = $faker->numberBetween(10, 50);
-                        }
-
-                        DB::table('promozione')->insert([
-                            'idAzienda' => $idAzienda,
-                            'titolo' => $faker->sentence,
-                            'descrizione' => $faker->text,
-                            'immagine' => $faker->image('public/images/promozioni/', 640, 480, 'promos', false),
-                            'modalita' => $modalita,
-                            'luogo' => $luogo,
-                            'inizio' => $faker->dateTimeBetween('-1 week', '+1 day'),
-                            'fine' => $faker->dateTimeBetween('-2 day', '+1 week'),
-                            'sconto' => $sconto,
-                            'valore_sconto' => $valore_sconto,
-                        ]);
-
-                        $idPromozione = DB::getPdo()->lastInsertId();
-
-                        DB::table('coupon')->insert([
-                            'idutente' => 3,
-                            'idPromozione' => $idPromozione,
-                            'codice' => Str::random(6),
-                        ]);
-                    }
-                }
-            }
-        }
-
-        for ($i = 1; $i <= 6; $i++) {
-            DB::table('faq')->insert([
-                'idUtente' => 1,
-                'titolo' => $faker->sentence,
-                'descrizione' => $faker->text,
-            ]);
-        }
     }
-
 }

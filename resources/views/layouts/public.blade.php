@@ -10,7 +10,7 @@
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     @yield('extra-css-jquery')
     <title>@yield('title')</title>
-    <link rel=”icon” type=”image/ico” href=”http://coupons_site.test/favicon.ico”>
+    <link rel=”icon” type=”image/ico” href=”{{ asset('favicon.ico') }}”>
 
 </head>
 <body>

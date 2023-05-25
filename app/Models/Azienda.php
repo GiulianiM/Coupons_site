@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\Resources\Promozione;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Azienda extends Model
 {
+    use hasFactory;
 
     protected $table = 'azienda';
     protected $primaryKey = 'idAzienda';

@@ -47,8 +47,14 @@
                             <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}" class="card-link">
                                 <h5 class="card-title">{{ $promozione->titolo }}</h5>
                             </a>
-                            <p class="card-text">{{ $promozione->sconto }}</p>
-                            <p class="card-text">{{ $promozione->valore_sconto }}</p>
+                            @if ($promozione->sconto === 'prezzo_fisso')
+                                <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
+                            @elseif ($promozione->sconto === 'quantita')
+                                <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in
+                                    regalo</p>
+                            @elseif ($promozione->sconto === 'percentuale')
+                                <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
+                            @endif
                         </div>
                     </div>
                 @endforeach
