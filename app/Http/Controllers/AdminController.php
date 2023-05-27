@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Azienda;
-use App\Models\oldModels\Admin;
 use App\Models\Resources\Faq;
 use App\Models\Resources\Promozione;
 use App\Models\User;
@@ -51,11 +50,12 @@ class AdminController extends Controller
         $numeroCouponTotali = Coupon::count();
 
         // Ottieni gli utenti con il conteggio dei coupon riscattati
-        $userStats = Coupon::select('coupon.idUtente', 'utente.nome', 'utente.cognome',
-            DB::raw('COUNT(coupon.idCoupon) as numero_coupon'))
-            ->join('utente', 'coupon.idUtente', '=', 'utente.idUtente')
-            ->groupBy('coupon.idUtente', 'utente.nome', 'utente.cognome')
+        $userStats = User::select('utente.idUtente', 'utente.nome', 'utente.cognome')
+            ->withCount('coupons AS numero_coupon')
+            ->groupBy('utente.idUtente', 'utente.nome', 'utente.cognome')
+            ->where('utente.livello', 'user')
             ->get();
+
 
         // Ottieni le promozioni con il conteggio dei coupon riscattati e il loro stato
 

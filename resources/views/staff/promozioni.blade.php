@@ -2,7 +2,8 @@
 
 @section('title', 'Gestione Promozioni')
 
-@section('extra-css-jquery')
+@section('scripts')
+    @parent
     <script>
         $(function () {
             initializeDataTable('#table-promozioni', [6, 7]);

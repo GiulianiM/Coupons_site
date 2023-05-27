@@ -2,15 +2,31 @@
 
 @section('title', 'Form Promozione')
 
-@section('extra-css-jquery')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
+@section('links')
+    @parent
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker3.min.css">
 @endsection
-
-@section('content')
+@section('scripts')
+    @parent
+    <script src="{{ asset('js/validation.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
     {{--Aggiunge un suffisso in base al tipo di sconto selezionato--}}
     <script>
+        $(function () {
+            var actionUrl = "{{ isset($promo) ? route('promo.update', ['promo' => $promo->idPromozione]) : route('promo.store') }}";
+            var formId = 'productsform';
+            //intercetta la perdita di focus dell'input
+            $(":input").on('blur', function (event) {
+                var formElementId = $(this).attr('id');
+                doElemValidation(formElementId, actionUrl, formId) ;
+            });
+            $("#" + formId).on('submit', function (event) {
+                event.preventDefault();
+                doFormValidation(actionUrl, formId);
+            });
+        });
+
         $(function () {
             const currentDate = new Date();
             const dateFormat = 'yyyy-mm-dd';
@@ -41,48 +57,36 @@
         });
 
         $(function () {
-            const scontoSelect = $('#sconto');
-            const scontoSuffix = $('#valore_sconto_suffisso');
-
-            function updateScontoSuffix() {
-                const selectedOption = scontoSelect.find('option:selected');
-                const scontoType = selectedOption.val();
-                let suffix = '';
-
-                switch (scontoType) {
-                    case 'quantita':
-                        suffix = 'pz';
-                        break;
-                    case 'percentuale':
-                        suffix = '%';
-                        break;
-                    case 'prezzo_fisso':
-                    case 'benvenuto':
-                        suffix = '€';
-                        break;
+            function showValoreSconto() {
+                var selectedOption = $('#sconto').val();
+                if (selectedOption === null) {
+                    $('.valore_sconto_select, .valore_sconto_text').hide();
+                } else if (selectedOption == 'quantita') {
+                    $('.valore_sconto_select').show();
+                    $('.valore_sconto_text').hide();
+                } else {
+                    $('.valore_sconto_select').hide();
+                    $('.valore_sconto_text').show();
                 }
-
-                scontoSuffix.text(suffix);
             }
+            $('#sconto').change(function () {
+                showValoreSconto();
+            });
 
-            // Aggiorna il suffisso ogni volta che cambia la select
-            scontoSelect.on('change', updateScontoSuffix);
-
-            // Aggiorna il suffisso in base alla scelta iniziale
-            updateScontoSuffix();
+            showValoreSconto();
         });
+
     </script>
+@endsection
 
-
+@section('content')
     <div class="container">
         <form
+            id="productsform"
             action="{{ isset($promo) ? route('promo.update', ['promo' => $promo->idPromozione]) : route('promo.store') }}"
             method="POST" class="rounded shadow p-5"
             enctype="multipart/form-data">
             @csrf
-            @if (isset($promo))
-                @method('PUT')
-            @endif
             @isset($promo)
                 <h3>Modifica promozione</h3>
             @else
@@ -93,7 +97,7 @@
             {{--Azienda a cui la promozione è associata, ordinate per nome--}}
             <div class="form-floating mb-3">
                 <select name="idAzienda" id="idAzienda"
-                        class="{{$errors->has('idAzienda') ? 'form-control is-invalid' : 'form-control' }}">
+                        class="form-control">
                     <option value="" {{ (old('idAzienda') == null) ? 'selected' : '' }} disabled>Seleziona l'azienda
                     </option>
                     @foreach($aziende as $azienda)
@@ -104,44 +108,24 @@
                     @endforeach
                 </select>
                 <label for="idAzienda">Azienda</label>
-                @if ($errors->first('idAzienda'))
-                    @foreach ($errors->get('idAzienda') as $message)
-                        <div class="invalid-feedback ms-2">
-                            {{$message}}
-                        </div>
-                    @endforeach
-                @endif
             </div>
 
 
             {{--Titolo--}}
             <div class="form-floating mb-3">
                 <input type="text" name="titolo" id="titolo"
-                       class="{{ $errors->has('titolo') ? 'form-control is-invalid' : 'form-control' }}"
+                       class="form-control"
                        value="{{ isset($promo) ? $promo->titolo : old('titolo') }}" placeholder="Titolo">
                 <label for="titolo">Titolo</label>
-                @if ($errors->first('titolo'))
-                    @foreach ($errors->get('titolo') as $message)
-                        <div class="invalid-feedback ms-2">
-                            {{$message}}
-                        </div>
-                    @endforeach
-                @endif
             </div>
 
             {{--Descrizione--}}
             <div class="form-floating mb-3">
                 <textarea name="descrizione" id="descrizione"
-                          class="{{$errors->has('descrizione') ? 'form-control is-invalid' : 'form-control' }}"
+                          class="form-control"
                           placeholder="Descrizione">{{ isset($promo) ? $promo->descrizione : old('descrizione') }}</textarea>
                 <label for="descrizione">Descrizione</label>
-                @if ($errors->first('descrizione'))
-                    @foreach ($errors->get('descrizione') as $message)
-                        <div class="invalid-feedback ms-2">
-                            {{$message}}
-                        </div>
-                    @endforeach
-                @endif
+
             </div>
 
             <div class="row g-2">
@@ -149,27 +133,20 @@
                     {{--Modalità di fruizione--}}
                     <div class="form-floating mb-3">
                         <select name="modalita" id="modalita"
-                                class="{{$errors->has('modalita') ? 'form-control is-invalid' : 'form-control' }}">
+                                class="form-control">
                             <option value="" {{ (old('modalita') == null) ? 'selected' : '' }} disabled>Seleziona la
                                 modalità
                             </option>
                             <option value="online"
-                                    {{ isset($promo) && $promo->modalita == 'online' || old('modalita') == 'online'? 'selected' : '' }}>
+                                {{ isset($promo) && $promo->modalita == 'online' || old('modalita') == 'online'? 'selected' : '' }}>
                                 Online
                             </option>
                             <option value="negozio"
-                                    {{ isset($promo) && $promo->modalita == 'negozio' || old('modalita') == 'negozio' ? 'selected' : '' }}>
+                                {{ isset($promo) && $promo->modalita == 'negozio' || old('modalita') == 'negozio' ? 'selected' : '' }}>
                                 Negozio
                             </option>
                         </select>
                         <label for="modalita">Modalità di fruizione</label>
-                        @if ($errors->first('modalita'))
-                            @foreach ($errors->get('modalita') as $message)
-                                <div class="invalid-feedback ms-2">
-                                    {{$message}}
-                                </div>
-                            @endforeach
-                        @endif
                     </div>
                 </div>
                 <div class="col-md">
@@ -177,17 +154,10 @@
                     <div class="form-floating mb-3">
                         <div class="form-floating mb-3">
                             <input type="text" name="luogo" id="luogo"
-                                   class="{{$errors->has('luogo') ? 'form-control is-invalid' : 'form-control' }}"
+                                   class="form-control"
                                    placeholder="Luogo di fruizione"
                                    value="{{ isset($promo) ? $promo->luogo : old('luogo') }}">
                             <label for="luogo">Luogo di fruizione</label>
-                            @if ($errors->first('luogo'))
-                                @foreach ($errors->get('luogo') as $message)
-                                    <div class="invalid-feedback ms-2">
-                                        {{$message}}
-                                    </div>
-                                @endforeach
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -198,34 +168,20 @@
                     {{--Data di inizio--}}
                     <div class="form-floating mb-3">
                         <input type="text" name="inizio" id="inizio"
-                               class="{{$errors->has('inizio') ? 'form-control is-invalid' : 'form-control' }}"
+                               class="form-control"
                                placeholder="Data di inizio"
                                value="{{ isset($promo) ? $promo->inizio : old('inizio') }}">
                         <label for="inizio">Data di inizio</label>
-                        @if ($errors->first('inizio'))
-                            @foreach ($errors->get('inizio') as $message)
-                                <div class="invalid-feedback ms-2">
-                                    {{$message}}
-                                </div>
-                            @endforeach
-                        @endif
                     </div>
                 </div>
                 <div class="col-md">
                     {{--Data di fine--}}
                     <div class="form-floating mb-3">
                         <input type="text" name="fine" id="fine"
-                               class="{{$errors->has('fine') ? 'form-control is-invalid' : 'form-control' }}"
+                               class="form-control"
                                placeholder="Data di fine"
                                value="{{ isset($promo) ? $promo->fine : old('fine') }}">
                         <label for="fine">Data di fine</label>
-                        @if ($errors->first('fine'))
-                            @foreach ($errors->get('fine') as $message)
-                                <div class="invalid-feedback ms-2">
-                                    {{$message}}
-                                </div>
-                            @endforeach
-                        @endif
                     </div>
                 </div>
             </div>
@@ -234,7 +190,7 @@
                 <div class="col-md">
                     <div class="form-floating mb-3">
                         <select name="sconto" id="sconto"
-                                class="{{$errors->has('sconto') ? 'form-control is-invalid' : 'form-control' }}">
+                                class="form-control">
                             <option value="" {{ (old('sconto') == null) ? 'selected' : '' }} disabled>Seleziona</option>
                             {{--Riduzione di un importo fisso dal prezzo totale--}}
                             <option
@@ -246,43 +202,36 @@
                                 value="percentuale" {{ isset($promo) && $promo->sconto == 'percentuale' || old('sconto') == 'percentuale' ? 'selected' : '' }}>
                                 Percentuale
                             </option>
-                            {{--Sconto basato sulla quantità di prodotti acquistati. Ad esempio, uno sconto del 10% sull'acquisto di 3 o più articoli.--}}
+                            {{--Esempio, prendi 3 paghi 2.--}}
                             <option
                                 value="quantita" {{ isset($promo) && $promo->sconto == 'quantita' || old('sconto') == 'quantita' ? 'selected' : '' }}>
                                 Quantità
                             </option>
-                            {{--Sconto per i nuovi clienti che effettuano il loro primo acquisto.--}}
-                            <option
-                                value="benvenuto" {{ isset($promo) && $promo->sconto == 'benvenuto' || old('sconto') == 'benvenuto' ? 'selected' : '' }}>
-                                Benvenuto
-                            </option>
                         </select>
                         <label for="sconto">Tipo di sconto</label>
-                        @if ($errors->first('sconto'))
-                            @foreach ($errors->get('sconto') as $message)
-                                <div class="invalid-feedback ms-2">
-                                    {{$message}}
-                                </div>
-                            @endforeach
-                        @endif
                     </div>
                 </div>
                 {{--Valore dello sconto--}}
                 <div class="col-md">
-                    <div class="form-floating input-group mb-3">
-                        <input type="number" name="valore_sconto" id="valore_sconto"
-                               class="{{ $errors->has('valore_sconto') ? 'form-control is-invalid' : 'form-control' }}"
-                               value="{{ isset($promo) ? $promo->valore_sconto : old('valore_sconto') }}"
-                               placeholder="Valore sconto">
-                        <label for="valore_sconto">Valore sconto</label>
-                        <span class="input-group-text" id="valore_sconto_suffisso"></span>
-                        @if ($errors->first('valore_sconto'))
-                            @foreach ($errors->get('valore_sconto') as $message)
-                                <div class="invalid-feedback ms-2">
-                                    {{$message}}
-                                </div>
-                            @endforeach
-                        @endif
+                    <div class="form-floating mb-3 valore_sconto_select">
+                        <select name="valore_sconto_select" id="valore_sconto_select" class="form-control">
+                            <option
+                                value="2x1" {{ isset($promo) && $promo->sconto == '2x1' || old('sconto') == '2x1' ? 'selected' : '' }}>
+                                2x1
+                            </option>
+                            <option
+                                value="3x2" {{ isset($promo) && $promo->sconto == '3x2' || old('sconto') == '2x1' ? 'selected' : '' }}>
+                                3x2
+                            </option>
+                        </select>
+                        <label for="valore_sconto_select">Valore dello sconto</label>
+                    </div>
+                    <div class="form-floating mb-3 valore_sconto_text">
+                        <input type="text" name="valore_sconto_text" id="valore_sconto_text"
+                               class="form-control"
+                               placeholder="Valore dello sconto"
+                               value="{{ isset($promo) ? $promo->valore_sconto : old('valore_sconto') }}">
+                        <label for="valore_sconto_select">Valore dello sconto</label>
                     </div>
                 </div>
             </div>
@@ -291,14 +240,7 @@
             {{--Immagine--}}
             <div class="mb-3">
                 <input type="file" id="immagine" name="immagine"
-                       class="{{ $errors->has('immagine') ? 'form-control is-invalid' : 'form-control' }}">
-                @if ($errors->first('immagine'))
-                    @foreach ($errors->get('immagine') as $message)
-                        <div class="invalid-feedback ms-2">
-                            {{$message}}
-                        </div>
-                    @endforeach
-                @endif
+                       class="form-control">
             </div>
 
             <button type="reset" class="btn btn-danger" onclick="window.location.href='{{ route('staff.promos') }}'">
