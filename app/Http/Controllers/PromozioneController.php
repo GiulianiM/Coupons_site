@@ -25,6 +25,7 @@ class PromozioneController extends Controller
     {
         $promozione = new Promozione;
         $validatedData = $this->validateData($request);
+
         //Controlla se è stato caricato un file
         //Se si, allora salvalo in locale
         if ($request->hasFile('immagine')) {
@@ -105,7 +106,7 @@ class PromozioneController extends Controller
             'modalita' => ['required', 'string', 'in:online,negozio'],
             'luogo' => ['required', 'string', 'max:255'],
             'inizio' => ['required', 'date'],
-            'fine' => ['required', 'date'],
+            'fine' => ['required', 'date','after:inizio'],
             'sconto' => ['required', 'string', 'in:prezzo_fisso,percentuale,quantita'],
             'immagine' => ['sometimes', 'image', 'mimes:jpeg,png,gif,svg'],
         ];

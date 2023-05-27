@@ -17,46 +17,40 @@
             var actionUrl = "{{ isset($promo) ? route('promo.update', ['promo' => $promo->idPromozione]) : route('promo.store') }}";
             var formId = 'productsform';
             //intercetta la perdita di focus dell'input
-            $(":input").on('blur', function (event) {
+            $(":input").change(function (event) {
                 var formElementId = $(this).attr('id');
-                doElemValidation(formElementId, actionUrl, formId) ;
+                doElemValidation(formElementId, actionUrl, formId);
             });
             $("#" + formId).on('submit', function (event) {
                 event.preventDefault();
                 doFormValidation(actionUrl, formId);
             });
-        });
 
-        $(function () {
-            const currentDate = new Date();
-            const dateFormat = 'yyyy-mm-dd';
 
-            // Inizializza il datepicker per la data di inizio
-            $('#inizio').datepicker({
-                format: dateFormat,
-                startDate: currentDate,
-                language: 'it',
-                autoclose: true,
-                todayHighlight: true,
-            }).on('changeDate', function (selected) {
-                const startDate = new Date(selected.date.valueOf());
-                $('#fine').datepicker('setStartDate', startDate);
+            $(function () {
+                $('[data-bs-toggle="tooltip"]').tooltip()
+            })
+
+            var startDateInput = $('#inizio');
+            var endDateInput = $('#fine');
+
+            var today = new Date().toISOString().split('T')[0];
+            startDateInput.attr('min', today);
+            endDateInput.attr('min', today);
+
+            startDateInput.on('change', function () {
+                var startDate = new Date(startDateInput.val());
+                // Imposta la data di fine minima a quella successiva alla data di inizio
+                var nextDay = new Date(startDate.getTime() + 24 * 60 * 60 * 1000); //sommiamo al giorno corrente un giorno in millisecondi
+                var nextDayFormatted = nextDay.toISOString().split('T')[0];
+                endDateInput.attr('min', nextDayFormatted);
+
+                var endDate = new Date(endDateInput.val());
+                if (endDate <= startDate) {
+                    endDateInput.val(nextDayFormatted);
+                }
             });
 
-            // Inizializza il datepicker per la data di fine
-            $('#fine').datepicker({
-                language: 'it',
-                autoclose: true,
-                todayHighlight: true,
-                format: dateFormat,
-                startDate: currentDate
-            }).on('changeDate', function (selected) {
-                const endDate = new Date(selected.date.valueOf());
-                $('#inizio').datepicker('setEndDate', endDate);
-            });
-        });
-
-        $(function () {
             function showValoreSconto() {
                 var selectedOption = $('#sconto').val();
                 if (selectedOption === null) {
@@ -69,6 +63,7 @@
                     $('.valore_sconto_text').show();
                 }
             }
+
             $('#sconto').change(function () {
                 showValoreSconto();
             });
@@ -167,7 +162,7 @@
                 <div class="col-md">
                     {{--Data di inizio--}}
                     <div class="form-floating mb-3">
-                        <input type="text" name="inizio" id="inizio"
+                        <input type="date" name="inizio" id="inizio"
                                class="form-control"
                                placeholder="Data di inizio"
                                value="{{ isset($promo) ? $promo->inizio : old('inizio') }}">
@@ -177,7 +172,7 @@
                 <div class="col-md">
                     {{--Data di fine--}}
                     <div class="form-floating mb-3">
-                        <input type="text" name="fine" id="fine"
+                        <input type="date" name="fine" id="fine"
                                class="form-control"
                                placeholder="Data di fine"
                                value="{{ isset($promo) ? $promo->fine : old('fine') }}">
@@ -216,11 +211,11 @@
                     <div class="form-floating mb-3 valore_sconto_select">
                         <select name="valore_sconto_select" id="valore_sconto_select" class="form-control">
                             <option
-                                value="2x1" {{ isset($promo) && $promo->sconto == '2x1' || old('sconto') == '2x1' ? 'selected' : '' }}>
+                                value="2x1" {{ isset($promo) && $promo->valore_sconto == '2x1' || old('valore_sconto') == '2x1' ? 'selected' : '' }}>
                                 2x1
                             </option>
                             <option
-                                value="3x2" {{ isset($promo) && $promo->sconto == '3x2' || old('sconto') == '2x1' ? 'selected' : '' }}>
+                                value="3x2" {{ isset($promo) && $promo->valore_sconto == '3x2' || old('valore_sconto') == '2x1' ? 'selected' : '' }}>
                                 3x2
                             </option>
                         </select>
@@ -230,7 +225,11 @@
                         <input type="text" name="valore_sconto_text" id="valore_sconto_text"
                                class="form-control"
                                placeholder="Valore dello sconto"
-                               value="{{ isset($promo) ? $promo->valore_sconto : old('valore_sconto') }}">
+                               value="{{ isset($promo) ? $promo->valore_sconto : old('valore_sconto') }}"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="bottom"
+                               title="Inserisci solo il valore numerico.
+                                      Verranno aggiunti il prefisso e/o il suffisso corretto in sede di visualizzazione">
                         <label for="valore_sconto_select">Valore dello sconto</label>
                     </div>
                 </div>
