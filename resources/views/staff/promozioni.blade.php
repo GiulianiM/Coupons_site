@@ -4,64 +4,22 @@
 
 @section('scripts')
     @parent
+    <script src="{{ asset('js/tables.js') }}"></script>
     <script>
         $(function () {
-            initializeDataTable('#table-promozioni', [6, 7]);
+            const table = $('table').attr('id');
+            const resetButton = $('button[type="reset"]').attr('id');
+            const searchButton = $('button[type="submit"]').attr('id');
+            const searchInput = $('input[type="search"]').attr('id');
 
-            function initializeDataTable(selector, disableColumns) {
-                $(selector).DataTable({
-                    columnDefs: [
-                        { targets: disableColumns, orderable: false }
-                    ],
-                    lengthChange: false,
-                    searching: false,
-                    paging: false,
-                    info: false,
-                });
-            }
-        });
-
-        $(function () {
-            //imposto all'inizio che il pulsante di reset sia nascosto
-            $('.resetButton').hide();
-
-            /* al click del pulsante di ricerca prendo il testo scritto nella barra di ricerca
-             e lo confronto con il testo di ogni riga della tabella
-             se il testo della riga contiene il testo della barra di ricerca allora mostro la riga
-             altrimenti la nascondo*/
-            $('.searchButton').click(function () {
-                var searchText = $('.searchInput').val().toLowerCase();
-
-                $('table tbody tr').each(function () {
-                    var rowText = $(this).text().toLowerCase();
-
-                    if (rowText.includes(searchText)) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-
-                toggleResetButton();
+            setupTableSorting(table, [6, 7]);
+            setupSearchBar({
+                resetButton: resetButton,
+                searchButton: searchButton,
+                searchInput: searchInput,
+                tableId: table,
             });
-
-            $('.resetButton').click(function () {
-                $('#searchInput').val('');
-                $('table tbody tr').show();
-                toggleResetButton();
-            });
-
-            function toggleResetButton() {
-                var searchText = $('.searchInput').val();
-
-                if (searchText.trim() !== '') {
-                    $('.resetButton').show();
-                } else {
-                    $('.resetButton').hide();
-                }
-            }
         });
-
     </script>
 @endsection
 
@@ -75,16 +33,7 @@
                             promozioni</strong>
                     </div>
                     <div class="right">
-                        <div class="input-group">
-                            <input class="form-control searchInput" type="search" placeholder="Cerca..."
-                                   aria-label="Search">
-                            <button class="btn btn-warning searchButton" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            <button class="btn btn-warning resetButton" type="button">
-                                <i class="fa-solid fa-rotate-left"></i>
-                            </button>
-                        </div>
+                        @include('layouts.search_admin')
                     </div>
                     <div class="table custom-scrollbar max-height overflow-auto">
                         @isset($promos)

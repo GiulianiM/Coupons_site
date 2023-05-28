@@ -153,7 +153,4 @@ Route::post('/staff/promo/{promo}', [PromozioneController::class, 'update'])
 Route::get('/staff/promo/{promo}/delete', [PromozioneController::class, 'delete'])
     ->name('promo.delete');
 
-Route::get('/staff/promo/valori_sconto', [PromozioneController::class, 'getValoriSconto'])
-    ->name('promo.valori_sconto');
-
 require __DIR__ . '/auth.php';
