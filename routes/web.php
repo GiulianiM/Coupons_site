@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\StaffController;
+use \App\Http\Controllers\StatController;
 
 /*Rotte public*/
 Route::get('/', [PublicController::class, 'index'])
@@ -77,8 +78,8 @@ Route::get('/admin/utenti', [AdminController::class, 'users'])
 Route::get('/admin/staff', [AdminController::class, 'staff'])
     ->name('admin.staff');
 
-Route::get('/admin/stats', [AdminController::class, 'stats'])
-    ->name('admin.stats');
+//Route::get('/admin/stats', [AdminController::class, 'stats'])
+   // ->name('admin.stats');
 
 Route::get('/staff', [StaffController::class, 'promos'])
     ->name('staff.promos');
@@ -152,5 +153,15 @@ Route::post('/staff/promo/{promo}', [PromozioneController::class, 'update'])
 
 Route::get('/staff/promo/{promo}/delete', [PromozioneController::class, 'delete'])
     ->name('promo.delete');
+
+//Rotte per le statistiche
+Route::get('/admin/stats/coupon', [StatController::class, 'couponStats'])
+    ->name('admin.stats.couponStats');
+
+Route::get('/admin/stats/utenti', [StatController::class, 'utentiStats'])
+    ->name('admin.stats.userStats');
+
+Route::get('/admin/stats/promozioni', [StatController::class, 'promozioniStats'])
+    ->name('admin.stats.promotionStats');
 
 require __DIR__ . '/auth.php';

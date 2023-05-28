@@ -44,7 +44,7 @@ class AdminController extends Controller
     }
 
 
-    public function stats()
+    /*public function stats()
     {
         // Calcola il numero totale di coupon emessi
         $numeroCouponTotali = Coupon::count();
@@ -68,61 +68,6 @@ class AdminController extends Controller
 
         // Passa il numero totale di coupon alla vista
         return view('admin.stats', compact('numeroCouponTotali', 'userStats', 'promozioneStats'));
-
-        /*$userSearch = $request->input('user_search');
-        $promozioneSearch = $request->input('promozione_search');
-
-        $userStats = User::query();
-        $promozioneStats = Promozione::query();
-
-        if ($userSearch) {
-            $userStats->where('nome', 'LIKE', "%{$userSearch}%")
-                    ->orWhere('cognome', 'LIKE', "%{$userSearch}%");
-
-        }
-
-        if ($promozioneSearch) {
-            $promozioneStats->where('titolo', 'LIKE', "%{$promozioneSearch}%");
-        }
-
-        $userStats = $userStats->get();
-        $promozioneStats = $promozioneStats->get();
-
-        //return view('admin.stats', compact('stats'));
-        return view('admin.stats', compact('userStats', 'userSearch', 'promozioneStats', 'promozioneSearch'));*/
-    }
-
-
-    /* public function index() {
-         return view('admin');
-     }
-
-     public function addProduct() {
-         $prodCats = $this->_adminModel->getProdsCats()->pluck('name', 'catId');
-         return view('product.insert')
-                         ->with('cats', $prodCats);
-     }
-
-     public function storeProduct(NewProductRequest $request) {
-
-         if ($request->hasFile('image')) {
-             $image = $request->file('image');
-             $imageName = $image->getClientOriginalName();
-         } else {
-             $imageName = NULL;
-         }
-
-         $product = new Product;
-         $product->fill($request->validated());
-         $product->image = $imageName;
-         $product->save();
-
-         if (!is_null($imageName)) {
-             $destinationPath = public_path() . '/images/products';
-             $image->move($destinationPath, $imageName);
-         };
-
-         return redirect()->action([AdminController::class, 'index']);
-     }*/
+    }*/
 
 }

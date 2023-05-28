@@ -2,66 +2,9 @@
 
 @section('title', 'Gestione Staff')
 
-@section('extra-css-jquery')
-    <script>
-        $(function () {
-            initializeDataTable('#table-staff', [4, 5]);
-
-            function initializeDataTable(selector, disableColumns) {
-                $(selector).DataTable({
-                    columnDefs: [
-                        {targets: disableColumns, orderable: false}
-                    ],
-                    lengthChange: false,
-                    searching: false,
-                    paging: false,
-                    info: false,
-                });
-            }
-        });
-
-        $(function () {
-            //imposto all'inizio che il pulsante di reset sia nascosto
-            $('.resetButton').hide();
-
-            /* al click del pulsante di ricerca prendo il testo scritto nella barra di ricerca
-             e lo confronto con il testo di ogni riga della tabella
-             se il testo della riga contiene il testo della barra di ricerca allora mostro la riga
-             altrimenti la nascondo*/
-            $('.searchButton').click(function () {
-                var searchText = $('.searchInput').val().toLowerCase();
-
-                $('table tbody tr').each(function () {
-                    var rowText = $(this).text().toLowerCase();
-
-                    if (rowText.includes(searchText)) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-
-                toggleResetButton();
-            });
-
-            $('.resetButton').click(function () {
-                $('#searchInput').val('');
-                $('table tbody tr').show();
-                toggleResetButton();
-            });
-
-            function toggleResetButton() {
-                var searchText = $('.searchInput').val();
-
-                if (searchText.trim() !== '') {
-                    $('.resetButton').show();
-                } else {
-                    $('.resetButton').hide();
-                }
-            }
-        });
-
-    </script>
+@section('scripts')
+    @parent
+    <script src="{{ asset('js/tables.js') }}"></script>
 @endsection
 
 @section('content')
@@ -74,16 +17,7 @@
                             personale</strong>
                     </div>
                     <div class="right">
-                        <div class="input-group">
-                            <input class="form-control searchInput" type="search" placeholder="Cerca..."
-                                   aria-label="Search">
-                            <button class="btn btn-warning searchButton" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            <button class="btn btn-warning resetButton" type="button">
-                                <i class="fa-solid fa-rotate-left"></i>
-                            </button>
-                        </div>
+                        @include('layouts.search_admin')
                     </div>
 
                     <div class="table custom-scrollbar max-height overflow-auto">

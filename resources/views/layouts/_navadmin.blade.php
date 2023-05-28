@@ -33,10 +33,20 @@
                         <a class="nav-link {{ Request::route()->getName() == 'admin.users' ? 'active' : '' }}"
                            href="{{ route('admin.users') }}">Utenti</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::route()->getName() == 'admin.stats' ? 'active' : '' }}"
-                           href="{{ route('admin.stats') }}">Statistiche</a>
+
+
+
+                    <li class="nav-item dropdown">
+                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Statistiche
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item {{ Request::route()->getName() == 'admin.stats.couponStats' ? 'active' : '' }}" href="{{ route('admin.stats.couponStats') }}">Coupons</a></li>
+                            <li><a class="dropdown-item {{ Request::route()->getName() == 'admin.stats.userStats' ? 'active' : '' }}" href="{{ route('admin.stats.userStats') }}">Utenti</a></li>
+                            <li><a class="dropdown-item {{ Request::route()->getName() == 'admin.stats.promotionStats' ? 'active' : '' }}" href="{{ route('admin.stats.promotionStats') }}">Promozioni</a></li>
+                        </ul>
                     </li>
+
                 @endcan
                 @can('isStaff')
                     <li class="nav-item">
