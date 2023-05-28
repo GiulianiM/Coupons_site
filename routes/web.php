@@ -93,7 +93,7 @@ Route::post('/admin/azienda', [AziendaController::class, 'store'])
 Route::get('/admin/azienda/{azienda}/edit', [AziendaController::class, 'edit'])
     ->name('azienda.edit');
 
-Route::put('/admin/azienda/{azienda}', [AziendaController::class, 'update'])
+Route::post('/admin/azienda/{azienda}', [AziendaController::class, 'update'])
     ->name('azienda.update');
 
 Route::get('/admin/azienda/{azienda}/delete', [AziendaController::class, 'delete'])
@@ -110,7 +110,7 @@ Route::post('/admin/faq', [FaqController::class, 'store'])
 Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])
     ->name('faq.edit');
 
-Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])
+Route::post('/admin/faq/{faq}', [FaqController::class, 'update'])
     ->name('faq.update');
 
 Route::get('/admin/faq/{faq}/delete', [FaqController::class, 'delete'])
@@ -127,7 +127,7 @@ Route::post('/admin/staff', [StaffController::class, 'store'])
 Route::get('/admin/staff/{staff}/edit', [StaffController::class, 'edit'])
     ->name('staff.edit');
 
-Route::put('/admin/staff/{staff}', [StaffController::class, 'update'])
+Route::post('/admin/staff/{staff}', [StaffController::class, 'update'])
     ->name('staff.update');
 
 Route::get('/admin/staff/{staff}/delete', [StaffController::class, 'delete'])

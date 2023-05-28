@@ -6,11 +6,11 @@
     @parent
     <script src="{{ asset('js/promozione.js') }}"></script>
     <script src="{{ asset('js/form_validation.js') }}"></script>
-    {{--Aggiunge un suffisso in base al tipo di sconto selezionato--}}
+
     <script>
         $(function (){
-            var actionUrl = "{{ isset($promo) ? route('promo.update', ['promo' => $promo->idPromozione]) : route('promo.store') }}";
-            var formId = 'productsform';
+            const actionUrl = "{{ isset($promo) ? route('promo.update', ['promo' => $promo->idPromozione]) : route('promo.store') }}";
+            const formId = $('.container > form').attr('id');
             validateForm(actionUrl, formId);
         })
     </script>
@@ -157,8 +157,16 @@
                                 2x1
                             </option>
                             <option
-                                value="3x2" {{ isset($promo) && $promo->valore_sconto == '3x2' || old('valore_sconto') == '2x1' ? 'selected' : '' }}>
+                                value="3x2" {{ isset($promo) && $promo->valore_sconto == '3x2' || old('valore_sconto') == '3x2' ? 'selected' : '' }}>
                                 3x2
+                            </option>
+                            <option
+                                value="4x2" {{ isset($promo) && $promo->valore_sconto == '4x2' || old('valore_sconto') == '4x2' ? 'selected' : '' }}>
+                                4x2
+                            </option>
+                            <option
+                                value="5x3" {{ isset($promo) && $promo->valore_sconto == '5x3' || old('valore_sconto') == '5x3' ? 'selected' : '' }}>
+                                5x3
                             </option>
                         </select>
                         <label for="valore_sconto_select">Valore dello sconto</label>

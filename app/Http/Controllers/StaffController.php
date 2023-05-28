@@ -30,10 +30,10 @@ class StaffController extends Controller
         }
 
         if ($orderby) {
-            if($orderby == 'azienda'){
+            if ($orderby == 'azienda') {
                 $promos->join('azienda', 'promozione.idAzienda', '=', 'azienda.idAzienda')
                     ->orderBy('azienda.nome');
-            }else{
+            } else {
                 $promos->orderBy($orderby);
             }
         }
@@ -58,12 +58,12 @@ class StaffController extends Controller
         $staff->password = Hash::make($validatedData['password']);
         $staff->save();
 
-        return redirect()->route('admin.staff');
+        return response()->json(['redirect' => route('admin.staff')]);
     }
 
     public function edit(User $staff)
     {
-        if(!$staff->hasLivello('staff')){
+        if (!$staff->hasLivello('staff')) {
             abort(404);
         }
         return view('admin.crud.staff', compact('staff'));
@@ -77,7 +77,7 @@ class StaffController extends Controller
         $staff->fill($validatedData);
         $staff->save();
 
-        return redirect()->route('admin.staff');
+        return response()->json(['redirect' => route('admin.staff')]);
     }
 
     public function delete($idStaff)
@@ -96,13 +96,9 @@ class StaffController extends Controller
         $rules = [
             'nome' => ['required', 'string', 'max:255'],
             'cognome' => ['required', 'string', 'max:255'],
+            'password' => ['sometimes', 'string', Rules\Password::defaults()],
+            'username' => ['sometimes', 'string', 'max:255', 'unique:utente,username'],
         ];
-
-        if ($request->isMethod('post')) {
-            // Creating a new staff user
-            $rules['password'] = ['required', 'string', Rules\Password::defaults()];
-            $rules['username'] = ['required', 'string', 'max:255', 'unique:utente,username'];
-        }
 
         return $request->validate($rules);
     }

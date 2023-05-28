@@ -26,7 +26,7 @@ class FaqController extends Controller
         $faq->idUtente = auth()->user()->idUtente;
         $faq->save();
 
-        return redirect()->route('admin.faq');
+        return response()->json(['redirect' => route('admin.faq')]);
     }
 
     public function edit(Faq $faq)
@@ -41,7 +41,7 @@ class FaqController extends Controller
         $faq->fill($validatedData);
         $faq->save();
 
-        return redirect()->route('admin.faq');
+        return response()->json(['redirect' => route('admin.faq')]);
     }
 
     public function delete($idFaq)

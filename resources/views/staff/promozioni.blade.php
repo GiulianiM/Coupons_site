@@ -6,20 +6,12 @@
     @parent
     <script src="{{ asset('js/tables.js') }}"></script>
     <script>
-        $(function () {
+        $(function (){
             const table = $('table').attr('id');
-            const resetButton = $('button[type="reset"]').attr('id');
-            const searchButton = $('button[type="submit"]').attr('id');
-            const searchInput = $('input[type="search"]').attr('id');
-
+            //l'ultimo attributo ([6,7]) indica le colonne che non devono essere ordinate.
+            //In questo caso sono le colonne delle icone di modifica e cancellazione.
             setupTableSorting(table, [6, 7]);
-            setupSearchBar({
-                resetButton: resetButton,
-                searchButton: searchButton,
-                searchInput: searchInput,
-                tableId: table,
-            });
-        });
+        })
     </script>
 @endsection
 
