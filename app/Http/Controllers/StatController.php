@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class StatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isAdmin');
+    }
+
     public function couponStats()
     {
         $numeroCouponTotali = Coupon::count();

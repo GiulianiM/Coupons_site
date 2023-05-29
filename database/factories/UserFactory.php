@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -24,7 +25,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'telefono' => $this->faker->unique()->regexify('3[0-9]{9}'),
             'username' => $this->faker->userName,
-            'password' => '$2y$10$tU8V4QtbLelMkgMyx0Y1Cu7vIqCO6/fU2UfacUghI4PHJ7dkWsS16', // password ssh grp_17 hashata
+            'password' => Hash::make('JmoxlJ1q'), // password ssh grp_17 hashata
         ];
     }
 
@@ -49,7 +50,7 @@ class UserFactory extends Factory
             'nome' => $this->faker->firstName,
             'cognome' => $this->faker->lastName,
             'username' => 'staffstaff',
-            'password' => '$2y$10$tU8V4QtbLelMkgMyx0Y1Cu7vIqCO6/fU2UfacUghI4PHJ7dkWsS16',
+            'password' => Hash::make('JmoxlJ1q'),
             'livello' => 'staff',
             'genere' => null,
             'eta' => null,
@@ -68,7 +69,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'telefono' => $this->faker->unique()->regexify('3[0-9]{9}'),
             'username' => 'useruser',
-            'password' => '$2y$10$tU8V4QtbLelMkgMyx0Y1Cu7vIqCO6/fU2UfacUghI4PHJ7dkWsS16',
+            'password' => Hash::make('JmoxlJ1q'),
         ]);
     }
 

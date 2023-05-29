@@ -5,6 +5,12 @@
 @section('scripts')
     @parent
     <script src="{{ asset('js/tables.js') }}"></script>
+    <script>
+        $(function (){
+            const table = $('table').attr('id');
+            setupTableSorting(table, [4, 5]);
+        })
+    </script>
 @endsection
 
 @section('content')
