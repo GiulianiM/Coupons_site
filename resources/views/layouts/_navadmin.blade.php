@@ -37,14 +37,16 @@
 
 
                     <li class="nav-item dropdown">
-                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {{ Request::is('admin/stats*') ? 'active' : '' }} " role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             Statistiche
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item {{ Request::route()->getName() == 'admin.stats.couponStats' ? 'active' : '' }}" href="{{ route('admin.stats.couponStats') }}">Coupons</a></li>
-                            <li><a class="dropdown-item {{ Request::route()->getName() == 'admin.stats.userStats' ? 'active' : '' }}" href="{{ route('admin.stats.userStats') }}">Utenti</a></li>
-                            <li><a class="dropdown-item {{ Request::route()->getName() == 'admin.stats.promotionStats' ? 'active' : '' }}" href="{{ route('admin.stats.promotionStats') }}">Promozioni</a></li>
-                        </ul>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="{{ route('admin.stats.couponStats') }}">Coupons</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('admin.stats.userStats') }}">Utenti</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('admin.stats.promotionStats') }}">Promozioni</a>
+                        </div>
                     </li>
 
                 @endcan
