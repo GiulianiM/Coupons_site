@@ -17,30 +17,10 @@ class StaffController extends Controller
         $this->middleware('can:isAdmin')->except('promos');
     }
 
-    public function promos(Request $request)
+    public function promos()
     {
-        $search = $request->input('search');
-        $orderby = $request->input('order_by');
-
-        $promos = Promozione::query();
-
-        if ($search) {
-            $promos->where('titolo', 'LIKE', "%{$search}%")
-                ->orWhere('descrizione', 'LIKE', "%{$search}%");
-        }
-
-        if ($orderby) {
-            if ($orderby == 'azienda') {
-                $promos->join('azienda', 'promozione.idAzienda', '=', 'azienda.idAzienda')
-                    ->orderBy('azienda.nome');
-            } else {
-                $promos->orderBy($orderby);
-            }
-        }
-
-        $promos = $promos->get();
-
-        return view('staff.promozioni', compact('promos', 'orderby', 'search'));
+        $promos = Promozione::where('visibile', true)->get();
+        return view('staff.promozioni', compact('promos'));
     }
 
     public function create()
@@ -82,12 +62,8 @@ class StaffController extends Controller
 
     public function delete($idStaff)
     {
-        $idStaff = User::find($idStaff);
-
-        if ($idStaff) {
-            $idStaff->delete();
-        }
-
+        User::where('idUtente', $idStaff)
+            ->update(['visibile' => false]);
         return redirect()->route('admin.staff');
     }
 

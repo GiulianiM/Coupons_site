@@ -15,6 +15,7 @@ class CreateTableUtente extends Migration
     {
         Schema::create('utente', function (Blueprint $table) {
             $table->id('idUtente');
+            $table->boolean('visibile')->default(true);
             $table->string('nome')->nullable();
             $table->string('cognome')->nullable();
             $table->string('genere')->nullable();

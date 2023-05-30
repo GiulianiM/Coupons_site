@@ -126,7 +126,7 @@ class UserController extends Controller
 
     public function couponProfilo($idCoupon)
     {
-        $coupon = Coupon::findOrFail($idCoupon);$coupon = Coupon::findOrFail($idCoupon);
+        $coupon = Coupon::findOrFail($idCoupon);
 
         // Check if the current user has the coupon
         $user = auth()->user();
@@ -134,21 +134,13 @@ class UserController extends Controller
             abort(404);
         }
 
-        if (Carbon::now()->isAfter($coupon->promozione->fine)) {
-            return view('expired_promozione');
-        }
-
         return view('user.coupon', compact('coupon'));
     }
 
     public function delete($dUser)
     {
-        $dUser = User::find($dUser);
-
-        if ($dUser) {
-            $dUser->delete();
-        }
-
+        User::where('idUtente', $dUser)
+            ->update(['visibile' => false]);
         return redirect()->route('admin.users');
     }
 

@@ -24,6 +24,7 @@ class Azienda extends Model
         'tipologia',
         'idAdmin',
         'idUtente',
+        'visibile',
     ];
 
     protected $attributes = [

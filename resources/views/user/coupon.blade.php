@@ -53,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+
                 <h1 class="coupon-code">Codice univoco: {{ $coupon->codice }}</h1>
             </div>
         </div>

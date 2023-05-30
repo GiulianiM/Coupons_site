@@ -33,7 +33,7 @@ class PromozioneController extends Controller
             $extension = $file->getClientOriginalExtension();
             $fileName = Str::random(10) . '.' . $extension;
             $file->move(public_path('images/promozioni'), $fileName);
-        }else{
+        } else {
             $fileName = 'promozione.png';
         }
 
@@ -88,12 +88,8 @@ class PromozioneController extends Controller
 
     public function delete($idPromozione)
     {
-        $idPromozione = Promozione::find($idPromozione);
-
-        if ($idPromozione) {
-            $idPromozione->delete();
-        }
-
+        Promozione::where('idPromozione', $idPromozione)
+            ->update(['visibile' => false]);
         return redirect()->route('staff.promos');
     }
 
@@ -106,7 +102,7 @@ class PromozioneController extends Controller
             'modalita' => ['required', 'string', 'in:online,negozio'],
             'luogo' => ['required', 'string', 'max:255'],
             'inizio' => ['required', 'date'],
-            'fine' => ['required', 'date','after:inizio'],
+            'fine' => ['required', 'date', 'after:inizio'],
             'sconto' => ['required', 'string', 'in:prezzo_fisso,percentuale,quantita'],
             'immagine' => ['sometimes', 'image', 'mimes:jpeg,png,gif,svg'],
         ];

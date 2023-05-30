@@ -26,6 +26,7 @@ class Promozione extends Model
         'fine',
         'sconto',
         'valore_sconto',
+        'visibile',
     ];
 
     public function azienda()

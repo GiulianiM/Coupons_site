@@ -17,6 +17,7 @@ class CreateTableAzienda extends Migration
             $table->id('idAzienda');
             $table->bigInteger('idUtente')->unsigned()->index();
             $table->foreign('idUtente')->references('idUtente')->on('utente');
+            $table->boolean('visibile')->default(true);
             $table->string('nome');
             $table->string('via');
             $table->integer('numero_civico');

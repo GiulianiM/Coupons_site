@@ -31,7 +31,7 @@ class AziendaController extends Controller
             $extension = $file->getClientOriginalExtension();
             $fileName = Str::random(10) . '.' . $extension;
             $file->move(public_path('images/aziende'), $fileName);
-        }else{
+        } else {
             $fileName = 'company.png';
         }
 
@@ -64,7 +64,7 @@ class AziendaController extends Controller
             if ($azienda->logo && file_exists(public_path('images/aziende/' . $azienda->logo))) {
                 unlink(public_path('images/aziende/' . $azienda->logo));
             }
-        }else{
+        } else {
             $fileName = $azienda->logo;
         }
 
@@ -76,12 +76,8 @@ class AziendaController extends Controller
 
     public function delete($idAzienda)
     {
-        $idAzienda = Azienda::find($idAzienda);
-
-        if ($idAzienda) {
-            $idAzienda->delete();
-        }
-
+        Azienda::where('idAzienda', $idAzienda)
+            ->update(['visibile' => false]);
         return redirect()->route('admin.aziende');
     }
 

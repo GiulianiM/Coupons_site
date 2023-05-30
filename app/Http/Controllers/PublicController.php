@@ -10,10 +10,11 @@ use Illuminate\Support\Carbon;
 
 class PublicController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $promozioniCarosello = Promozione::where('inizio', '>=', Carbon::now()->subDays(2))
             ->where('fine', '>', Carbon::now())
+            ->where('visibile', true)
             ->get();
 
         $promozioni = Promozione::where('fine', '>', Carbon::now())->get();
@@ -24,7 +25,8 @@ class PublicController extends Controller
 
     public function aziende()
     {
-        $aziende = Azienda::paginate(16);
+        $aziende = Azienda::where('visibile', true)
+            ->paginate(16);
         return view('aziende', compact('aziende'));
     }
 

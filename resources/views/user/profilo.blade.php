@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="wrapper">
-        <div class="container">
+        <div class="container ">
             <form class="rounded bg-white shadow p-5">
                 <h1 class="text-dark text-center fw-bolder fs-1 mb-4">Informazioni personali</h1>
                 <div class="row d-flex justify-content-center">
@@ -69,8 +69,7 @@
                         @endforeach
                     </div>
                 </div>
-                @if ($expiredCoupons->isEmpty())
-                @else
+                @if (!$expiredCoupons->isEmpty())
                     <div class="coupons-container">
                         <h1 class="d-flex justify-content-center fw-bold pb-3">Promozioni riscattate scadute</h1>
                         <div class="grid-view">

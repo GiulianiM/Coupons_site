@@ -41,11 +41,11 @@
                             Statistiche
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item " href="{{ route('admin.stats.couponStats') }}">Coupons</a>
+                            <a class="dropdown-item {{Request::route()->getName() == 'admin.stats.couponStats' ? 'active' : ''}}" href="{{ route('admin.stats.couponStats') }}">Coupons</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('admin.stats.userStats') }}">Utenti</a>
+                            <a class="dropdown-item {{Request::route()->getName() == 'admin.stats.userStats' ? 'active' : ''}}" href="{{ route('admin.stats.userStats') }}">Utenti</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('admin.stats.promotionStats') }}">Promozioni</a>
+                            <a class="dropdown-item {{Request::route()->getName() == 'admin.stats.promotionStats' ? 'active' : ''}}" href="{{ route('admin.stats.promotionStats') }}">Promozioni</a>
                         </div>
                     </li>
 
