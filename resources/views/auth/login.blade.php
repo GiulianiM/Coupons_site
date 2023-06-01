@@ -3,6 +3,12 @@
 @section('title', 'Login')
 
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-warning text-center" id="alert">
+            <i class="fas fa-exclamation-triangle"></i> {{ session('message') }}
+        </div>
+    @endif
+
     <div class="wrapper">
         <div class="row">
             <div class="col text-center">

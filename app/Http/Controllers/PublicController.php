@@ -17,8 +17,12 @@ class PublicController extends Controller
             ->where('visibile', true)
             ->get();
 
-        $promozioni = Promozione::where('fine', '>', Carbon::now())->get();
-        $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())->paginate(12);
+        $promozioni = Promozione::where('fine', '>', Carbon::now())
+            ->where('visibile', true)
+            ->get();
+        $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())
+            ->where('visibile', true)
+            ->paginate(12);
 
         return view('homepage', compact('promozioniCarosello', 'promozioni', 'promozioniPaginated'));
     }
