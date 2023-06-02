@@ -60,8 +60,7 @@ Route::get('/promozione/{promozione}/riscatta', [UserController::class, 'riscatt
 
 Route::get('/promozione/{promozione}/{coupon}', [UserController::class, 'coupon'])
     ->name('coupon')
-    ->middleware('auth', 'can:isUser')
-    ->where(['coupon' => '[0-9]+']);
+    ->middleware('auth', 'can:isUser');
 
 
 

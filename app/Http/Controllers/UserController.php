@@ -119,6 +119,8 @@ class UserController extends Controller
 
         if (Carbon::now()->isAfter($coupon->promozione->fine)) {
             return view('expired_promozione');
+        } else if (Carbon::now()->isBefore($coupon->promozione->inizio)) {
+            return view('upcoming_promozione');
         }
 
         return view('user.coupon', compact('coupon'));

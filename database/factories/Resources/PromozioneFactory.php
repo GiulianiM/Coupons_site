@@ -16,6 +16,9 @@ class PromozioneFactory extends Factory
      */
     public function definition()
     {
+        $inizio = $this->faker->dateTimeBetween('-2 week', '+2 week');
+        $fine = $this->faker->dateTimeBetween($inizio, '+4 week');
+
         return [
             'idAzienda' => 1,
             'titolo' => $this->faker->sentence,
@@ -23,8 +26,8 @@ class PromozioneFactory extends Factory
             'immagine' => $this->faker->image('public/images/promozioni/', 640, 480, 'promos', false),
             'modalita' => $this->faker->randomElement(['online', 'negozio']),
             'luogo' => $this->faker->randomElement([$this->faker->url, $this->faker->address]),
-            'inizio' => $this->faker->dateTimeBetween('-1 week', '+1 day'),
-            'fine' => $this->faker->dateTimeBetween('-2 day', '+1 week'),
+            'inizio' => $inizio,
+            'fine' => $fine,
             'sconto' => $this->faker->randomElement(['prezzo_fisso', 'quantita', 'percentuale']),
             'valore_sconto' => function (array $attributes) {
                 $sconto = $attributes['sconto'];

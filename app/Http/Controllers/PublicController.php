@@ -10,22 +10,41 @@ use Illuminate\Support\Carbon;
 
 class PublicController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $promozioniCarosello = Promozione::where('inizio', '>=', Carbon::now()->subDays(2))
-            ->where('fine', '>', Carbon::now())
-            ->where('visibile', true)
-            ->get();
+        $searchCompany = $request->input('company');
+        $searchDescription = $request->input('description');
+        $promozioniCarosello = null;
 
-        $promozioni = Promozione::where('fine', '>', Carbon::now())
-            ->where('visibile', true)
-            ->get();
-        $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())
-            ->where('visibile', true)
-            ->paginate(12);
+        if ($searchCompany || $searchDescription) {
+            $query = Promozione::query();
 
-        return view('homepage', compact('promozioniCarosello', 'promozioni', 'promozioniPaginated'));
+            if ($searchCompany) {
+                $query->whereHas('azienda', function ($query) use ($searchCompany) {
+                    $query->where('nome', 'LIKE', "%{$searchCompany}%");
+                });
+            }
+
+            if ($searchDescription) {
+                $query->where('fine', '>', Carbon::now())
+                    ->where('inizio', '<=', Carbon::now())
+                    ->where('descrizione', 'LIKE', "%{$searchDescription}%");
+            }
+
+            $promozioniPaginated = $query->paginate(12);
+        } else {
+            $promozioniCarosello = Promozione::where('inizio', '<=', Carbon::now())
+                ->where('fine', '>', Carbon::now())
+                ->get();
+
+            $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())
+                ->where('inizio', '<=', Carbon::now())
+                ->paginate(12);
+        }
+
+        return view('homepage', compact('promozioniCarosello', 'promozioniPaginated'));
     }
+
 
     public function aziende()
     {
@@ -47,6 +66,8 @@ class PublicController extends Controller
 
         if (Carbon::now()->isAfter($promozione->fine)) {
             return view('expired_promozione');
+        } else if (Carbon::now()->isBefore($promozione->inizio)) {
+            return view('upcoming_promozione');
         }
 
         return view('promozione', compact('promozione'));

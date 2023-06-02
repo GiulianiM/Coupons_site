@@ -46,102 +46,23 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            $('.resetButton').hide();
-            $('#promozioni').hide();
-
-            $('.searchButton').click(function (event) {
-                var searchText = $('.searchInput').val().trim().toLowerCase();
-                var descriptionText = $('.searchDescription').val().trim().toLowerCase();
-                var hasResults = false;
-
-                if (searchText !== '' || descriptionText !== '') {
-                    $('#carosello').hide();
-                    $('#promozioniPaginated').hide();
-                    $('#promozioni').show();
-
-                    $('#promozioni .card').each(function () {
-                        var card = $(this);
-                        var cardCompany = card.data('company').toLowerCase();
-                        var cardDescription = card.data('description').toLowerCase();
-
-                        var searchTextMatch = searchText === '' || cardCompany.includes(searchText);
-                        var descriptionTextMatch = descriptionText === '' || cardDescription.includes(descriptionText);
-
-                        if (searchTextMatch && descriptionTextMatch) {
-                            card.show();
-                            hasResults = true;
-                        } else {
-                            card.hide();
-                        }
-
-                        toggleSearchResults(hasResults);
-                    });
-                } else {
-                    alert('Inserisci del testo per effettuare la ricerca.');
-                }
-
-                toggleResetButton();
-                toggleSearchResults(hasResults);
-            });
-
-            $('.resetButton').click(function () {
-                $('.searchInput').val('');
-                $('.searchDescription').val('');
-                $('#carosello').show();
-                $('#promozioniPaginated').show();
-                $('#promozioni').hide();
-                toggleResetButton();
-            });
-
-            toggleResetButton();
-        });
-
-        function toggleResetButton() {
-            var searchText = $('.searchInput').val();
-            var descriptionText = $('.searchDescription').val();
-
-            if (searchText.trim() !== '') {
-                $('.resetButton').show();
-            }
-            if (descriptionText.trim() !== '') {
-                $('.resetButton').show();
-            } else {
-                $('.resetButton').hide();
-            }
-        }
-
-        function toggleSearchResults(hasResults) {
-            var searchHeader = $('#searchHeader');
-
-            if (hasResults) {
-                searchHeader.text('Risultati della ricerca').show();
-            } else {
-                searchHeader.text('Nessun risultato trovato 😔').show();
-            }
-        }
-
-    </script>
 @endsection
 
 @section('content')
     <div class="search-container">
-        <div class="input-group">
-            <input class="form-control searchInput" type="search" placeholder="Cerca azienda..." aria-label="Search">
-            <input class="form-control searchDescription" type="search" placeholder="Cerca descrizione..."
-                   aria-label="Search">
-            <button class="btn btn-warning searchButton" type="button">
-                <i class="fa fa-search"></i>
-            </button>
-            <button class="btn btn-warning resetButton" type="button">
-                <i class="fa-solid fa-rotate-left"></i>
-            </button>
-        </div>
+        <form class="d-flex" action="{{ route('homepage') }}" method="GET">
+            <div class="form-group">
+                <input class="form-control" type="text" id="company" name="company" placeholder="Nome azienda" value="{{ request('company') }}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" id="description" name="description" placeholder="Descrizione offerta" value="{{ request('description') }}">
+            </div>
+            <button class="btn" type="submit">Cerca</button>
+        </form>
     </div>
 
     <!-- Nuovi Coupon carousel -->
-    @if(isset($promozioniCarosello) && count($promozioniCarosello) > 0)
+    @if(empty($search) && isset($promozioniCarosello) && count($promozioniCarosello) > 0)
         <div id="carosello" class="coupons-container">
             <h1 class="d-flex justify-content-center fw-bold pb-3">Nuove Promozioni</h1>
             <div class="carousel-container">
@@ -218,35 +139,4 @@
     @else
         <h1 class="d-flex justify-content-center fw-bold pb-3">Nessuna promozione trovata 😔</h1>
     @endif
-
-
-    @isset($promozioni)
-        <div id="promozioni" class="coupons-container">
-            <h1 id="searchHeader" class="d-flex justify-content-center fw-bold pb-3">Risultati della
-                ricerca</h1>
-            <div class="grid-view">
-                @foreach($promozioni as $promozione)
-                    <div class="card" data-company="{{ $promozione->azienda->nome }}"
-                         data-description="{{ $promozione->descrizione }}">
-                        <div class="image">
-                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}"
-                               class="card-link">
-                                <h5 class="card-title">{{ $promozione->titolo }}</h5>
-                            </a>
-                            @if ($promozione->sconto === 'prezzo_fisso')
-                                <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
-                            @elseif ($promozione->sconto === 'quantita')
-                                <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in regalo</p>
-                            @elseif ($promozione->sconto === 'percentuale')
-                                <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
-                            @endif
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endisset
 @endsection
