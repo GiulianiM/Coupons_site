@@ -16,6 +16,10 @@ html, body {
     padding: 2% 20%;
 }
 
+.empty-space {
+    height: 13vh;
+}
+
 #page {
     flex-grow: 1;
 }

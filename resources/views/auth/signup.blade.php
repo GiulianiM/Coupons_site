@@ -3,9 +3,9 @@
 @section('title', 'Signup')
 
 @section('content')
+    <div class="empty-space"></div>
     <div class="wrapper">
         <div class="container">
-
             <form action="{{ route('signup') }}" method="POST" class="rounded bg-white shadow p-5">
                 @csrf
                 <h1 class="fw-bolder text-center  mb-4">Registrati</h1>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select name="genere" class="form-select{{ $errors->has('genere') ? ' is-invalid' : '' }}"
-                                    id="genere" placeholder="Genere">
+                                    id="genere">
                                 <option value="" {{ (old('genere') == null) ? 'selected' : '' }} disabled>Seleziona il genere</option>
                                 <option value="M" {{ old('genere') == 'M' ? 'selected' : '' }}>Maschio</option>
                                 <option value="F" {{ old('genere') == 'F' ? 'selected' : '' }}>Femmina</option>
@@ -130,6 +130,6 @@
                 </div>
             </form>
         </div>
-
     </div>
+    <div class="empty-space"></div>
 @endsection
