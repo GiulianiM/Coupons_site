@@ -5,6 +5,7 @@
 @section('scripts')
     @parent
     <script src="{{ asset('js/form_validation.js') }}"></script>
+    <script src="{{ asset('js/file_validator.js') }}"></script>
 
     <script>
         $(function (){

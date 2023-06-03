@@ -111,7 +111,7 @@ class PromozioneController extends Controller
         if ($scontoValue === 'quantita') {
             $validationRules['valore_sconto_select'] = ['required', 'string', 'in:2x1,3x2,4x2,5x3'];
         } else {
-            $validationRules['valore_sconto_text'] = ['required', 'string'];
+            $validationRules['valore_sconto_text'] = ['required', 'numeric'];
         }
 
         $messages = [

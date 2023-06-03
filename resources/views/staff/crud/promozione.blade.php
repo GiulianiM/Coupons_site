@@ -6,6 +6,7 @@
     @parent
     <script src="{{ asset('js/promozione.js') }}"></script>
     <script src="{{ asset('js/form_validation.js') }}"></script>
+    <script src="{{ asset('js/file_validator.js') }}"></script>
 
     <script>
         $(function (){
@@ -185,11 +186,9 @@
                 </div>
             </div>
 
-
-            {{--Immagine--}}
+            {{-- Immagine --}}
             <div class="mb-3">
-                <input type="file" id="immagine" name="immagine"
-                       class="form-control">
+                <input type="file" id="immagine" name="immagine" class="form-control" accept="image/jpeg, image/png, image/gif, image/svg+xml">
             </div>
 
             <button type="reset" class="btn btn-danger" onclick="window.location.href='{{ route('staff.promos') }}'">
