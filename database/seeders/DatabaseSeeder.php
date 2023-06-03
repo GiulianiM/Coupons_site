@@ -33,9 +33,11 @@ class DatabaseSeeder extends Seeder
         });
 
         Promozione::all()->each(function ($promozione) {
-            $promozione->coupon()->save(
-                Coupon::factory()->create(['idPromozione' => $promozione->idPromozione])
-            );
+            if($promozione->inizio <= now()) {
+                $promozione->coupon()->save(
+                    Coupon::factory()->create(['idPromozione' => $promozione->idPromozione])
+                );
+            }
         });
 
     }
