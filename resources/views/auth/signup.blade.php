@@ -3,8 +3,7 @@
 @section('title', 'Signup')
 
 @section('content')
-    <div class="empty-space"></div>
-    <div class="wrapper">
+    <div class="wrapper empty-space">
         <div class="container">
             <form action="{{ route('signup') }}" method="POST" class="rounded bg-white shadow p-5">
                 @csrf
@@ -131,5 +130,4 @@
             </form>
         </div>
     </div>
-    <div class="empty-space"></div>
 @endsection

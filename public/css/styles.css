@@ -16,8 +16,9 @@ html, body {
     padding: 2% 20%;
 }
 
-.empty-space {
-    height: 13vh;
+.empty-space{
+    margin-top: 13vh;
+    margin-bottom: 13vh;
 }
 
 #page {

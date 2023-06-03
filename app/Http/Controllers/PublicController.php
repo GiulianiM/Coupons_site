@@ -18,6 +18,7 @@ class PublicController extends Controller
 
         if ($searchCompany || $searchDescription) {
             $query = Promozione::query();
+            $query->where('visibile', true);
 
             if ($searchCompany) {
                 $query->whereHas('azienda', function ($query) use ($searchCompany) {
@@ -35,10 +36,12 @@ class PublicController extends Controller
         } else {
             $promozioniCarosello = Promozione::where('inizio', '<=', Carbon::now())
                 ->where('fine', '>', Carbon::now())
+                ->where('visibile', true)
                 ->get();
 
             $promozioniPaginated = Promozione::where('fine', '>', Carbon::now())
                 ->where('inizio', '<=', Carbon::now())
+                ->where('visibile', true)
                 ->paginate(12);
         }
 
