@@ -24,7 +24,7 @@ class PromozioneFactory extends Factory
             'titolo' => $this->faker->sentence,
             'descrizione' => $this->faker->text,
             'immagine' => $this->faker->image('public/images/promozioni/', 640, 480, 'promos', false),
-            'modalita' => $this->faker->randomElement(['online', 'negozio']),
+            'modalita' => $this->faker->randomElement(['Online', 'Negozio']),
             'luogo' => $this->faker->randomElement([$this->faker->url, $this->faker->address]),
             'inizio' => $inizio,
             'fine' => $fine,

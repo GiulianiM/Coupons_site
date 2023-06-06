@@ -26,7 +26,7 @@ class AziendaFactory extends Factory
             'logo' => $this->faker->image('public/images/aziende/', 640, 480, 'companies', false),
             'ragione_sociale' => $this->faker->companySuffix,
             'descrizione' => $this->faker->text,
-            'tipologia' => $this->faker->randomElement(['tecnologia', 'moda', 'alimentari']),
+            'tipologia' => $this->faker->randomElement(['Tecnologia', 'Moda', 'Alimentari']),
         ];
     }
 }

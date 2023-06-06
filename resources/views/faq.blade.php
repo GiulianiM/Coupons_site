@@ -10,7 +10,7 @@
             @isset($faqs)
                 @foreach($faqs as $faq)
                     <div class="col-md-6 col-lg-4 mb-4">
-                        <h6 class="mb-3"><i class="fas fa-pen-alt pe-2"></i>{{ $faq->titolo }}</h6>
+                        <h6 class="mb-3"><i class="fa-solid fa-question fa-bounce"></i> {{ $faq->titolo }}</h6>
                         <p>{{ $faq->descrizione }}</p>
                     </div>
                 @endforeach

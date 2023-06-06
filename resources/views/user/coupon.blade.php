@@ -46,7 +46,7 @@
                             @if ($coupon->promozione->sconto === 'prezzo_fisso')
                                 <p class="fw-bold mb-0 mt-2">Offerta:</p><span>{{ $coupon->promozione->valore_sconto }}€</span>
                             @elseif ($coupon->promozione->sconto === 'quantita')
-                                <p class="fw-bold mb-0 mt-2">Offerta:</p><span>Acquista 1 e ricevi {{ $coupon->promozione->valore_sconto }} in regalo</span>
+                                <p class="fw-bold mb-0 mt-2">Offerta:</p><span>{{ $coupon->promozione->valore_sconto }}</span>
                             @elseif ($coupon->promozione->sconto === 'percentuale')
                                 <p class="fw-bold mb-0 mt-2">Sconto:</p><span>-{{ $coupon->promozione->valore_sconto }}%</span>
                             @endif

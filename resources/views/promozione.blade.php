@@ -12,7 +12,7 @@
                         @include('helpers.promozioneImg', ['attrs' => 'card-img-top pe-4', 'imgFile' => $promozione->immagine])
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><small class="text-muted">{{ $promozione->azienda->nome }}</small></p>
+                        <p class="card-text mt-4 fw-bold">{{ $promozione->azienda->nome }}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -21,16 +21,16 @@
                 </div>
                 <div class="col-md-4 d-flex flex-column justify-content-between">
                     <div class="text-start" style="margin-left: 8em">
-                        <p class="card-text">Periodo: {{ $promozione->inizio }} - {{ $promozione->fine }}</p>
-                        <p class="card-text">Dove utilizzarlo: {{ $promozione->luogo }}</p>
+                        <p class="card-text"><span class="fw-bold">Periodo:</span> Dal {{ $promozione->inizio }} al {{ $promozione->fine }}</p>
+                        <p class="card-text"><span class="fw-bold">Dove utilizzarlo:</span> {{ $promozione->luogo }}</p>
                     </div>
                     <div class="mt-auto ms-5">
                         @if ($promozione->sconto === 'prezzo_fisso')
-                            <h5 class="card-title">Offerta: {{ $promozione->valore_sconto }}€</h5>
+                            <p class="card-text"><span class="fw-bold">Offerta:</span> {{ $promozione->valore_sconto }}€</p>
                         @elseif ($promozione->sconto === 'quantita')
-                            <h5 class="card-title">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in regalo</h5>
+                            <p class="card-text fw-bold">{{ $promozione->valore_sconto }}</p>
                         @elseif ($promozione->sconto === 'percentuale')
-                            <h5 class="card-title">Sconto: -{{ $promozione->valore_sconto }}%</h5>
+                            <p class="card-text"><span class="fw-bold">Sconto:</span> -{{ $promozione->valore_sconto }}%</p>
                         @endif
                         @auth
                             @can('isUser')

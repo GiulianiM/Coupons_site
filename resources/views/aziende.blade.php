@@ -10,16 +10,16 @@
         @isset($aziende)
         <div class="grid-view">
             @foreach($aziende as $azienda)
-            <div class="card">
-                <div class="image">
-                    @include('helpers.aziendaImg', ['attrs' => 'card-img-top', 'imgFile' => $azienda->logo])
+                <div class="company-card">
+                    <div class="image">
+                        @include('helpers.aziendaImg', ['attrs' => 'logo', 'imgFile' => $azienda->logo])
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ route('azienda', ['azienda' => $azienda->idAzienda]) }}" class="card-link">
+                            <h5 class="card-title">{{$azienda->nome}}</h5>
+                        </a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <a href="{{ route('azienda', ['azienda' => $azienda->idAzienda]) }}" class="card-link">
-                        <h5 class="card-title">{{$azienda->nome}}</h5>
-                    </a>
-                </div>
-            </div>
             @endforeach
         </div>
         @endisset

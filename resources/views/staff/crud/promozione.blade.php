@@ -75,12 +75,12 @@
                             <option value="" {{ (old('modalita') == null) ? 'selected' : '' }} disabled>Seleziona la
                                 modalità
                             </option>
-                            <option value="online"
-                                {{ isset($promo) && $promo->modalita == 'online' || old('modalita') == 'online'? 'selected' : '' }}>
+                            <option value="Online"
+                                {{ isset($promo) && $promo->modalita == 'Online' || old('modalita') == 'Online'? 'selected' : '' }}>
                                 Online
                             </option>
-                            <option value="negozio"
-                                {{ isset($promo) && $promo->modalita == 'negozio' || old('modalita') == 'negozio' ? 'selected' : '' }}>
+                            <option value="Negozio"
+                                {{ isset($promo) && $promo->modalita == 'Negozio' || old('modalita') == 'Negozio' ? 'selected' : '' }}>
                                 Negozio
                             </option>
                         </select>

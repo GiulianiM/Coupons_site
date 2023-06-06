@@ -9,40 +9,16 @@
     <script>
         $(document).ready(function () {
             $('.carousel').slick({
-                dots: true,
                 arrows: true,
                 infinite: true,
                 speed: 500,
                 slidesToShow: 4,
-                slidesToScroll: 4,
+                slidesToScroll: 1,
                 adaptiveHeight: true,
                 prevArrow: $('.carousel-arrow-left'),
                 nextArrow: $('.carousel-arrow-right'),
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            infinite: true,
-                            dots: true
-                        }
-                    },
-                    {
-                        breakpoint: 600,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
+                autoplay: true,
+                autoplaySpeed: 2000,
             });
         });
     </script>
@@ -77,7 +53,7 @@
                             <div class="slide">
                                 <div class="card">
                                     <div class="image">
-                                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+                                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top carousel-img', 'imgFile' => $promozione->immagine])
                                     </div>
                                     <div class="card-body">
                                         <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}"
@@ -87,8 +63,7 @@
                                         @if ($promozione->sconto === 'prezzo_fisso')
                                             <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
                                         @elseif ($promozione->sconto === 'quantita')
-                                            <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in
-                                                regalo</p>
+                                            <p class="card-text">{{ $promozione->valore_sconto }}</p>
                                         @elseif ($promozione->sconto === 'percentuale')
                                             <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
                                         @endif
@@ -114,7 +89,7 @@
                 @foreach($promozioniPaginated as $promozione)
                     <div class="card">
                         <div class="image">
-                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top grid-view-img', 'imgFile' => $promozione->immagine])
                         </div>
                         <div class="card-body">
                             <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}"
@@ -124,7 +99,7 @@
                             @if ($promozione->sconto === 'prezzo_fisso')
                                 <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
                             @elseif ($promozione->sconto === 'quantita')
-                                <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in regalo</p>
+                                <p class="card-text">{{ $promozione->valore_sconto }}</p>
                             @elseif ($promozione->sconto === 'percentuale')
                                 <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
                             @endif

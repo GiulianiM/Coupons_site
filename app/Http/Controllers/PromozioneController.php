@@ -99,7 +99,7 @@ class PromozioneController extends Controller
             'idAzienda' => ['required', 'integer'],
             'titolo' => ['required', 'string', 'max:50'],
             'descrizione' => ['required', 'string', 'max:1200'],
-            'modalita' => ['required', 'string', 'in:online,negozio'],
+            'modalita' => ['required', 'string', 'in:Online,Negozio'],
             'luogo' => ['required', 'string', 'max:255'],
             'inizio' => ['required', 'date'],
             'fine' => ['required', 'date', 'after:inizio'],

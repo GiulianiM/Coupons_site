@@ -3,7 +3,7 @@
 @section('title', 'Profilo')
 
 @section('content')
-    <section class="wrapper">
+    <section class="wrapper empty-space">
         <div class="container ">
             <form class="rounded bg-white shadow p-5">
                 <h1 class="text-dark text-center fw-bolder fs-1 mb-4">Informazioni personali</h1>
@@ -50,7 +50,7 @@
                         @foreach($coupons as $coupon)
                             <div class="card">
                                 <div class="image">
-                                    @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $coupon->promozione->immagine])
+                                    @include('helpers.promozioneImg', ['attrs' => 'card-img-top grid-view-img', 'imgFile' => $coupon->promozione->immagine])
                                 </div>
                                 <div class="card-body">
                                     <a href="{{ route('coupon.profilo', ['coupon' => $coupon->idCoupon]) }}"
@@ -60,7 +60,7 @@
                                     @if ($coupon->promozione->sconto === 'prezzo_fisso')
                                         <p class="card-text">Offerta: {{ $coupon->promozione->valore_sconto }}€</p>
                                     @elseif ($coupon->promozione->sconto === 'quantita')
-                                        <p class="card-text">Acquista 1 e ricevi {{ $coupon->promozione->valore_sconto }} in regalo</p>
+                                        <p class="card-text">{{ $coupon->promozione->valore_sconto }}</p>
                                     @elseif ($coupon->promozione->sconto === 'percentuale')
                                         <p class="card-text">Sconto: -{{ $coupon->promozione->valore_sconto }}%</p>
                                     @endif
@@ -76,7 +76,7 @@
                             @foreach($expiredCoupons as $coupon)
                                 <div class="card">
                                     <div class="image">
-                                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $coupon->promozione->immagine])
+                                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top grid-view-img', 'imgFile' => $coupon->promozione->immagine])
                                     </div>
                                     <div class="card-body">
                                         <a href="{{ route('coupon.profilo', ['coupon' => $coupon->idCoupon]) }}"
@@ -86,7 +86,7 @@
                                         @if ($coupon->promozione->sconto === 'prezzo_fisso')
                                             <p class="card-text">Offerta: {{ $coupon->promozione->valore_sconto }}€</p>
                                         @elseif ($coupon->promozione->sconto === 'quantita')
-                                            <p class="card-text">Acquista 1 e ricevi {{ $coupon->promozione->valore_sconto }} in regalo</p>
+                                            <p class="card-text">{{ $coupon->promozione->valore_sconto }}</p>
                                         @elseif ($coupon->promozione->sconto === 'percentuale')
                                             <p class="card-text">Sconto: -{{ $coupon->promozione->valore_sconto }}%</p>
                                         @endif

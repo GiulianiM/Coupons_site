@@ -41,7 +41,7 @@
                 @foreach($promozioni as $promozione)
                     <div class="card">
                         <div class="image">
-                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top', 'imgFile' => $promozione->immagine])
+                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top grid-view-img', 'imgFile' => $promozione->immagine])
                         </div>
                         <div class="card-body">
                             <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}" class="card-link">
@@ -50,8 +50,7 @@
                             @if ($promozione->sconto === 'prezzo_fisso')
                                 <p class="card-text">Offerta: {{ $promozione->valore_sconto }}€</p>
                             @elseif ($promozione->sconto === 'quantita')
-                                <p class="card-text">Acquista 1 e ricevi {{ $promozione->valore_sconto }} in
-                                    regalo</p>
+                                <p class="card-text">{{ $promozione->valore_sconto }}</p>
                             @elseif ($promozione->sconto === 'percentuale')
                                 <p class="card-text">Sconto: -{{ $promozione->valore_sconto }}%</p>
                             @endif

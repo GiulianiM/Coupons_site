@@ -93,7 +93,7 @@ class AziendaController extends Controller
             'numero_civico' => ['required', 'numeric', 'digits_between:1,3', 'between:1,300'],
             'ragione_sociale' => ['required', 'string', 'max:255'],
             'descrizione' => ['required', 'string', 'max:1200'],
-            'tipologia' => ['required', 'string', 'in:alimentari,moda,tecnologia'],
+            'tipologia' => ['required', 'string', 'in:Alimentari,Moda,Tecnologia'],
         ]);
     }
 }
