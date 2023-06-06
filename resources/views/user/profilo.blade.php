@@ -50,7 +50,7 @@
                         @foreach($coupons as $coupon)
                             <div class="card">
                                 <div class="image">
-                                    @include('helpers.promozioneImg', ['attrs' => 'card-img-top grid-view-img', 'imgFile' => $coupon->promozione->immagine])
+                                    @include('helpers.promozioneImg', ['attrs' => ' grid-view-img', 'imgFile' => $coupon->promozione->immagine])
                                 </div>
                                 <div class="card-body">
                                     <a href="{{ route('coupon.profilo', ['coupon' => $coupon->idCoupon]) }}"
@@ -76,7 +76,7 @@
                             @foreach($expiredCoupons as $coupon)
                                 <div class="card">
                                     <div class="image">
-                                        @include('helpers.promozioneImg', ['attrs' => 'card-img-top grid-view-img', 'imgFile' => $coupon->promozione->immagine])
+                                        @include('helpers.promozioneImg', ['attrs' => ' grid-view-img', 'imgFile' => $coupon->promozione->immagine])
                                     </div>
                                     <div class="card-body">
                                         <a href="{{ route('coupon.profilo', ['coupon' => $coupon->idCoupon]) }}"

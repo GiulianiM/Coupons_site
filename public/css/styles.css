@@ -131,15 +131,15 @@ html, body {
 
 .carousel .carousel-img {
     width: 100%;
-    height: 200px; /* Imposta l'altezza fissa per le immagini */
-    object-fit: cover; /* Imposta l'immagine per coprire l'intera area */
+    height: 200px;
+    object-fit: contain;
     border-radius: 5px;
 }
 
 .grid-view .grid-view-img {
     width: 100%;
-    height: 200px; /* Imposta l'altezza fissa per le immagini */
-    object-fit: cover; /* Imposta l'immagine per coprire l'intera area */
+    height: 200px;
+    object-fit: contain;
     border-radius: 5px;
 }
 
@@ -151,8 +151,8 @@ html, body {
 .company-container .company-logo {
     width: 100%;
     height: auto;
-    max-width: 200px; /* Imposta la larghezza massima del logo */
-    max-height: 100px; /* Imposta l'altezza massima del logo */
+    max-width: 200px;
+    max-height: 100px;
 }
 
 .company-card {

@@ -41,7 +41,7 @@
                 @foreach($promozioni as $promozione)
                     <div class="card">
                         <div class="image">
-                            @include('helpers.promozioneImg', ['attrs' => 'card-img-top grid-view-img', 'imgFile' => $promozione->immagine])
+                            @include('helpers.promozioneImg', ['attrs' => ' grid-view-img', 'imgFile' => $promozione->immagine])
                         </div>
                         <div class="card-body">
                             <a href="{{ route('promozione', ['promozione' => $promozione->idPromozione]) }}" class="card-link">
