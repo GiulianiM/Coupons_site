@@ -50,7 +50,6 @@ class AziendaController extends Controller
 
     public function update(Request $request, Azienda $azienda)
     {
-        //dd($azienda);
         $validatedData = $this->validateData($request);
 
         //Controlla se è stato caricato un file

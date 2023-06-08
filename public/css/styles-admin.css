@@ -16,8 +16,8 @@ html, body {
 }
 .box-form{
     display: flex;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Centra horizontalmente */
+    align-items: center;
+    justify-content: center;
 }
 
 

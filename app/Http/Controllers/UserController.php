@@ -93,7 +93,6 @@ class UserController extends Controller
             ->first();
 
         if ($existingCoupon) {
-            // User already has a coupon for this promozione
             return redirect()->route('coupon', ['promozione' => $promozione->idPromozione, 'coupon' => $existingCoupon->idCoupon])
                 ->with('message', 'Hai già riscattato un coupon per questa promozione.');
         }
@@ -130,7 +129,6 @@ class UserController extends Controller
     {
         $coupon = Coupon::findOrFail($idCoupon);
 
-        // Check if the current user has the coupon
         $user = auth()->user();
         if (!$user->hasCoupon($coupon)) {
             abort(404);

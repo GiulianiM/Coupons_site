@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Models\Azienda;
 use App\Models\Resources\Promozione;

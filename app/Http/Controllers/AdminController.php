@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Azienda;
 use App\Models\Resources\Faq;
-use App\Models\Resources\Promozione;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\Resources\Coupon;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Resources\Faq;
 use Illuminate\Validation\Rules;
 use App\Models\Resources\Promozione;
 use App\Models\User;
