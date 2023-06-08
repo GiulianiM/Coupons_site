@@ -34,7 +34,7 @@ class PublicController extends Controller
 
             $promozioniPaginated = $query->paginate(12);
         } else {
-            $promozioniCarosello = Promozione::where('inizio', '<=', Carbon::now())
+            $promozioniCarosello = Promozione::where('inizio', '<=', Carbon::now()->subDays(5))
                 ->where('fine', '>', Carbon::now())
                 ->where('visibile', true)
                 ->get();
