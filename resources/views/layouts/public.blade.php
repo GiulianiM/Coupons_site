@@ -33,7 +33,8 @@
             <span class="mb-3 mb-md-0 text-muted">&copy; 2023 Coupons Site</span>
         </div>
 
-        <ul class="nav col-md-4 justify-content-end">
+        <ul class="nav col-md-6 justify-content-end">
+            <li class="nav-item"><a href="{{ asset("docs/Relazione_tweb.pdf")}}" class="nav-link px-2 text-muted">Documentazione</a></li>
             <li class="nav-item"><a href="{{ route('homepage') }}" class="nav-link px-2 text-muted">Home</a></li>
             <li class="nav-item"><a href="{{route ('company') }}" class="nav-link px-2 text-muted">Azienda</a></li>
             <li class="nav-item"><a href="{{route ('collabora') }}" class="nav-link px-2 text-muted">Collabora con
